@@ -1,0 +1,6 @@
+[submodule "Third Party/asi-http-request"]
+	path = Third Party/asi-http-request
+	url = https://github.com/pokeb/asi-http-request.git
+[submodule "Third Party/json-framework"]
+	path = Third Party/json-framework
+	url = https://github.com/stig/json-framework.git

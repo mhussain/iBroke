@@ -8,17 +8,71 @@
 
 #import "AppDelegate.h"
 
+#import "SettingsController.h"
+
+@interface AppDelegate ()
+
+@property (nonatomic, retain) UINavigationController *navigationController;
+@property (nonatomic, retain) UIViewController *mainPageController;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 
+@synthesize navigationController = _navigationController;
+@synthesize mainPageController = _mainPageController;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+
+  _navigationController = [[UINavigationController alloc] initWithNibName:nil bundle:nil];
+  [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
+
+	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
+  [[self navigationController] pushViewController:[self mainPageController] animated:YES];
+
+  [[self window] setRootViewController:[self navigationController]];
+  [self displaySplash];
+  
+  // Override point for customization after application launch.
+  [[self window] setBackgroundColor:[UIColor clearColor]];
+  [self.window makeKeyAndVisible];
+
+  return YES;
+}
+
+- (void)displaySplash;
+{
+  UIImageView *splash = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  [splash setTag:909];
+  [splash setImage:[UIImage imageNamed:@"Default.png"]];
+  
+  [_window addSubview:splash];
+  [_window bringSubviewToFront:splash];
+  
+	[self delayedHideSplash:splash];
+}
+
+- (void)delayedHideSplash:(UIView *)splash;
+{
+  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:1.];
+}
+
+- (void)hideSplash:(UIView *)splash;
+{
+  [UIView beginAnimations:@"hide splash" context:splash];
+  
+  [UIView setAnimationDuration:0.4];
+  [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
+  [UIView setAnimationDelegate:self];
+  [UIView setAnimationDidStopSelector:@selector(clearSplashWithAnimationID:finished:context:)];
+  
+  [splash setAlpha:0.];
+  
+  [UIView commitAnimations];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

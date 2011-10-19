@@ -12,4 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (void)displaySplash;
+- (void)delayedHideSplash:(UIView *)splash;
+- (void)hideSplash:(UIView *)splash;
+
 @end
