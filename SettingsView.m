@@ -30,7 +30,7 @@
     _hostnameText = [[UITextField alloc] initWithFrame:CGRectMake(120., 10., 180., 30.)];
     [_hostnameText setKeyboardType:UIKeyboardTypeURL];
     [_hostnameText setBorderStyle:UITextBorderStyleRoundedRect];
-    [_hostnameText setPlaceholder:@"http://..."];
+    [_hostnameText setText:@"http://ci-control01.dev.int.realestate.com.au"];
     [_hostnameText setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self addSubview:_hostnameText];
     
@@ -43,7 +43,7 @@
 
     _portText = [[UITextField alloc] initWithFrame:CGRectMake(120., 60., 180., 30.)];
     [_portText setKeyboardType:UIKeyboardTypeNumberPad];
-    [_portText setPlaceholder:@"8080"];
+    [_portText setText:@"8080"];
     [_portText setBorderStyle:UITextBorderStyleRoundedRect];
     [self addSubview:_portText];
     
@@ -57,7 +57,7 @@
     _suffixText = [[UITextField alloc] initWithFrame:CGRectMake(120., 110., 180., 30.)];
     [_suffixText setBorderStyle:UITextBorderStyleRoundedRect];
     [_suffixText setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [_suffixText setPlaceholder:@"jenkins"];
+    [_suffixText setPlaceholder:@""];
     [self addSubview:_suffixText];
     
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];

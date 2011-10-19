@@ -7,7 +7,12 @@
 //
 
 #import "SettingsController.h"
+
+#import "DisplayBuildsController.h"
+#import "ConnectToJenkins.h"
 #import "SettingsView.h"
+
+#import "AddressFormatter.h"
 
 @interface SettingsController ()
 
@@ -47,6 +52,14 @@
   
   NSLog(@"%@ %@ %@",hostname, portNumber, suffix);
   
+  NSString *address = [AddressFormatter createAddressUsingHostname:hostname portNumber:portNumber suffix:suffix];
+  
+//  DisplayBuildsController *displayBuilds = [[DisplayBuildsController alloc] initWithAddress:address];
+//  [displayBuilds setAddress:address];
+//	[displayBuilds connectToAddress];
+  
+  [[self navigationController] pushViewController:[[DisplayBuildsController alloc] initWithAddress:address] animated:YES];
+  
 }
 
 #pragma mark - View lifecycle
@@ -68,7 +81,7 @@
 }
 */
 
-- (void)viewDidUnload
+- (void)viewDidUnload;
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.

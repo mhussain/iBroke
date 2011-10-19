@@ -26,6 +26,10 @@
 		2152CC3F144E79FF00F22682 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */; };
 		219E3B22144EA8CB00EF4A5D /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 219E3B21144EA8CB00EF4A5D /* Background@2x.png */; };
 		219E3B24144EA9D700EF4A5D /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 219E3B23144EA9D700EF4A5D /* Background.png */; };
+		219E3B27144EABB300EF4A5D /* DisplayBuildsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B26144EABB300EF4A5D /* DisplayBuildsController.m */; };
+		219E3B2D144EADB100EF4A5D /* DisplayBuildsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B2C144EADB100EF4A5D /* DisplayBuildsView.m */; };
+		219E3B31144EAEE700EF4A5D /* ConnectToJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */; };
+		219E3B34144EBBFB00EF4A5D /* AddressFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */; };
 		21F76C0A144E830F00F0BB5F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76BF2144E830F00F0BB5F /* NSObject+SBJson.m */; };
 		21F76C0B144E830F00F0BB5F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76BF5144E830F00F0BB5F /* SBJsonParser.m */; };
 		21F76C0C144E830F00F0BB5F /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76BF7144E830F00F0BB5F /* SBJsonStreamParser.m */; };
@@ -75,6 +79,14 @@
 		2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		219E3B21144EA8CB00EF4A5D /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		219E3B23144EA9D700EF4A5D /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		219E3B25144EABB300EF4A5D /* DisplayBuildsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBuildsController.h; sourceTree = "<group>"; };
+		219E3B26144EABB300EF4A5D /* DisplayBuildsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBuildsController.m; sourceTree = "<group>"; };
+		219E3B2B144EADB100EF4A5D /* DisplayBuildsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBuildsView.h; sourceTree = "<group>"; };
+		219E3B2C144EADB100EF4A5D /* DisplayBuildsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBuildsView.m; sourceTree = "<group>"; };
+		219E3B2F144EAEE700EF4A5D /* ConnectToJenkins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectToJenkins.h; sourceTree = "<group>"; };
+		219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectToJenkins.m; sourceTree = "<group>"; };
+		219E3B32144EBBFB00EF4A5D /* AddressFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFormatter.h; sourceTree = "<group>"; };
+		219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFormatter.m; sourceTree = "<group>"; };
 		21F76BF1144E830F00F0BB5F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "Third Party/json-framework/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
 		21F76BF2144E830F00F0BB5F /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+SBJson.m"; path = "Third Party/json-framework/Classes/NSObject+SBJson.m"; sourceTree = "<group>"; };
 		21F76BF3144E830F00F0BB5F /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJson.h; path = "Third Party/json-framework/Classes/SBJson.h"; sourceTree = "<group>"; };
@@ -159,6 +171,7 @@
 		2152CBFE144E65CA00F22682 = {
 			isa = PBXGroup;
 			children = (
+				219E3B2E144EAEB300EF4A5D /* Processing */,
 				2112FCFC144E8EE400FF604A /* Resources */,
 				21F76BEE144E82D700F0BB5F /* Third Party */,
 				2152CC32144E68DC00F22682 /* Views */,
@@ -218,6 +231,8 @@
 			children = (
 				2152CC25144E669700F22682 /* SettingsController.h */,
 				2152CC26144E669700F22682 /* SettingsController.m */,
+				219E3B25144EABB300EF4A5D /* DisplayBuildsController.h */,
+				219E3B26144EABB300EF4A5D /* DisplayBuildsController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -227,8 +242,21 @@
 			children = (
 				2152CC33144E690D00F22682 /* SettingsView.h */,
 				2152CC34144E690D00F22682 /* SettingsView.m */,
+				219E3B2B144EADB100EF4A5D /* DisplayBuildsView.h */,
+				219E3B2C144EADB100EF4A5D /* DisplayBuildsView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		219E3B2E144EAEB300EF4A5D /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				219E3B2F144EAEE700EF4A5D /* ConnectToJenkins.h */,
+				219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */,
+				219E3B32144EBBFB00EF4A5D /* AddressFormatter.h */,
+				219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */,
+			);
+			name = Processing;
 			sourceTree = "<group>";
 		};
 		21F76BEE144E82D700F0BB5F /* Third Party */ = {
@@ -394,6 +422,10 @@
 				21F76C30144E838E00F0BB5F /* ASIInputStream.m in Sources */,
 				21F76C31144E838E00F0BB5F /* ASINetworkQueue.m in Sources */,
 				21F76C34144E839C00F0BB5F /* Reachability.m in Sources */,
+				219E3B27144EABB300EF4A5D /* DisplayBuildsController.m in Sources */,
+				219E3B2D144EADB100EF4A5D /* DisplayBuildsView.m in Sources */,
+				219E3B31144EAEE700EF4A5D /* ConnectToJenkins.m in Sources */,
+				219E3B34144EBBFB00EF4A5D /* AddressFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
