@@ -1,0 +1,263 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2152CC0E144E65CA00F22682 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC0D144E65CA00F22682 /* UIKit.framework */; };
+		2152CC10144E65CA00F22682 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC0F144E65CA00F22682 /* Foundation.framework */; };
+		2152CC12144E65CA00F22682 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC11144E65CA00F22682 /* CoreGraphics.framework */; };
+		2152CC18144E65CA00F22682 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2152CC16144E65CA00F22682 /* InfoPlist.strings */; };
+		2152CC1A144E65CA00F22682 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152CC19144E65CA00F22682 /* main.m */; };
+		2152CC1E144E65CA00F22682 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2152CC1D144E65CA00F22682 /* AppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2152CC09144E65CA00F22682 /* iBroke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBroke.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2152CC0D144E65CA00F22682 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2152CC0F144E65CA00F22682 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2152CC11144E65CA00F22682 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2152CC15144E65CA00F22682 /* iBroke-Info.plist */ = {isa = PBXFileReference; path = "iBroke-Info.plist"; sourceTree = "<group>"; };
+		2152CC17144E65CA00F22682 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		2152CC19144E65CA00F22682 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2152CC1B144E65CA00F22682 /* iBroke-Prefix.pch */ = {isa = PBXFileReference; path = "iBroke-Prefix.pch"; sourceTree = "<group>"; };
+		2152CC1C144E65CA00F22682 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		2152CC1D144E65CA00F22682 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2152CC06144E65CA00F22682 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2152CC0E144E65CA00F22682 /* UIKit.framework in Frameworks */,
+				2152CC10144E65CA00F22682 /* Foundation.framework in Frameworks */,
+				2152CC12144E65CA00F22682 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2152CBFE144E65CA00F22682 = {
+			isa = PBXGroup;
+			children = (
+				2152CC13144E65CA00F22682 /* iBroke */,
+				2152CC0C144E65CA00F22682 /* Frameworks */,
+				2152CC0A144E65CA00F22682 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2152CC0A144E65CA00F22682 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2152CC09144E65CA00F22682 /* iBroke.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2152CC0C144E65CA00F22682 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2152CC0D144E65CA00F22682 /* UIKit.framework */,
+				2152CC0F144E65CA00F22682 /* Foundation.framework */,
+				2152CC11144E65CA00F22682 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2152CC13144E65CA00F22682 /* iBroke */ = {
+			isa = PBXGroup;
+			children = (
+				2152CC1C144E65CA00F22682 /* AppDelegate.h */,
+				2152CC1D144E65CA00F22682 /* AppDelegate.m */,
+				2152CC14144E65CA00F22682 /* Supporting Files */,
+			);
+			path = iBroke;
+			sourceTree = "<group>";
+		};
+		2152CC14144E65CA00F22682 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2152CC15144E65CA00F22682 /* iBroke-Info.plist */,
+				2152CC16144E65CA00F22682 /* InfoPlist.strings */,
+				2152CC19144E65CA00F22682 /* main.m */,
+				2152CC1B144E65CA00F22682 /* iBroke-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2152CC08144E65CA00F22682 /* iBroke */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2152CC21144E65CA00F22682 /* Build configuration list for PBXNativeTarget "iBroke" */;
+			buildPhases = (
+				2152CC05144E65CA00F22682 /* Sources */,
+				2152CC06144E65CA00F22682 /* Frameworks */,
+				2152CC07144E65CA00F22682 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iBroke;
+			productName = iBroke;
+			productReference = 2152CC09144E65CA00F22682 /* iBroke.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2152CC00144E65CA00F22682 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 2152CC03144E65CA00F22682 /* Build configuration list for PBXProject "iBroke" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2152CBFE144E65CA00F22682;
+			productRefGroup = 2152CC0A144E65CA00F22682 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2152CC08144E65CA00F22682 /* iBroke */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2152CC07144E65CA00F22682 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2152CC18144E65CA00F22682 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2152CC05144E65CA00F22682 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2152CC1A144E65CA00F22682 /* main.m in Sources */,
+				2152CC1E144E65CA00F22682 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2152CC16144E65CA00F22682 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2152CC17144E65CA00F22682 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2152CC1F144E65CA00F22682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2152CC20144E65CA00F22682 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2152CC22144E65CA00F22682 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iBroke/iBroke-Prefix.pch";
+				INFOPLIST_FILE = "iBroke/iBroke-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		2152CC23144E65CA00F22682 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iBroke/iBroke-Prefix.pch";
+				INFOPLIST_FILE = "iBroke/iBroke-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2152CC03144E65CA00F22682 /* Build configuration list for PBXProject "iBroke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2152CC1F144E65CA00F22682 /* Debug */,
+				2152CC20144E65CA00F22682 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2152CC21144E65CA00F22682 /* Build configuration list for PBXNativeTarget "iBroke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2152CC22144E65CA00F22682 /* Debug */,
+				2152CC23144E65CA00F22682 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2152CC00144E65CA00F22682 /* Project object */;
+}
