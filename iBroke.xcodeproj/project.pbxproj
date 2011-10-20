@@ -24,11 +24,13 @@
 		2152CC3B144E79DA00F22682 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3A144E79DA00F22682 /* SystemConfiguration.framework */; };
 		2152CC3D144E79E800F22682 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3C144E79E800F22682 /* QuartzCore.framework */; };
 		2152CC3F144E79FF00F22682 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */; };
+		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
+		218A041B144F8B8C0015AD0D /* Build.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A041A144F8B8C0015AD0D /* Build.m */; };
+		218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0428144F956F0015AD0D /* NSArray+Blocks.m */; };
 		219E3B22144EA8CB00EF4A5D /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 219E3B21144EA8CB00EF4A5D /* Background@2x.png */; };
 		219E3B24144EA9D700EF4A5D /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 219E3B23144EA9D700EF4A5D /* Background.png */; };
 		219E3B27144EABB300EF4A5D /* DisplayBuildsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B26144EABB300EF4A5D /* DisplayBuildsController.m */; };
 		219E3B2D144EADB100EF4A5D /* DisplayBuildsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B2C144EADB100EF4A5D /* DisplayBuildsView.m */; };
-		219E3B31144EAEE700EF4A5D /* ConnectToJenkins.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */; };
 		219E3B34144EBBFB00EF4A5D /* AddressFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */; };
 		21F76C0A144E830F00F0BB5F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76BF2144E830F00F0BB5F /* NSObject+SBJson.m */; };
 		21F76C0B144E830F00F0BB5F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76BF5144E830F00F0BB5F /* SBJsonParser.m */; };
@@ -77,14 +79,18 @@
 		2152CC3A144E79DA00F22682 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2152CC3C144E79E800F22682 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		218A0415144F8B1D0015AD0D /* BuildDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDashboard.h; sourceTree = "<group>"; };
+		218A0416144F8B1D0015AD0D /* BuildDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDashboard.m; sourceTree = "<group>"; };
+		218A0419144F8B8C0015AD0D /* Build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Build.h; sourceTree = "<group>"; };
+		218A041A144F8B8C0015AD0D /* Build.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Build.m; sourceTree = "<group>"; };
+		218A0427144F956E0015AD0D /* NSArray+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Blocks.h"; sourceTree = "<group>"; };
+		218A0428144F956F0015AD0D /* NSArray+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Blocks.m"; sourceTree = "<group>"; };
 		219E3B21144EA8CB00EF4A5D /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		219E3B23144EA9D700EF4A5D /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		219E3B25144EABB300EF4A5D /* DisplayBuildsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBuildsController.h; sourceTree = "<group>"; };
 		219E3B26144EABB300EF4A5D /* DisplayBuildsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBuildsController.m; sourceTree = "<group>"; };
 		219E3B2B144EADB100EF4A5D /* DisplayBuildsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayBuildsView.h; sourceTree = "<group>"; };
 		219E3B2C144EADB100EF4A5D /* DisplayBuildsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayBuildsView.m; sourceTree = "<group>"; };
-		219E3B2F144EAEE700EF4A5D /* ConnectToJenkins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectToJenkins.h; sourceTree = "<group>"; };
-		219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectToJenkins.m; sourceTree = "<group>"; };
 		219E3B32144EBBFB00EF4A5D /* AddressFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressFormatter.h; sourceTree = "<group>"; };
 		219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressFormatter.m; sourceTree = "<group>"; };
 		21F76BF1144E830F00F0BB5F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+SBJson.h"; path = "Third Party/json-framework/Classes/NSObject+SBJson.h"; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		2152CBFE144E65CA00F22682 = {
 			isa = PBXGroup;
 			children = (
+				218A0418144F8B770015AD0D /* Domain */,
 				219E3B2E144EAEB300EF4A5D /* Processing */,
 				2112FCFC144E8EE400FF604A /* Resources */,
 				21F76BEE144E82D700F0BB5F /* Third Party */,
@@ -248,13 +255,24 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		218A0418144F8B770015AD0D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				218A0419144F8B8C0015AD0D /* Build.h */,
+				218A041A144F8B8C0015AD0D /* Build.m */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
 		219E3B2E144EAEB300EF4A5D /* Processing */ = {
 			isa = PBXGroup;
 			children = (
-				219E3B2F144EAEE700EF4A5D /* ConnectToJenkins.h */,
-				219E3B30144EAEE700EF4A5D /* ConnectToJenkins.m */,
 				219E3B32144EBBFB00EF4A5D /* AddressFormatter.h */,
 				219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */,
+				218A0415144F8B1D0015AD0D /* BuildDashboard.h */,
+				218A0416144F8B1D0015AD0D /* BuildDashboard.m */,
+				218A0427144F956E0015AD0D /* NSArray+Blocks.h */,
+				218A0428144F956F0015AD0D /* NSArray+Blocks.m */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -424,8 +442,10 @@
 				21F76C34144E839C00F0BB5F /* Reachability.m in Sources */,
 				219E3B27144EABB300EF4A5D /* DisplayBuildsController.m in Sources */,
 				219E3B2D144EADB100EF4A5D /* DisplayBuildsView.m in Sources */,
-				219E3B31144EAEE700EF4A5D /* ConnectToJenkins.m in Sources */,
 				219E3B34144EBBFB00EF4A5D /* AddressFormatter.m in Sources */,
+				218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */,
+				218A041B144F8B8C0015AD0D /* Build.m in Sources */,
+				218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,11 +27,12 @@
     [hostname setShadowColor:[UIColor blackColor]];
     [self addSubview:hostname];
     
-    _hostnameText = [[UITextField alloc] initWithFrame:CGRectMake(120., 10., 180., 30.)];
+    _hostnameText = [[UITextField alloc] initWithFrame:CGRectMake(120., 10., 180., 	30.)];
     [_hostnameText setKeyboardType:UIKeyboardTypeURL];
     [_hostnameText setBorderStyle:UITextBorderStyleRoundedRect];
     [_hostnameText setText:@"http://ci-control01.dev.int.realestate.com.au"];
     [_hostnameText setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_hostnameText setFont:[UIFont fontWithName:@"Monaco" size:8.]];
     [self addSubview:_hostnameText];
     
     UILabel *port = [[UILabel alloc] initWithFrame:CGRectMake(10., 60., 100., 30.)];

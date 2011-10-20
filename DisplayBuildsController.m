@@ -7,16 +7,24 @@
 //
 
 #import "DisplayBuildsController.h"
-#import "ConnectToJenkins.h"
 
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 
 #import "AddressFormatter.h"
+#import "BuildDashboard.h"
+#import "DisplayBuildsView.h"
+
+@interface DisplayBuildsController ()
+
+@property (nonatomic, retain) DisplayBuildsView *buildsView;
+
+@end
 
 @implementation DisplayBuildsController
 
 @synthesize address = _address;
+@synthesize buildsView = _buildsView;
 
 - (id)initWithAddress:(NSString *)address;
 {
@@ -24,9 +32,12 @@
   
   if (self)
   {
-    [self setTitle:@"SomeBuildName"];
+    [self setTitle:@"Builds"];
     [self setAddress:address];
     [self connectToAddress];
+    
+    _buildsView = [[DisplayBuildsView alloc] initWithFrame:CGRectZero];
+    [self setView:_buildsView];
   }
   return self;
 }
@@ -55,13 +66,13 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
 {
-  NSString *json_string = [request responseString];
   SBJsonParser *parser = [[SBJsonParser alloc] init];
 
-  NSDictionary *object = [parser objectWithString:json_string error:nil];
-  NSLog(@"-->%@", object);
-
+  NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
   
+  BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
+  [[self buildsView] setBuildData:[dashboard builds]];
+  [[self buildsView] refresh];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -74,12 +85,11 @@
 
 #pragma mark - View lifecycle
 
-/*
+
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
 }
-*/
 
 /*
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

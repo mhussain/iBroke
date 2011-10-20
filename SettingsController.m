@@ -9,7 +9,6 @@
 #import "SettingsController.h"
 
 #import "DisplayBuildsController.h"
-#import "ConnectToJenkins.h"
 #import "SettingsView.h"
 
 #import "AddressFormatter.h"
