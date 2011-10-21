@@ -73,6 +73,7 @@
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
   [[self buildsView] setBuildData:[dashboard builds]];
   [[self buildsView] refresh];
+  [[self buildsView] sizeToFit];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

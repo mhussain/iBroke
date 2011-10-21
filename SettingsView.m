@@ -22,42 +22,47 @@
   {    
     UILabel *hostname = [[UILabel alloc] initWithFrame:CGRectMake(10., 10., 100., 30.)];
     [hostname setText:@"Host name"];
-    [hostname setTextColor:[UIColor whiteColor]];
+    [hostname setTextColor:[UIColor blackColor]];
     [hostname setBackgroundColor:[UIColor clearColor]];
-    [hostname setShadowColor:[UIColor blackColor]];
+    [hostname setFont:[UIFont fontWithName:@"Helvetica" size:15.]];    
     [self addSubview:hostname];
     
     _hostnameText = [[UITextField alloc] initWithFrame:CGRectMake(120., 10., 180., 	30.)];
     [_hostnameText setKeyboardType:UIKeyboardTypeURL];
-    [_hostnameText setBorderStyle:UITextBorderStyleRoundedRect];
+    [_hostnameText setBorderStyle:UITextBorderStyleLine];
+    [_hostnameText setBackgroundColor:[UIColor clearColor]];    
     [_hostnameText setText:@"http://ci-control01.dev.int.realestate.com.au"];
     [_hostnameText setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [_hostnameText setFont:[UIFont fontWithName:@"Monaco" size:8.]];
+    [_hostnameText setFont:[UIFont fontWithName:@"Helvetica" size:15.]]; 
     [self addSubview:_hostnameText];
     
     UILabel *port = [[UILabel alloc] initWithFrame:CGRectMake(10., 60., 100., 30.)];
     [port setText:@"Port number"];
-    [port setTextColor:[UIColor whiteColor]];
+    [port setTextColor:[UIColor blackColor]];
     [port setBackgroundColor:[UIColor clearColor]];
-		[port setShadowColor:[UIColor blackColor]];
+    [port setFont:[UIFont fontWithName:@"Helvetica" size:15.]];    
     [self addSubview:port];
 
     _portText = [[UITextField alloc] initWithFrame:CGRectMake(120., 60., 180., 30.)];
     [_portText setKeyboardType:UIKeyboardTypeNumberPad];
     [_portText setText:@"8080"];
-    [_portText setBorderStyle:UITextBorderStyleRoundedRect];
+    [_portText setBorderStyle:UITextBorderStyleLine];
+    [_portText setBackgroundColor:[UIColor clearColor]];
+    [_portText setFont:[UIFont fontWithName:@"Helvetica" size:15.]];
     [self addSubview:_portText];
     
     UILabel *suffix = [[UILabel alloc] initWithFrame:CGRectMake(10., 110., 100., 30.)];
     [suffix setText:@"Suffix"];
-    [suffix setTextColor:[UIColor whiteColor]];
+    [suffix setTextColor:[UIColor blackColor]];
     [suffix setBackgroundColor:[UIColor clearColor]];
-    [suffix setShadowColor:[UIColor blackColor]];
+    [suffix setFont:[UIFont fontWithName:@"Helvetica" size:15.]];    
     [self addSubview:suffix];
 
     _suffixText = [[UITextField alloc] initWithFrame:CGRectMake(120., 110., 180., 30.)];
-    [_suffixText setBorderStyle:UITextBorderStyleRoundedRect];
+    [_suffixText setBorderStyle:UITextBorderStyleLine];
+    [_suffixText setBackgroundColor:[UIColor clearColor]];
     [_suffixText setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_suffixText setFont:[UIFont fontWithName:@"Helvetica" size:15.]];
     [_suffixText setPlaceholder:@""];
     [self addSubview:_suffixText];
     

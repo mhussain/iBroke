@@ -58,20 +58,31 @@
 
 - (void)delayedHideSplash:(UIView *)splash;
 {
-  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:1.];
+  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:3.];
 }
 
 - (void)hideSplash:(UIView *)splash;
 {
   [UIView beginAnimations:@"hide splash" context:splash];
   
-  [UIView setAnimationDuration:0.4];
-  [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
+  [UIView setAnimationDuration:1.];
+//  [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
+  [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+  [UIView setAnimationTransition:UIViewAnimationOptionTransitionCrossDissolve forView:[splash window] cache:YES];
   [UIView setAnimationDelegate:self];
-  [UIView setAnimationDidStopSelector:@selector(clearSplashWithAnimationID:finished:context:)];
+  [UIView setAnimationDidStopSelector:@selector(finishFading:)];
   
   [splash setAlpha:0.];
   
+  [UIView commitAnimations];
+}
+
+- (void)finishFading:(UIView *)splash;
+{
+  [UIView beginAnimations:nil context:splash];
+  [UIView setAnimationDuration:0.75];
+  
+  [[[self navigationController] view] setAlpha:1.0];
   [UIView commitAnimations];
 }
 

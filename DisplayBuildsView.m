@@ -27,10 +27,12 @@
   
   if (self)
   {
-    [self setTableView:[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped]];
+    [self setTableView:[[UITableView alloc] initWithFrame:frame style:UITableViewStyleGrouped]];
     [[self tableView] setDelegate:self];
     [[self tableView] setDataSource:self];
     [[self tableView] reloadData];
+    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
+    [self addSubview:[self tableView]];
   }
   
   return self;
@@ -82,6 +84,8 @@
   {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
   }
+  
+  NSLog(@"Build count %@", [[self buildData] count]);
   
   Build *build = [[self buildData] objectAtIndex:[indexPath row]];
   
