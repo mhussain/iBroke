@@ -161,7 +161,7 @@
   
   if ([[build status] isEqualToString:@"red"])
   {
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"FF3300"]];
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"CC0033"]];
 		UIImage *indicatorImage = [UIImage imageNamed:@"indicator.png"];
     [cell setAccessoryView:[[UIImageView alloc] initWithImage:indicatorImage]];
 
