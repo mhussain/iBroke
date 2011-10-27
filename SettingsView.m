@@ -25,15 +25,15 @@
     [url_label setText:@"Jenkins servers"];
     [url_label setTextColor:[UIColor blackColor]];
     [url_label setBackgroundColor:[UIColor clearColor]];
-    [url_label setFont:[UIFont fontWithName:@"Helvetica" size:20.]];
+    [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
-    _url_text_1 = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
+    _url_text_1 = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 35.)];
     [_url_text_1 setKeyboardType:UIKeyboardTypeURL];
     [_url_text_1 setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_url_text_1 setTag:1];
     [_url_text_1 setBorderStyle:UITextBorderStyleRoundedRect];
-    [_url_text_1 setFont:[UIFont fontWithName:@"Helvetica" size:20.]];
+    [_url_text_1 setFont:[UIFont fontWithName:@"Verdana" size:15.]];
     [_url_text_1 setTextColor:[UIColor blackColor]];
     
     NSString *hostnameText = [UserData get:@"hostname"];
