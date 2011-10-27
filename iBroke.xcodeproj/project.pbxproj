@@ -54,6 +54,7 @@
 		21F76C30144E838E00F0BB5F /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C26144E838E00F0BB5F /* ASIInputStream.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
 		21F76C31144E838E00F0BB5F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C28144E838E00F0BB5F /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
 		21F76C34144E839C00F0BB5F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C33144E839C00F0BB5F /* Reachability.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
+		21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB60 /* BuildDetailView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		21F76C29144E838E00F0BB5F /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIProgressDelegate.h; path = "Third Party/asi-http-request/Classes/ASIProgressDelegate.h"; sourceTree = "<group>"; };
 		21F76C32144E839C00F0BB5F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = "Third Party/asi-http-request/External/Reachability/Reachability.h"; sourceTree = "<group>"; };
 		21F76C33144E839C00F0BB5F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "Third Party/asi-http-request/External/Reachability/Reachability.m"; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB60 /* BuildDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailView.m; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB62 /* BuildDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +253,8 @@
 		2152CC32144E68DC00F22682 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21F76C34144E839C00F0BB62 /* BuildDetailView.h */,
+				21F76C34144E839C00F0BB60 /* BuildDetailView.m */,
 				2152CC33144E690D00F22682 /* SettingsView.h */,
 				2152CC34144E690D00F22682 /* SettingsView.m */,
 				219E3B2B144EADB100EF4A5D /* DisplayBuildsView.h */,
@@ -452,6 +457,7 @@
 				218A041B144F8B8C0015AD0D /* Build.m in Sources */,
 				218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */,
 				2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */,
+				21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
