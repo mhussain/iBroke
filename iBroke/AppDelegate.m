@@ -74,15 +74,6 @@
   [UIView commitAnimations];
 }
 
-//- (void)finishFading:(UIView *)splash;
-//{
-//  [UIView beginAnimations:nil context:splash];
-//  [UIView setAnimationDuration:0.75];
-//  
-//  [[[self navigationController] view] setAlpha:1.0];
-//  [UIView commitAnimations];
-//}
-
 - (void)applicationWillResignActive:(UIApplication *)application
 {
   /*

@@ -10,4 +10,7 @@
 
 @interface UserData : NSObject
 
++ (void)save:(NSString*)data forKey:(NSString *)key;
++ (NSString *)get:(NSString *)key; 
+
 @end

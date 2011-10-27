@@ -7,6 +7,14 @@
 //
 
 #import "SettingsView.h"
+#import "UserData.h"
+
+@interface SettingsView ()
+
+-(void)saveToUserDefaults:(NSString*)data forKey:(NSString *)key;
+-(NSString*)retrieveFromUserDefaults:(NSString *)key;
+
+@end
 
 @implementation SettingsView
 
@@ -31,7 +39,18 @@
     [_hostnameText setKeyboardType:UIKeyboardTypeURL];
     [_hostnameText setBorderStyle:UITextBorderStyleLine];
     [_hostnameText setBackgroundColor:[UIColor clearColor]];    
-    [_hostnameText setText:@"http://ci-control01.dev.int.realestate.com.au"];
+//    [_hostnameText setText:@"http://ci-control01.dev.int.realestate.com.au"];
+    
+    NSString *savedHostname = [UserData get:@"hostname"];
+    if ([savedHostname isEqualToString:@""])
+    {
+      [_hostnameText setText:@"http://"];
+    }
+    else 
+    {
+      [_hostnameText setText:savedHostname];
+    }
+    
     [_hostnameText setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_hostnameText setFont:[UIFont fontWithName:@"Helvetica" size:15.]]; 
     [self addSubview:_hostnameText];
@@ -69,21 +88,6 @@
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
   return self;
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
-#pragma mark - UIView
-- (CGSize)sizeThatFits:(CGSize)size;
-{
-  return size;
 }
 
 @end
