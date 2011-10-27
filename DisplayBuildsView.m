@@ -66,21 +66,6 @@
   [[self tableView] setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   [[self tableView] setRowHeight:55.];
 	[[self tableView] setBackgroundColor:[UIColor clearColor]];
-  _imageView.image = [UIImage imageNamed:@"gradientBackground.png"];
-
-//      imageView.image = [UIImage imageNamed:@"gradientBackground.png"];
-//  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 60)];
-  
-//  headerLabel.text = NSLocalizedString(@"Header for the table", @"");
-//  headerLabel.textColor = [UIColor whiteColor];
-//  headerLabel.shadowColor = [UIColor blackColor];
-//  headerLabel.shadowOffset = CGSizeMake(0, 1);
-//  headerLabel.font = [UIFont boldSystemFontOfSize:22];
-//  headerLabel.backgroundColor = [UIColor clearColor];
-//  [containerView addSubview:headerLabel]; 
-  
-//  [[self tableView] setTableHeaderView:containerView];
-//  [[self tableView] reloadData];
 }
 
 #pragma mark - REST
@@ -112,100 +97,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
   
-//#if USE_CUSTOM_DRAWING
-  const NSInteger TOP_LABEL_TAG = 1001;
-  const NSInteger BOTTOM_LABEL_TAG = 1002;
-  UILabel *topLabel;
-  UILabel *bottomLabel;
-//#endif
-  
   static NSString *CellIdentifier = @"Cell";
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   
   if (cell == nil)
   {
-//    cell = [[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
-//		const CGFloat LABEL_HEIGHT = 20;
-//		UIImage *image = [UIImage imageNamed:@"imageA.png"];
-    
-//    UIImage *indicatorImage = [UIImage imageNamed:@"indicator.png"];
-//		cell.accessoryView = [[UIImageView alloc] initWithImage:indicatorImage];
-
-    
-		//
-		// Create the label for the top row of text
-		//
-//		topLabel =
-//    [[UILabel alloc]
-//      initWithFrame:
-//      CGRectMake(
-//                 image.size.width + 2.0 * cell.indentationWidth,
-//                 0.5 * (tableView.rowHeight - 2 * LABEL_HEIGHT),
-//                 tableView.bounds.size.width -
-//                 image.size.width - 4.0 * cell.indentationWidth
-//                 - indicatorImage.size.width,
-//                 LABEL_HEIGHT)];
-//		[cell.contentView addSubview:topLabel];
-    
-		//
-		// Configure the properties for the text that are the same on every row
-		//
-//		topLabel.tag = TOP_LABEL_TAG;
-//		topLabel.backgroundColor = [UIColor clearColor];
-//		topLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-//		topLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
-//		topLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
-    
-		//
-		// Create the label for the top row of text
-		//
-//		bottomLabel = [[UILabel alloc]
-//      initWithFrame:
-//      CGRectMake(
-//                 image.size.width + 2.0 * cell.indentationWidth,
-//                 0.5 * (tableView.rowHeight - 2 * LABEL_HEIGHT) + LABEL_HEIGHT,
-//                 tableView.bounds.size.width -
-//                 image.size.width - 4.0 * cell.indentationWidth
-//                 - indicatorImage.size.width,
-//                 LABEL_HEIGHT)];
-//    
-//		[cell.contentView addSubview:bottomLabel];
-    
-		//
-		// Configure the properties for the text that are the same on every row
-		//
-		bottomLabel.tag = BOTTOM_LABEL_TAG;
-		bottomLabel.backgroundColor = [UIColor clearColor];
-		bottomLabel.textColor = [UIColor colorWithRed:0.25 green:0.0 blue:0.0 alpha:1.0];
-		bottomLabel.highlightedTextColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.9 alpha:1.0];
-		bottomLabel.font = [UIFont systemFontOfSize:[UIFont labelFontSize] - 2];
-    
-		//
-		// Create a background image view.
-		//
-		cell.backgroundView = [[UIImageView alloc] init];
-		cell.selectedBackgroundView =[[UIImageView alloc] init];
-
+    [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:18.]];
+		[cell setBackgroundView :[[UIImageView alloc] init]];
+		[cell setSelectedBackgroundView:[[UIImageView alloc] init]];
 	}
   
-	else
-	{
-		topLabel = (UILabel *)[cell viewWithTag:TOP_LABEL_TAG];
-		bottomLabel = (UILabel *)[cell viewWithTag:BOTTOM_LABEL_TAG];
-	}
-	
-//	topLabel.text = [NSString stringWithFormat:@"Cell at row %ld.", [indexPath row]];
-//	bottomLabel.text = [NSString stringWithFormat:@"Some other information.", [indexPath row]];
-	
-	//
-	// Set the background and selected background images for the text.
-	// Since we will round the corners at the top and bottom of sections, we
-	// need to conditionally choose the images based on the row index and the
-	// number of rows in the section.
-	//
 	UIImage *rowBackground;
 	UIImage *selectionBackground;
 	
@@ -258,24 +161,23 @@
   
   if ([[build status] isEqualToString:@"red"])
   {
-    [[cell textLabel] setTextColor:[UIColor redColor]];
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"FF3300"]];
 		UIImage *indicatorImage = [UIImage imageNamed:@"indicator.png"];
     [cell setAccessoryView:[[UIImageView alloc] initWithImage:indicatorImage]];
 
-//    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
   }
   else if ([[build status] isEqualToString:@"blue"])
   {
     [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
-//    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
   }
   else
   {
-    [[cell textLabel] setTextColor:[UIColor blueColor]];
-//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-//    [spinner startAnimating];
-//    [spinner setHidden:NO];
-//    [cell setAccessoryView:spinner];
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"0066CC"]];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [spinner startAnimating];
+    [spinner setHidden:NO];
+    [cell setAccessoryView:spinner];
   }
   
   return cell;
