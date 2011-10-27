@@ -33,12 +33,16 @@
 
 - (void)drawRect:(CGRect)rect;
 {
-  CGRect frame = CGRectMake(0., 10., CGRectGetMaxX(rect), 40.);
-  UILabel *build_name = [[UILabel alloc] initWithFrame:frame];
+  UILabel *build_name = [[UILabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX(rect), 40.)];
   [build_name setTextAlignment:UITextAlignmentCenter];
   [build_name setFont:[UIFont boldSystemFontOfSize:22.]];
   [build_name setText:[build name]];
   [self addSubview:build_name];
+
+  UILabel *build_status = [[UILabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX(rect), 40.)];
+  [build_status setTextAlignment:UITextAlignmentCenter];
+  [build_status setText:[NSString stringWithFormat:@"Status: %@", [build status]]];
+  [self addSubview:build_status];
 }
 
 - (void)refresh;
