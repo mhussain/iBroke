@@ -34,6 +34,7 @@
   
   if (self)
   {
+    [[self navigationItem] setHidesBackButton:YES animated:NO];
     UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
     [[self navigationItem] setRightBarButtonItem:settings];
 
