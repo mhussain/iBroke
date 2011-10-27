@@ -10,8 +10,8 @@
 
 @interface SettingsView : UIView
 
-@property (nonatomic, retain) UITextField *hostnameText;
-@property (nonatomic, retain) UITextField *portText;
-@property (nonatomic, retain) UITextField *suffixText;
+@property (nonatomic, retain) UITextField *url_text_1;
+@property (nonatomic, retain) UITextField *url_text_2;
+@property (nonatomic, retain) UITextField *url_text_3;
 
 @end

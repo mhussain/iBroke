@@ -46,19 +46,16 @@
 
 -(void)connect;
 {
-  NSString *hostname = [[[self settingsView] hostnameText] text];
-  NSString *portNumber = [[[self settingsView] portText] text];
-  NSString *suffix = [[[self settingsView] suffixText] text];
-  
+  NSString *hostname = [[[self settingsView] url_text_1] text];
+
   if (![hostname isEqualToString:@""])
   {
   	[UserData save:hostname forKey:@"hostname"];
   }
   
-  NSString *address = [AddressFormatter createAddressUsingHostname:hostname portNumber:portNumber suffix:suffix];
-  
-  [[self navigationController] pushViewController:[[DisplayBuildsController alloc] initWithAddress:address] animated:YES];
-  
+  [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
+                                  					initWithAddress:[NSString stringWithFormat:@"%@/api/json/", hostname]]
+                                                   animated:YES];
 }
 
 #pragma mark - View lifecycle

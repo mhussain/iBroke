@@ -11,9 +11,9 @@
 
 @implementation SettingsView
 
-@synthesize hostnameText = _hostnameText;
-@synthesize portText = _portText;
-@synthesize suffixText = _suffixText;
+@synthesize url_text_1 = _url_text_1;
+@synthesize url_text_2 = _url_text_2;
+@synthesize url_text_3 = _url_text_3;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -21,7 +21,6 @@
 
   if (self)
   {
-    
     UILabel *url_label = [[UILabel alloc] initWithFrame:CGRectMake(32., 10., 230., 30.)];
     [url_label setText:@"Jenkins servers"];
     [url_label setTextColor:[UIColor blackColor]];
@@ -29,30 +28,39 @@
     [url_label setFont:[UIFont fontWithName:@"Helvetica" size:20.]];
     [self addSubview:url_label];
     
-    UITextField *url_text = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
-    [url_text setKeyboardType:UIKeyboardTypeURL];
-    [url_text setBorderStyle:UITextBorderStyleRoundedRect];
-    [url_text setFont:[UIFont fontWithName:@"Helvetica" size:20.]];
-    [url_text setTextColor:[UIColor blackColor]];
+    _url_text_1 = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
+    [_url_text_1 setKeyboardType:UIKeyboardTypeURL];
+    [_url_text_1 setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [_url_text_1 setTag:1];
+    [_url_text_1 setBorderStyle:UITextBorderStyleRoundedRect];
+    [_url_text_1 setFont:[UIFont fontWithName:@"Helvetica" size:20.]];
+    [_url_text_1 setTextColor:[UIColor blackColor]];
     
-    NSString *hostnameText = [UserData get:@"hostame"];
-    if (![hostnameText isEqualToString:@""])
+    NSString *hostnameText = [UserData get:@"hostname"];
+    if (nil != hostnameText)
     {
-      [url_text setText:hostnameText];
+      [_url_text_1 setText:hostnameText];
     }
     else
     {
-      [url_text setPlaceholder:@"http://server:port/suffix"];
+      [_url_text_1 setText:@"http://"];
     }
     
-    [self addSubview:url_text];
+    [self addSubview:_url_text_1];
     
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
   return self;
 }
 
-#pragma mark - UIView
+
+
+#pragma mark - UIView Lifecycle
+
+- (void)layoutSubviews;
+{
+  
+}
 
 - (void)drawRect:(CGRect)rect;
 {  
