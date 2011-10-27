@@ -12,6 +12,7 @@
 #import "SettingsView.h"
 
 #import "AddressFormatter.h"
+#import "UserData.h"
 
 @interface SettingsController ()
 
@@ -49,13 +50,12 @@
   NSString *portNumber = [[[self settingsView] portText] text];
   NSString *suffix = [[[self settingsView] suffixText] text];
   
-  NSLog(@"%@ %@ %@",hostname, portNumber, suffix);
+  if (![hostname isEqualToString:@""])
+  {
+  	[UserData save:hostname forKey:@"hostname"];
+  }
   
   NSString *address = [AddressFormatter createAddressUsingHostname:hostname portNumber:portNumber suffix:suffix];
-  
-//  DisplayBuildsController *displayBuilds = [[DisplayBuildsController alloc] initWithAddress:address];
-//  [displayBuilds setAddress:address];
-//	[displayBuilds connectToAddress];
   
   [[self navigationController] pushViewController:[[DisplayBuildsController alloc] initWithAddress:address] animated:YES];
   
@@ -70,16 +70,6 @@
   
   [self setView:[self settingsView]];
 }
-
-//- (void)viewDidLoad
-//{
-//  [super viewDidLoad];
-//}
-
-//- (void)viewDidUnload;
-//{
-//  [super viewDidUnload];
-//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
