@@ -11,6 +11,8 @@
 @interface DisplayBuildsView : UIView <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) NSMutableArray *buildData;
+@property (nonatomic, retain) UIImageView *imageView;
+
 - (void)refresh;
 
 @end
