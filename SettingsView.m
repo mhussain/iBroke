@@ -22,7 +22,7 @@
   if (self)
   {
     UILabel *url_label = [[UILabel alloc] initWithFrame:CGRectMake(32., 10., 230., 30.)];
-    [url_label setText:@"Jenkins servers"];
+    [url_label setText:@"Connect to"];
     [url_label setTextColor:[UIColor whiteColor]];
     [url_label setBackgroundColor:[UIColor clearColor]];
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
@@ -70,9 +70,9 @@
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetLineWidth(context, 1.);
   
-  CGContextMoveToPoint(context, 180., 25.);
+  CGContextMoveToPoint(context, 140., 25.);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-  CGContextAddLineToPoint(context, 180., 25.);
+  CGContextAddLineToPoint(context, 140., 25.);
   CGContextAddLineToPoint(context, 300., 25.);
   CGContextAddLineToPoint(context, 300., 110.);
   CGContextAddLineToPoint(context, 10., 110.);

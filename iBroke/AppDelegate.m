@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "SettingsController.h"
 
+#import "UserData.h"
+#import "DisplayBuildsController.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, retain) UINavigationController *navigationController;
@@ -30,9 +33,18 @@
   _navigationController = [[UINavigationController alloc] initWithNibName:nil bundle:nil];
   [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
   
-	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
-  [[self navigationController] pushViewController:_mainPageController animated:YES];
-
+  NSString *host = [UserData get:@"hostname"];
+  if (nil != host)
+  {
+    [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
+                                                     initWithAddress:[NSString stringWithFormat:@"%@/api/json/", host]]
+                                           animated:YES];
+  }
+  else
+  {
+   	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
+    [[self navigationController] pushViewController:_mainPageController animated:YES];
+  }
   [[self window] setRootViewController:[self navigationController]];
   [self displaySplash];
   
@@ -57,14 +69,14 @@
 
 - (void)delayedHideSplash:(UIView *)splash;
 {
-  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:3.];
+  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:1.];
 }
 
 - (void)hideSplash:(UIView *)splash;
 {
   [UIView beginAnimations:@"hide splash" context:splash];
   
-  [UIView setAnimationDuration:1.];
+  [UIView setAnimationDuration:2.];
   [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(finishFading:)];
