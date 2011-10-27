@@ -7,7 +7,7 @@
 //
 
 #import "DisplayBuildsView.h"
-
+#import "UIColor+Hex.h"
 #import "Build.h"
 
 @interface DisplayBuildsView () 
@@ -31,7 +31,10 @@
     [[self tableView] setDelegate:self];
     [[self tableView] setDataSource:self];
     [[self tableView] reloadData];
-    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
+    
+    UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
+    [[self tableView] setBackgroundView:image];
+
     [self addSubview:[self tableView]];
   }
   
@@ -42,7 +45,7 @@
 
 - (void)layoutSubviews;
 {
-  
+  [[self tableView] setFrame:[self bounds]];
 }
 
 - (void)drawRect:(CGRect)rect;
@@ -83,19 +86,31 @@
   if (cell == nil)
   {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    [[cell textLabel] setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.]];
   }
-  
-  NSLog(@"Build count %@", [[self buildData] count]);
   
   Build *build = [[self buildData] objectAtIndex:[indexPath row]];
   
   [[cell textLabel] setText:[build name]];
-  [[cell textLabel] setTextColor:[UIColor redColor]];
-
-  UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-  [spinner startAnimating];
-  [spinner setHidden:NO];
-  [cell setAccessoryView:spinner];
+  
+  if ([[build status] isEqualToString:@"red"])
+  {
+    [[cell textLabel] setTextColor:[UIColor redColor]];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+  }
+  else if ([[build status] isEqualToString:@"blue"])
+  {
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+  }
+  else
+  {
+    [[cell textLabel] setTextColor:[UIColor blueColor]];
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [spinner startAnimating];
+    [spinner setHidden:NO];
+    [cell setAccessoryView:spinner];
+  }
   
   return cell;
 }

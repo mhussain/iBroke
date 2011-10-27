@@ -25,9 +25,9 @@
   {
    	 [[buildInfo objectForKey:@"jobs"] each:^(id build) {
        
-       [[self builds] addObject:[[Build alloc] initWithName:[build objectForKey:@"name"] 
-                                                     status:[build objectForKey:@"status"] 
-                                                        url:[build objectForKey:@"url"]]];
+     [[self builds] addObject:[[Build alloc] initWithName:[build objectForKey:@"name"] 
+                                                   status:[build objectForKey:@"color"] 
+                                                      url:[build objectForKey:@"url"]]];
      }];
   }
   return self;

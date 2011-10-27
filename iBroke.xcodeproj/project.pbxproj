@@ -24,6 +24,7 @@
 		2152CC3B144E79DA00F22682 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3A144E79DA00F22682 /* SystemConfiguration.framework */; };
 		2152CC3D144E79E800F22682 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3C144E79E800F22682 /* QuartzCore.framework */; };
 		2152CC3F144E79FF00F22682 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */; };
+		2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172413C1459152200DE5E82 /* UIColor+Hex.m */; };
 		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
 		218A041B144F8B8C0015AD0D /* Build.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A041A144F8B8C0015AD0D /* Build.m */; };
 		218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0428144F956F0015AD0D /* NSArray+Blocks.m */; };
@@ -79,6 +80,8 @@
 		2152CC3A144E79DA00F22682 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2152CC3C144E79E800F22682 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2152CC3E144E79FF00F22682 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		2172413B1459152100DE5E82 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		2172413C1459152200DE5E82 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		218A0415144F8B1D0015AD0D /* BuildDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDashboard.h; sourceTree = "<group>"; };
 		218A0416144F8B1D0015AD0D /* BuildDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDashboard.m; sourceTree = "<group>"; };
 		218A0419144F8B8C0015AD0D /* Build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Build.h; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 		219E3B2E144EAEB300EF4A5D /* Processing */ = {
 			isa = PBXGroup;
 			children = (
+				2172413B1459152100DE5E82 /* UIColor+Hex.h */,
+				2172413C1459152200DE5E82 /* UIColor+Hex.m */,
 				219E3B32144EBBFB00EF4A5D /* AddressFormatter.h */,
 				219E3B33144EBBFB00EF4A5D /* AddressFormatter.m */,
 				218A0415144F8B1D0015AD0D /* BuildDashboard.h */,
@@ -446,6 +451,7 @@
 				218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */,
 				218A041B144F8B8C0015AD0D /* Build.m in Sources */,
 				218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */,
+				2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

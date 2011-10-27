@@ -73,7 +73,6 @@
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
   [[self buildsView] setBuildData:[dashboard builds]];
   [[self buildsView] refresh];
-  [[self buildsView] sizeToFit];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -92,19 +91,19 @@
 {
 }
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+  [super viewDidLoad];
 }
-*/
+
 
 - (void)viewDidUnload
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+  [super viewDidUnload];
+  // Release any retained subviews of the main view.
+  // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

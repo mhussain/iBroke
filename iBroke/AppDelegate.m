@@ -7,13 +7,12 @@
 //
 
 #import "AppDelegate.h"
-
 #import "SettingsController.h"
 
 @interface AppDelegate ()
 
 @property (nonatomic, retain) UINavigationController *navigationController;
-@property (nonatomic, retain) UIViewController *mainPageController;
+@property (nonatomic, retain) SettingsController *mainPageController;
 
 @end
 
@@ -30,9 +29,9 @@
 
   _navigationController = [[UINavigationController alloc] initWithNibName:nil bundle:nil];
   [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
-
+  
 	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
-  [[self navigationController] pushViewController:[self mainPageController] animated:YES];
+  [[self navigationController] pushViewController:_mainPageController animated:YES];
 
   [[self window] setRootViewController:[self navigationController]];
   [self displaySplash];
@@ -66,9 +65,7 @@
   [UIView beginAnimations:@"hide splash" context:splash];
   
   [UIView setAnimationDuration:1.];
-//  [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
-  [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-  [UIView setAnimationTransition:UIViewAnimationOptionTransitionCrossDissolve forView:[splash window] cache:YES];
+  [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(finishFading:)];
   
@@ -77,14 +74,14 @@
   [UIView commitAnimations];
 }
 
-- (void)finishFading:(UIView *)splash;
-{
-  [UIView beginAnimations:nil context:splash];
-  [UIView setAnimationDuration:0.75];
-  
-  [[[self navigationController] view] setAlpha:1.0];
-  [UIView commitAnimations];
-}
+//- (void)finishFading:(UIView *)splash;
+//{
+//  [UIView beginAnimations:nil context:splash];
+//  [UIView setAnimationDuration:0.75];
+//  
+//  [[[self navigationController] view] setAlpha:1.0];
+//  [UIView commitAnimations];
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
