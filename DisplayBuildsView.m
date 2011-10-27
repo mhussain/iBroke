@@ -5,9 +5,12 @@
 //  Created by Mujtaba Hussain on 19/10/11.
 
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "DisplayBuildsView.h"
 #import "UIColor+Hex.h"
 #import "Build.h"
+#import "BuildDetailView.h"
 
 @interface DisplayBuildsView () 
 
@@ -73,7 +76,9 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+  BuildDetailView *detailView = [[BuildDetailView alloc] initWithFrame:[self frame]];
+  [detailView setBuild:[[self buildData] objectAtIndex:[indexPath row]]];
+  [self addSubview:detailView];
 }
   
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -103,7 +108,6 @@
 	}
   
   Build *build = [[self buildData] objectAtIndex:[indexPath row]];
-  
   [[cell textLabel] setText:[build name]];
   
   if ([[build status] isEqualToString:@"red"])
