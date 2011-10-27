@@ -11,6 +11,8 @@
 #import "ASIHTTPRequest.h"
 #import "SBJson.h"
 
+#import "SettingsController.h"
+
 #import "AddressFormatter.h"
 #import "BuildDashboard.h"
 #import "DisplayBuildsView.h"
@@ -32,6 +34,9 @@
   
   if (self)
   {
+    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
+    [[self navigationItem] setRightBarButtonItem:settings];
+
     [self setTitle:@"Builds"];
     [self setAddress:address];
     [self connectToAddress];
@@ -40,6 +45,11 @@
     [self setView:_buildsView];
   }
   return self;
+}
+
+- (void)settings;
+{
+  [[self navigationController] pushViewController:[[SettingsController alloc] initWithNibName:nil bundle:nil] animated:YES];
 }
 
 - (void)connectToAddress;

@@ -9,7 +9,15 @@
 #import "SettingsView.h"
 #import "UserData.h"
 
+@interface SettingsView ()
+
+@property (nonatomic, retain) UIView *previous_hosts;
+
+@end
+
 @implementation SettingsView
+
+@synthesize previous_hosts = _previous_hosts;
 
 @synthesize url_text_1 = _url_text_1;
 @synthesize url_text_2 = _url_text_2;
@@ -48,6 +56,11 @@
     }
     
     [self addSubview:_url_text_1];
+   
+    
+    _previous_hosts = [[UIView alloc] initWithFrame:CGRectZero];
+    [_previous_hosts setBackgroundColor:[UIColor greenColor]];
+    [self addSubview:_previous_hosts];
     
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
@@ -60,7 +73,7 @@
 
 - (void)layoutSubviews;
 {
-  
+  [[self previous_hosts] setFrame:CGRectMake([self bounds].origin.x + 10., [self bounds].origin.y + 200., [self bounds].size.width - 20., 100.)];
 }
 
 - (void)drawRect:(CGRect)rect;

@@ -30,7 +30,7 @@
   if (self)
   {
     [self setTitle:@"Settings"];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStyleDone target:self action:@selector(connect)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStyleBordered target:self action:@selector(connect)];
     [[self navigationItem] setRightBarButtonItem:done];
   }
   return self;

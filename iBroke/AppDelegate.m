@@ -45,6 +45,7 @@
    	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
     [[self navigationController] pushViewController:_mainPageController animated:YES];
   }
+  
   [[self window] setRootViewController:[self navigationController]];
   [self displaySplash];
   

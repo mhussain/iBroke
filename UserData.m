@@ -10,12 +10,23 @@
 
 @implementation UserData
 
+static NSMutableArray *servers;
+
 + (void)save:(NSString *)data forKey:(NSString *)key;
 {
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
   
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    servers = [[NSMutableArray alloc] init];
+  });
+  
 	if (standardUserDefaults) {
 		[standardUserDefaults setObject:data forKey:key];
+    
+    [servers addObject:data];
+    [standardUserDefaults setObject:servers forKey:@"previous"];
+    
 		[standardUserDefaults synchronize];
 	}
 }
