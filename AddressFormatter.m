@@ -12,7 +12,7 @@
 
 + (NSString *)createAddressUsingHostname:(NSString *)hostname portNumber:(NSString *)portNumber suffix:(NSString *)suffix;
 {
-  return [NSString stringWithFormat:@"%@:%@/api/json/",hostname,portNumber];
+  return [NSString stringWithFormat:@"%@:%@/%@/api/json/",hostname,portNumber, suffix ? suffix : @""];
 }
 
 @end
