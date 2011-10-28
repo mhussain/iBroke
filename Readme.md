@@ -1,7 +1,6 @@
-## iBroke
+# iBroke
 
-This is an iPhone application designed to show the status of your builds on your Jenkins CI server. You will need 
-to be on the same network as the server. 
+###This is an iPhone application designed to show the status of your builds on your Jenkins CI server. You will need to be on the same network as the server. 
 
 ## Version
 1.0
@@ -31,17 +30,16 @@ You can also see a few extra details about a broken build
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/build.png" width=396 height=744 />
 
 ## Collaborators
-** People who worked on this with me:
-- Yori M
-- Mike Rowe
+
+* [Yori M](https://github.com/yori)
+* [Mike Rowe](https//github.com/mrowe)
 
 ## Acknowledgements
 
-** This project uses:
-- UIColor+Hex and NSArray+Block categories developed by [Kevin O'Neill](https://github.com/kevinoneill/Useful-Bits).
-- ASIHTTPRequest developed by [Ben Copsey](https://github.com/pokeb/asi-http-request)
-- json-framework developed by [Stig Brautaset](https://github.com/stig/json-framework)
-- Loading view example developed by [Matt Gallagher](http://cocoawithlove.com/2009/04/showing-message-over-iphone-keyboard.html)
+* UIColor+Hex and NSArray+Block categories developed by [Kevin O'Neill](https://github.com/kevinoneill/Useful-Bits).
+* ASIHTTPRequest developed by [Ben Copsey](https://github.com/pokeb/asi-http-request)
+* json-framework developed by [Stig Brautaset](https://github.com/stig/json-framework)
+* Loading view example developed by [Matt Gallagher](http://cocoawithlove.com/2009/04/showing-message-over-iphone-keyboard.html)
 
 
 ## License
