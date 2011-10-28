@@ -8,14 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "build.h"
-
 @class BuildDetail;
 
 @interface BuildDetailView : UIView
 
-@property(nonatomic, retain) BuildDetail *buildDetail;
-
-- (id)initWithFrame:(CGRect)frame build:(Build *)build;
+@property (nonatomic, retain, setter = setBuildData:) BuildDetail *buildDetail;
 
 @end

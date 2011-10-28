@@ -12,9 +12,9 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
+@property (nonatomic, retain) NSString *health;
 
-+(id)instanceWithData:(NSDictionary *)data;
-
--(id)initWithName:(NSString *)name description:(NSString *)description;
++ (id)instanceWithData:(NSDictionary *)data;
+- (id)initWithData:(NSDictionary *)data;
 
 @end

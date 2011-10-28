@@ -33,19 +33,19 @@
   {
     [[self navigationItem] setHidesBackButton:NO animated:YES];
     [self setTitle:[build name]];
+    _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
+    [self setView:_buildView];
 
     [self connectToAddress:build];
   }
   return self;
 }
 
--(void)loadView;
-{
-  // TODO some kind of throbber while we wait for network...
-
-  _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
-  [self setView:_buildView];
-}
+//-(void)loadView;
+//{
+//  _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
+//  [self setView:_buildView];
+//}
 
 
 #pragma mark - ASIHTTPRequestDelegate
@@ -66,6 +66,8 @@
   
   LoadingView *loadingView = [[LoadingView alloc] initWithFrame:[_buildView bounds] andMessage:@"Loading build info..."];
   [_buildView addSubview:loadingView];
+  
+  [[self editButtonItem] setEnabled:NO];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
@@ -77,13 +79,15 @@
   NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
 
   BuildDetail *detail = [BuildDetail instanceWithData:buildData];
-  [[self buildView] setBuildDetail:detail];
-  [[self buildView] setNeedsLayout];
+  [[self buildView] setBuildData:detail];
+  
+  [[self editButtonItem] setEnabled:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
   NSLog(@"Error Fetching Data %@", [[request error] description]);
+  [[self editButtonItem] setEnabled:NO];
 }
 
 @end

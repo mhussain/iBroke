@@ -62,8 +62,9 @@
   {
     [[self navigationItem] setHidesBackButton:YES animated:NO];
     UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
-    [[self navigationItem] setRightBarButtonItem:settings];
-    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
+    [[self navigationItem] setRightBarButtonItem:settings animated:YES];
+    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem] animated:YES];
+    [[[self navigationItem] leftBarButtonItem] setStyle:UIBarButtonItemStyleBordered];
 
     [self setTitle:@"Builds"];
     [self setAddress:address];
@@ -87,13 +88,7 @@
 
 #pragma mark - ShakeToReload
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-{
-  
-}
-
-- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-{
-  
+{  
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
@@ -102,6 +97,8 @@
 		[self connectToAddress];
   }
 }
+
+#pragma mark - ASyncRequest
 
 - (void)connectToAddress;
 {
@@ -125,6 +122,7 @@
 	LoadingView *loadingView = [[LoadingView alloc] initWithFrame:[[self buildsView] bounds] andMessage:@"Loading build dashboard..."];
 
   [[self buildsView] addSubview:loadingView];
+  [[self editButtonItem] setEnabled:NO];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
@@ -144,8 +142,11 @@
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
   
   [self setBuildData:[dashboard builds]];
-  [self restoreHiddenBuilds];  
+  [self restoreHiddenBuilds];
+  
   [self setFilteredBuilds:nil];
+  
+  [[self editButtonItem] setEnabled:YES];
   [[self buildsView] reloadData];     
 }
 
@@ -153,6 +154,16 @@
 {
   NSError *error = [request error];
   NSLog(@"Error Fetching Data %@",[error description]);
+
+  UIView *loadingView = [[self buildsView] viewWithTag:3];
+  [loadingView removeFromSuperview];
+  
+	// Set up the animation
+	CATransition *animation = [CATransition animation];
+	[animation setType:kCATransitionFade];
+	
+	[[loadingView layer] addAnimation:animation forKey:@"layerAnimation"];
+  [[self editButtonItem] setEnabled:NO];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
