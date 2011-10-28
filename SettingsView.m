@@ -75,18 +75,22 @@
     [self addSubview:_previous_hosts];
     
     NSArray *previous_hostnames = [UserData previousHosts];
-    if (nil != previous_hostnames && [previous_hostnames count] > 0)
+    if (nil != previous_hostnames)
     {
       [previous_hostnames each:^ (id hostname) {
-        NSLog(@"Hostname = %@",hostname);
       	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         [label setText:hostname];
         [label setTextAlignment:UITextAlignmentCenter];
         [label setTextColor:[UIColor whiteColor]];
+
         [label setFont:[UIFont fontWithName:@"Verdana" size:15.]];
         [label setBackgroundColor:[UIColor clearColor]];
+
         [[label layer] setBorderColor:[[UIColor whiteColor] CGColor]];
         [[label layer] setBorderWidth:1.0];
+
+        [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousHostTapped:)]];
+        
         [_previous_hosts addSubview:label];
       }];
     }
@@ -97,7 +101,12 @@
   return self;
 }
 
-
+#pragma mark - GestureRecogniser
+- (void)previousHostTapped:(UIGestureRecognizer *)gestureRecogniser;
+{
+  UILabel *label = (UILabel *)[gestureRecogniser view];
+  NSLog(@"Text = %@", [label text]);
+}
 
 #pragma mark - UIView Lifecycle
 
