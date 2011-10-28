@@ -28,6 +28,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [application setApplicationSupportsShakeToEdit:YES];
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
   _navigationController = [[UINavigationController alloc] initWithNibName:nil bundle:nil];

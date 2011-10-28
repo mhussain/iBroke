@@ -76,6 +76,24 @@
   [[self navigationController] pushViewController:[[SettingsController alloc] initWithNibName:nil bundle:nil] animated:YES];
 }
 
+#pragma mark - ShakeToReload
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+{
+  
+}
+
+- (void)motionCancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+{
+  
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+{
+  if (event.type == UIEventSubtypeMotionShake) {
+		[self connectToAddress];
+  }
+}
+
 - (void)connectToAddress;
 {
   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[self address]]];
@@ -298,6 +316,20 @@ return @"Hide";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
   return 1;
+}
+
+-(BOOL)canBecomeFirstResponder {
+  return YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self becomeFirstResponder];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [self resignFirstResponder];
+  [super viewWillDisappear:animated];
 }
 
 @end
