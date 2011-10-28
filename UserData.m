@@ -17,6 +17,7 @@ static NSMutableArray *servers;
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
   
   static dispatch_once_t onceToken;
+
   dispatch_once(&onceToken, ^{
     servers = [[NSMutableArray alloc] initWithCapacity:3.];
   });
