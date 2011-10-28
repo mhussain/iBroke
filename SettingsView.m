@@ -64,7 +64,7 @@
     
     [self addSubview:_url_text_1];
    
-    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(22., 173., 230., 30.)];
+    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(22., 163., 230., 30.)];
     [previous_hosts_label setText:@"Previous hosts"];
     [previous_hosts_label setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [previous_hosts_label setBackgroundColor:[UIColor clearColor]];
@@ -84,7 +84,7 @@
         [label setTextAlignment:UITextAlignmentCenter];
         [label setTextColor:[UIColor whiteColor]];
         [label setUserInteractionEnabled:YES];
-        [label setHighlightedTextColor:[UIColor greenColor]];
+        [label setTag:2];
 
         [label setFont:[UIFont fontWithName:@"Verdana" size:15.]];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -118,6 +118,20 @@
   [[self url_text_1] resignFirstResponder];
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  UITouch *touch = [touches anyObject];
+  if ([[touch view] tag] == 2)
+	  [[touch view] setBackgroundColor:[UIColor colorWithHexString:@"008080"]];
+}
+
+-(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
+{
+  UITouch *touch = [touches anyObject];
+  if ([[touch view] tag] == 2)
+	  [[touch view] setBackgroundColor:[UIColor clearColor]];
+}
+
 #pragma mark - UIView Lifecycle
 
 - (void)layoutSubviews;
@@ -125,11 +139,12 @@
   [[self previous_hosts] setFrame:CGRectMake([self bounds].origin.x + 20., [self bounds].origin.y + 200., [self bounds].size.width - 60., 105.)];
   
   CGRect previous_hosts_rect = [[self previous_hosts] bounds];
+  
   __block CGFloat padding = 0.;
-  [[[self previous_hosts] subviews] each:^(id label) {
-    
-    [label setFrame:CGRectMake(previous_hosts_rect.origin.x + 5., previous_hosts_rect.origin.y + padding, 250., 30.)];
-    padding += 35.;
+  
+  [[[self previous_hosts] subviews] each:^(id label) {    
+    [label setFrame:CGRectMake(previous_hosts_rect.origin.x + 5., previous_hosts_rect.origin.y + padding, 250., 40.)];
+    padding += 45.;
   }];
 }
 
@@ -151,14 +166,14 @@
   CGContextStrokePath(context);
     
   CGFloat previous_hosts_x =  150.;
-  CGFloat previous_hosts_y =  190.;
+  CGFloat previous_hosts_y =  180.;
   
   CGContextMoveToPoint(context, previous_hosts_x, previous_hosts_y);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
   CGContextAddLineToPoint(context, previous_hosts_x, previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x + 140., previous_hosts_y);
-  CGContextAddLineToPoint(context, previous_hosts_x + 140., previous_hosts_y + 120.);
-  CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 120.);
+  CGContextAddLineToPoint(context, previous_hosts_x + 140., previous_hosts_y + 160.);
+  CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 160.);
   CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x - 130, previous_hosts_y);
   CGContextStrokePath(context);

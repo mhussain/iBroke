@@ -53,11 +53,11 @@ static NSMutableArray *servers;
 {
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
 	NSMutableArray *hosts = nil;
-	if (standardUserDefaults) 
+
+	if (standardUserDefaults)
 		hosts = [standardUserDefaults objectForKey:@"previous_hosts"];
   
   return (NSArray *)hosts;
 }
-
 
 @end
