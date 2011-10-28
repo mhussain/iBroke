@@ -46,6 +46,7 @@
     [_url_text_1 setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_url_text_1 setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_url_text_1 setTag:1];
+    [_url_text_1 setClearButtonMode:UITextFieldViewModeWhileEditing];
     [_url_text_1 setBorderStyle:UITextBorderStyleLine];
     [_url_text_1 setBackgroundColor:[UIColor whiteColor]];
     [_url_text_1 setFont:[UIFont fontWithName:@"Verdana" size:15.]];
@@ -82,6 +83,8 @@
         [label setText:hostname];
         [label setTextAlignment:UITextAlignmentCenter];
         [label setTextColor:[UIColor whiteColor]];
+        [label setUserInteractionEnabled:YES];
+        [label setHighlightedTextColor:[UIColor greenColor]];
 
         [label setFont:[UIFont fontWithName:@"Verdana" size:15.]];
         [label setBackgroundColor:[UIColor clearColor]];
@@ -89,13 +92,15 @@
         [[label layer] setBorderColor:[[UIColor whiteColor] CGColor]];
         [[label layer] setBorderWidth:1.0];
 
-        [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousHostTapped:)]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousHostTapped:)];
+        [label addGestureRecognizer:tap];
         
         [_previous_hosts addSubview:label];
       }];
     }
 
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
+    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
     [self layoutIfNeeded];
   }
   return self;
@@ -105,7 +110,12 @@
 - (void)previousHostTapped:(UIGestureRecognizer *)gestureRecogniser;
 {
   UILabel *label = (UILabel *)[gestureRecogniser view];
-  NSLog(@"Text = %@", [label text]);
+	[_url_text_1 setText:[label text]];
+}
+
+- (void)hideKeyboard;
+{
+  [[self url_text_1] resignFirstResponder];
 }
 
 #pragma mark - UIView Lifecycle
