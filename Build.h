@@ -16,4 +16,7 @@
 
 -(id)initWithName:(NSString *)name status:(NSString *)status url:(NSString *)url;
 
+-(BOOL)isFailed;
+-(BOOL)isBuilding;
+
 @end

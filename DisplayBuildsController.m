@@ -224,24 +224,25 @@ return @"Hide";
   Build *build = [[self buildData] objectAtIndex:[indexPath row]];
   [[cell textLabel] setText:[build name]];
 
-  if ([[build status] isEqualToString:@"red"])
+  if ([build isFailed])
   {
     [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"CC0033"]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
 
   }
-  else if ([[build status] isEqualToString:@"blue"])
-  {
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
-    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-  }
-  else
+  else if ([build isBuilding])
   {
     [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"0066CC"]];
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [spinner startAnimating];
     [spinner setHidden:NO];
     [cell setAccessoryView:spinner];
+  }
+  else
+  {
+    // passing
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
   }
 
   return cell;
