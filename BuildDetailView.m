@@ -9,23 +9,39 @@
 #import <UIKit/UIKit.h>
 #import "BuildDetailView.h"
 
+#pragma mark - BuildDetailLabel
+
+@interface BuildDetailLabel : UILabel
+- (id)initWithFrame:(CGRect)frame text:(NSString *)text;
+@end
+
+@implementation BuildDetailLabel
+
+- (id)initWithFrame:(CGRect)frame text:(NSString *)text;
+{
+  UILabel *label = [[UILabel alloc] initWithFrame:frame];
+  [label setTextAlignment:UITextAlignmentCenter];
+  [label setTextColor:[UIColor whiteColor]];
+  [label setBackgroundColor:[UIColor clearColor]];
+  [label setText:text];
+  return label;
+}
+
+@end
+
+#pragma mark - BuildDetailView
+
 @implementation BuildDetailView
 
 - (id)initWithFrame:(CGRect)frame build:(Build *)build;
 {
   if ((self = [super initWithFrame:frame]))
   {
-    UILabel *build_name = [[UILabel alloc] initWithFrame:CGRectMake(0., 10., 50., 40.)];
-    [build_name setTextAlignment:UITextAlignmentCenter];
+    UILabel *build_name = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX(frame), 40.) text:[build name]];
     [build_name setFont:[UIFont boldSystemFontOfSize:22.]];
-    [build_name setBackgroundColor:[UIColor clearColor]];
-    [build_name setText:[build name]];
     [self addSubview:build_name];
 
-    UILabel *build_status = [[UILabel alloc] initWithFrame:CGRectMake(0., 50., 50., 40.)];
-    [build_status setTextAlignment:UITextAlignmentCenter];
-    [build_status setText:[NSString stringWithFormat:@"Status: %@", [build status]]];
-    [build_status setBackgroundColor:[UIColor clearColor]];
+    UILabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX(frame), 40.) text:[NSString stringWithFormat:@"Status: %@", [build status]]];
     [self addSubview:build_status];
     
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
