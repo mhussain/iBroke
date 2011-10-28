@@ -43,4 +43,9 @@
   return [[self status] isEqualToString:@"disabled"];
 }
 
+-(BOOL)isAborted;
+{
+  return [[self status] isEqualToString:@"aborted"];
+}
+
 @end

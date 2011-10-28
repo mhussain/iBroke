@@ -19,5 +19,6 @@
 -(BOOL)isFailed;
 -(BOOL)isBuilding;
 -(BOOL)isDisabled;
+-(BOOL)isAborted;
 
 @end

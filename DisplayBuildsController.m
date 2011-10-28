@@ -110,10 +110,7 @@
 
 - (void)didReceiveMemoryWarning
 {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
+  [super didReceiveMemoryWarning];
 }
 
 #pragma mark - ASIHTTPRequestDelegate
@@ -130,8 +127,9 @@
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
   
   [self setBuildData:[dashboard builds]];
-  [self restoreHiddenBuilds];
-  [[self buildsView] reloadData];
+  [self restoreHiddenBuilds];  
+  [self setFilteredBuilds:nil];
+  [[self buildsView] reloadData];     
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -175,7 +173,7 @@
   [self setInFullTableEditMode:editing];
 }
 
--(NSArray*)filteredBuilds;
+- (NSArray *)filteredBuilds;
 {
   if (!_filteredBuilds)
   {
@@ -187,7 +185,7 @@
   return _filteredBuilds;
 }
 
--(NSArray*)builds;
+- (NSArray *)builds;
 {
   return [self inFullTableEditMode] ? [self buildData] : [self filteredBuilds];
 }
@@ -244,7 +242,7 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-return @"Hide";
+	return @"Hide";
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -319,7 +317,7 @@ return @"Hide";
   {
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
   }
-
+  
   return cell;
 }
 
@@ -358,6 +356,7 @@ return @"Hide";
   if ([build isFailed]) return [UIColor colorWithHexString:@"CC0033"];
   if ([build isBuilding]) return [UIColor colorWithHexString:@"0066CC"];
   if ([build isDisabled]) return [UIColor colorWithHexString:@"4A4A4A"];
+  if ([build isAborted]) return [UIColor purpleColor];
   return [UIColor colorWithHexString:@"458B00"]; // green
 }
 
