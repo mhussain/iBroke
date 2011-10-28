@@ -44,8 +44,6 @@
     [self styleTableView];
     [[self tableView] reloadData];
     
-    [[self tableView] setAllowsSelectionDuringEditing:YES];
-    
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
     [[self tableView] setBackgroundView:image];
 
@@ -109,24 +107,6 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  if ([[self tableView] isEditing])
-  {
-    UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
-    Build *build = [[self builds] objectAtIndex:[indexPath row]];
-    if ([[self hiddenBuilds] containsObject:build])
-    {
-      [[self hiddenBuilds] removeObject:build];
-      [cell setEditingAccessoryType:UITableViewCellAccessoryCheckmark];
-    }
-    else
-    {
-      [[self hiddenBuilds] addObject:build];
-      [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    return;
-  }
-  
   BuildDetailView *detailView = [[BuildDetailView alloc] initWithFrame:[self frame]];
   [detailView setBuild:[[self builds] objectAtIndex:[indexPath row]]];
   [self addSubview:detailView];
@@ -134,7 +114,27 @@
   
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  return UITableViewCellEditingStyleNone;
+  return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPath row]]] ? UITableViewCellEditingStyleInsert : UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  return @"Hide";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  Build *build = [[self builds] objectAtIndex:[indexPath row]];
+  if ([[self hiddenBuilds] containsObject:build])
+  {
+    [[self hiddenBuilds] removeObject:build];
+  }
+  else
+  {
+    [[self hiddenBuilds] addObject:build];
+  }
+  [self setFilteredBuilds:nil];
+  [[self tableView] reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -160,8 +160,6 @@
 	}
   
   Build *build = [[self builds] objectAtIndex:[indexPath row]];
-  
-  [cell setEditingAccessoryType:[[self hiddenBuilds] containsObject:build] ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark];
   
   [[cell textLabel] setText:[build name]];
   
