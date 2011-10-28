@@ -52,19 +52,19 @@
   [application setApplicationSupportsShakeToEdit:YES];
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-  _navigationController = [[UINavigationController alloc] initWithNibName:nil bundle:nil];
+  _navigationController = [[[UINavigationController alloc] initWithNibName:nil bundle:nil] autorelease];
   [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
   
   NSString *host = [UserData get:@"hostname"];
   if (nil != host)
   {
-    [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
-                                                     initWithAddress:[NSString stringWithFormat:@"%@/api/json/", host]]
+    [[self navigationController] pushViewController:[[[DisplayBuildsController alloc] 
+                                                     initWithAddress:[NSString stringWithFormat:@"%@/api/json/", host]] autorelease]
                                            animated:YES];
   }
   else
   {
-   	_mainPageController = [[SettingsController alloc] initWithNibName:nil bundle:nil];
+   	_mainPageController = [[[SettingsController alloc] initWithNibName:nil bundle:nil] autorelease];
     [[self navigationController] pushViewController:_mainPageController animated:YES];
   }
   
@@ -80,7 +80,7 @@
 
 - (void)displaySplash;
 {
-  UIImageView *splash = [[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  UIImageView *splash = [[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   [splash setTag:909];
   [splash setImage:[UIImage imageNamed:@"Default.png"]];
   
