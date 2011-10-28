@@ -166,8 +166,13 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:[[self buildData] objectAtIndex:[indexPath row]]];
-  [[self navigationController] pushViewController:detailViewController animated:YES];
+  Build *build = [[self buildData] objectAtIndex:[indexPath row]];
+  if ([build isFailed])
+  {
+    BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
+    [[self navigationController] pushViewController:detailViewController animated:YES];
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
