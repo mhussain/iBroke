@@ -14,5 +14,6 @@
 @property (nonatomic, retain) UIImageView *imageView;
 
 - (void)refresh;
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated;
 
 @end

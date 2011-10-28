@@ -37,6 +37,7 @@
     [[self navigationItem] setHidesBackButton:YES animated:NO];
     UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
     [[self navigationItem] setRightBarButtonItem:settings];
+    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
 
     [self setTitle:@"Builds"];
     [self setAddress:address];
@@ -92,7 +93,11 @@
   NSLog(@"Error Fetching Data %@",[error description]);
 }
 
-
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+  [super setEditing:editing animated:animated];
+  [[self buildsView] setEditing:editing animated:animated];
+}
 
 #pragma mark - View lifecycle
 

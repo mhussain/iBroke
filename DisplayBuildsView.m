@@ -11,10 +11,13 @@
 #import "UIColor+Hex.h"
 #import "Build.h"
 #import "BuildDetailView.h"
+#import "NSArray+Blocks.h"
 
 @interface DisplayBuildsView () 
 
 @property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, retain) NSMutableArray *hiddenBuilds;
+@property (nonatomic, retain) NSArray *filteredBuilds;
 
 - (void)styleTableView;
 @end
@@ -24,6 +27,8 @@
 @synthesize buildData = _buildData;
 @synthesize tableView = _tableView;
 @synthesize imageView = _imageView;
+@synthesize hiddenBuilds = _hiddenBuilds;
+@synthesize filteredBuilds = _filteredBuilds;
 
 - (id)initWithFrame:(CGRect)frame;
 {
@@ -31,11 +36,15 @@
   
   if (self)
   {
+    [self setHiddenBuilds:[NSMutableArray array]];
+    
     [self setTableView:[[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain]];
     [[self tableView] setDelegate:self];
     [[self tableView] setDataSource:self];
     [self styleTableView];
     [[self tableView] reloadData];
+    
+    [[self tableView] setAllowsSelectionDuringEditing:YES];
     
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
     [[self tableView] setBackgroundView:image];
@@ -44,6 +53,23 @@
   }
   
   return self;
+}
+
+-(NSArray*)filteredBuilds;
+{
+  if (!_filteredBuilds)
+  {
+    _filteredBuilds = [[self buildData] filter:^BOOL(id item) {
+      Build *build = (Build*)item;
+      return [[self hiddenBuilds] containsObject:build];
+    }];
+  }
+  return _filteredBuilds;
+}
+
+-(NSArray*)builds;
+{
+  return [[self tableView] isEditing] ? [self buildData] : [self filteredBuilds];
 }
 
 #pragma mark - UIView Lifecycle
@@ -65,6 +91,13 @@
 	[[self tableView] setBackgroundColor:[UIColor clearColor]];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+  [[self tableView] setEditing:editing animated:animated];
+  [self setFilteredBuilds:nil];
+  [[self tableView] reloadData];
+}
+
 #pragma mark - REST
 
 - (void)refresh;
@@ -76,20 +109,39 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+  if ([[self tableView] isEditing])
+  {
+    UITableViewCell *cell = [[self tableView] cellForRowAtIndexPath:indexPath];
+    Build *build = [[self builds] objectAtIndex:[indexPath row]];
+    if ([[self hiddenBuilds] containsObject:build])
+    {
+      [[self hiddenBuilds] removeObject:build];
+      [cell setEditingAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
+    else
+    {
+      [[self hiddenBuilds] addObject:build];
+      [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    return;
+  }
+  
   BuildDetailView *detailView = [[BuildDetailView alloc] initWithFrame:[self frame]];
-  [detailView setBuild:[[self buildData] objectAtIndex:[indexPath row]]];
+  [detailView setBuild:[[self builds] objectAtIndex:[indexPath row]]];
   [self addSubview:detailView];
 }
   
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+  return UITableViewCellEditingStyleNone;
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-  return [[self buildData] count];
+  return [[self builds] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -107,7 +159,10 @@
 		[cell setSelectedBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"row-middle.png"]]];
 	}
   
-  Build *build = [[self buildData] objectAtIndex:[indexPath row]];
+  Build *build = [[self builds] objectAtIndex:[indexPath row]];
+  
+  [cell setEditingAccessoryType:[[self hiddenBuilds] containsObject:build] ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark];
+  
   [[cell textLabel] setText:[build name]];
   
   if ([[build status] isEqualToString:@"red"])
@@ -138,6 +193,5 @@
 {
   return 1;
 }
-
 
 @end
