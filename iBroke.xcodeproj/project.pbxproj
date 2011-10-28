@@ -57,6 +57,7 @@
 		21F76C31144E838E00F0BB5F /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C28144E838E00F0BB5F /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
 		21F76C34144E839C00F0BB5F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C33144E839C00F0BB5F /* Reachability.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
 		21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB60 /* BuildDetailView.m */; };
+		21F76C34144E839C00F0BB64 /* BuildDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB63 /* BuildDetailController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +152,8 @@
 		21F76C33144E839C00F0BB5F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = "Third Party/asi-http-request/External/Reachability/Reachability.m"; sourceTree = "<group>"; };
 		21F76C34144E839C00F0BB60 /* BuildDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailView.m; sourceTree = "<group>"; };
 		21F76C34144E839C00F0BB62 /* BuildDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailView.h; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB63 /* BuildDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailController.m; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB65 /* BuildDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +251,8 @@
 		2152CC24144E662A00F22682 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				21F76C34144E839C00F0BB65 /* BuildDetailController.h */,
+				21F76C34144E839C00F0BB63 /* BuildDetailController.m */,
 				2152CC25144E669700F22682 /* SettingsController.h */,
 				2152CC26144E669700F22682 /* SettingsController.m */,
 				219E3B25144EABB300EF4A5D /* DisplayBuildsController.h */,
@@ -468,6 +473,7 @@
 				2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */,
 				217241521459289400DE5E82 /* UserData.m in Sources */,
 				21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */,
+				21F76C34144E839C00F0BB64 /* BuildDetailController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

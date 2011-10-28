@@ -17,6 +17,7 @@
 #import "AddressFormatter.h"
 #import "BuildDashboard.h"
 #import "DisplayBuildsView.h"
+#import "BuildDetailController.h"
 #import "Build.h"
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
@@ -165,6 +166,8 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
+  BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:[[self buildData] objectAtIndex:[indexPath row]]];
+  [[self navigationController] pushViewController:detailViewController animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
