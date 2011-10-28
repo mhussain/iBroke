@@ -35,6 +35,7 @@
 @property (nonatomic) BOOL inFullTableEditMode;
 
 -(NSArray*)builds;
+- (UIColor *)colorForStatus:(Build *)build;
 -(void)saveHiddenBuilds;
 -(void)restoreHiddenBuilds;
 
@@ -278,24 +279,25 @@ return @"Hide";
   Build *build = [[self builds] objectAtIndex:[indexPath row]];
   [[cell textLabel] setText:[build name]];
 
+  [[cell textLabel] setTextColor:[self colorForStatus:build]];
+
   if ([build isFailed])
   {
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"CC0033"]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
-
+  }
+  else if ([build isDisabled])
+  {
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
   }
   else if ([build isBuilding])
   {
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"0066CC"]];
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [spinner startAnimating];
     [spinner setHidden:NO];
     [cell setAccessoryView:spinner];
   }
-  else
+  else // passing
   {
-    // passing
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
   }
 
@@ -328,6 +330,16 @@ return @"Hide";
     Build *build = (Build*)item;
     return [buildIds containsObject:[NSString stringWithFormat:@"%@::%@", [build url], [build name]]];
   }]]];
+}
+
+#pragma mark - Private methods
+
+- (UIColor *)colorForStatus:(Build *)build;
+{
+  if ([build isFailed]) return [UIColor colorWithHexString:@"CC0033"];
+  if ([build isBuilding]) return [UIColor colorWithHexString:@"0066CC"];
+  if ([build isDisabled]) return [UIColor colorWithHexString:@"4A4A4A"];
+  return [UIColor colorWithHexString:@"458B00"]; // green
 }
 
 @end
