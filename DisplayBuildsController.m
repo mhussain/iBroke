@@ -22,6 +22,9 @@
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
 
+
+#define kHiddenBuildsKey @"kHiddenBuildsKey"
+
 @interface DisplayBuildsController ()
 
 @property (nonatomic, retain) DisplayBuildsView *buildsView;
@@ -32,6 +35,8 @@
 @property (nonatomic) BOOL inFullTableEditMode;
 
 -(NSArray*)builds;
+-(void)saveHiddenBuilds;
+-(void)restoreHiddenBuilds;
 
 @end
 
@@ -105,6 +110,7 @@
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
   
   [self setBuildData:[dashboard builds]];
+  [self restoreHiddenBuilds];
   [[self buildsView] reloadData];
 }
 
@@ -228,6 +234,7 @@ return @"Hide";
   if (![self inFullTableEditMode])
   {
     [[self hiddenBuilds] addObject:build];
+    [self saveHiddenBuilds];
     [self setFilteredBuilds:nil];
     [[self buildsView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     return;
@@ -241,6 +248,7 @@ return @"Hide";
   {
     [[self hiddenBuilds] addObject:build];
   }
+  [self saveHiddenBuilds];
   [self setFilteredBuilds:nil];
   [[self buildsView] reloadData];
 }
@@ -298,6 +306,28 @@ return @"Hide";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
   return 1;
+}
+
+#pragma - Persistence
+
+-(void)saveHiddenBuilds;
+{
+  NSArray *buildIds = [[self hiddenBuilds] map:^id<NSObject>(id<NSObject> item) {
+    Build *build = (Build*)item;
+    return [NSString stringWithFormat:@"%@::%@", [build url], [build name]];
+  }];
+                       
+  [[NSUserDefaults standardUserDefaults] setObject:buildIds forKey:kHiddenBuildsKey];
+}
+
+-(void)restoreHiddenBuilds;
+{
+  NSArray *buildIds = [[NSUserDefaults standardUserDefaults] objectForKey:kHiddenBuildsKey];
+  
+  [self setHiddenBuilds:[NSMutableArray arrayWithArray:[[self buildData] pick:^BOOL(id item) {
+    Build *build = (Build*)item;
+    return [buildIds containsObject:[NSString stringWithFormat:@"%@::%@", [build url], [build name]]];
+  }]]];
 }
 
 @end
