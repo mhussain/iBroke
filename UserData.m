@@ -18,15 +18,22 @@ static NSMutableArray *servers;
   
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    servers = [[NSMutableArray alloc] init];
+    servers = [[NSMutableArray alloc] initWithCapacity:3.];
   });
   
 	if (standardUserDefaults) {
 		[standardUserDefaults setObject:data forKey:key];
     
-    [servers addObject:data];
-    [standardUserDefaults setObject:servers forKey:@"previous"];
-    
+    if (![servers containsObject:data])
+    {
+      if ([servers count] > 2)
+        [servers removeLastObject];
+
+      [servers insertObject:data atIndex:0];
+    }
+  
+    [standardUserDefaults setObject:servers forKey:@"previous_hosts"];
+
 		[standardUserDefaults synchronize];
 	}
 }
@@ -41,5 +48,16 @@ static NSMutableArray *servers;
 	
 	return val;
 }
+
++ (NSArray *)previousHosts;
+{
+	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
+	NSMutableArray *hosts = nil;
+	if (standardUserDefaults) 
+		hosts = [standardUserDefaults objectForKey:@"previous_hosts"];
+  
+  return (NSArray *)hosts;
+}
+
 
 @end

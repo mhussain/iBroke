@@ -12,5 +12,6 @@
 
 + (void)save:(NSString*)data forKey:(NSString *)key;
 + (NSString *)get:(NSString *)key;
++ (NSArray *)previousHosts;
 
 @end
