@@ -70,7 +70,7 @@
 
 - (void)delayedHideSplash:(UIView *)splash;
 {
-  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:1.];
+  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:2.];
 }
 
 - (void)hideSplash:(UIView *)splash;
