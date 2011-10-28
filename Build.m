@@ -34,7 +34,12 @@
 
 -(BOOL)isBuilding;
 {
- return !([[self status] isEqualToString:@"red"] || [[self status] isEqualToString:@"blue"]);
+  return [[self status] isEqualToString:@"blue_anime"];
+}
+
+-(BOOL)isDisabled;
+{
+  return [[self status] isEqualToString:@"disabled"];
 }
 
 @end
