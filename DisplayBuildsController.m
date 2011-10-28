@@ -29,6 +29,8 @@
 @property (nonatomic, retain) NSMutableArray *hiddenBuilds;
 @property (nonatomic, retain) NSArray *filteredBuilds;
 
+@property (nonatomic) BOOL inFullTableEditMode;
+
 -(NSArray*)builds;
 
 @end
@@ -38,6 +40,7 @@
 @synthesize buildsView = _buildsView;
 @synthesize address = _address;
 @synthesize buildData = _buildData;
+@synthesize inFullTableEditMode = _inFullTableEditMode;
 
 @synthesize hiddenBuilds = _hiddenBuilds;
 @synthesize filteredBuilds = _filteredBuilds;
@@ -143,6 +146,7 @@
     }
   });
   
+  [self setInFullTableEditMode:editing];
 }
 
 -(NSArray*)filteredBuilds;
@@ -159,7 +163,7 @@
 
 -(NSArray*)builds;
 {
-  return [[self buildsView] isEditing] ? [self buildData] : [self filteredBuilds];
+  return [self inFullTableEditMode] ? [self buildData] : [self filteredBuilds];
 }
 
 
@@ -220,6 +224,15 @@ return @"Hide";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   Build *build = [[self builds] objectAtIndex:[indexPath row]];
+  
+  if (![self inFullTableEditMode])
+  {
+    [[self hiddenBuilds] addObject:build];
+    [self setFilteredBuilds:nil];
+    [[self buildsView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    return;
+  }
+  
   if ([[self hiddenBuilds] containsObject:build])
   {
     [[self hiddenBuilds] removeObject:build];
