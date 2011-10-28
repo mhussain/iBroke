@@ -13,15 +13,18 @@
 #import "NSArray+Blocks.h"
 #import "UIColor+Hex.h"
 
+#import "AboutView.h"
+
 @interface SettingsView ()
 
 @property (nonatomic, retain) UIView *previous_hosts;
-
+@property (nonatomic, retain) AboutView *about;
 @end
 
 @implementation SettingsView
 
 @synthesize previous_hosts = _previous_hosts;
+@synthesize about = _about;
 
 @synthesize url_text_1 = _url_text_1;
 @synthesize url_text_2 = _url_text_2;
@@ -101,6 +104,11 @@
 
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
+    
+    _about = [[AboutView alloc] initWithFrame:CGRectZero];
+    [_about addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(showAboutMe:)]];
+    [self addSubview:_about];
+    
     [self layoutIfNeeded];
   }
   return self;
@@ -111,6 +119,18 @@
 {
   UILabel *label = (UILabel *)[gestureRecogniser view];
 	[_url_text_1 setText:[label text]];
+}
+
+- (void)showAboutMe:(UIGestureRecognizer *)gestureRecogniser;
+{
+  __block AboutView *about = (AboutView *)[gestureRecogniser view];
+  [UIView animateWithDuration:2.0 delay:0
+											options:UIViewAnimationOptionCurveEaseOut
+                   animations:^ {
+                     [about setFrame:[self frame]];
+                   }
+                   completion:NULL
+   ];
 }
 
 - (void)hideKeyboard;
@@ -136,6 +156,8 @@
 
 - (void)layoutSubviews;
 {
+  [[self about] setFrame:CGRectMake(10., [self bounds].size.height - 20., [self bounds].size.width - 20., 20.)];
+  
   [[self previous_hosts] setFrame:CGRectMake([self bounds].origin.x + 20., [self bounds].origin.y + 200., [self bounds].size.width - 60., 105.)];
   
   CGRect previous_hosts_rect = [[self previous_hosts] bounds];
