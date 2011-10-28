@@ -64,7 +64,7 @@
     
     [self addSubview:_url_text_1];
    
-    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(22., 163., 230., 30.)];
+    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(27., 163., 230., 30.)];
     [previous_hosts_label setText:@"Previous hosts"];
     [previous_hosts_label setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [previous_hosts_label setBackgroundColor:[UIColor clearColor]];
@@ -143,7 +143,7 @@
   __block CGFloat padding = 0.;
   
   [[[self previous_hosts] subviews] each:^(id label) {    
-    [label setFrame:CGRectMake(previous_hosts_rect.origin.x + 5., previous_hosts_rect.origin.y + padding, 250., 40.)];
+    [label setFrame:CGRectMake(previous_hosts_rect.origin.x + 10., previous_hosts_rect.origin.y + padding, 250., 40.)];
     padding += 45.;
   }];
 }
@@ -165,14 +165,14 @@
   CGContextAddLineToPoint(context, 25., 25.);
   CGContextStrokePath(context);
     
-  CGFloat previous_hosts_x =  150.;
+  CGFloat previous_hosts_x =  155.;
   CGFloat previous_hosts_y =  180.;
   
   CGContextMoveToPoint(context, previous_hosts_x, previous_hosts_y);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
   CGContextAddLineToPoint(context, previous_hosts_x, previous_hosts_y);
-  CGContextAddLineToPoint(context, previous_hosts_x + 140., previous_hosts_y);
-  CGContextAddLineToPoint(context, previous_hosts_x + 140., previous_hosts_y + 160.);
+  CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y);
+  CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y + 160.);
   CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 160.);
   CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x - 130, previous_hosts_y);
