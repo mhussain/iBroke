@@ -23,8 +23,7 @@
     [[self navigationItem] setHidesBackButton:NO animated:YES];
     [self setTitle:[build name]];
 
-    _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
-    [_buildView setBuild:build];
+    _buildView = [[BuildDetailView alloc] initWithFrame:[[self view] frame] build:build];
     [self setView:_buildView];
   }
   return self;

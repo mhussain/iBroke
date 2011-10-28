@@ -11,9 +11,7 @@
 
 @implementation BuildDetailView
 
-@synthesize build;
-
-- (id)initWithFrame:(CGRect)frame;
+- (id)initWithFrame:(CGRect)frame build:(Build *)build;
 {
   if ((self = [super initWithFrame:frame]))
   {
@@ -33,17 +31,6 @@
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
   return self;
-}
-
-
-#pragma mark - UIView Lifecycle
-
-- (void)drawRect:(CGRect)rect;
-{
-}
-
-- (void)refresh;
-{
 }
 
 @end

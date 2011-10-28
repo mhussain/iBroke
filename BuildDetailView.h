@@ -12,6 +12,6 @@
 
 @interface BuildDetailView : UIView
 
-@property (nonatomic, retain) Build *build;
+- (id)initWithFrame:(CGRect)frame build:(Build *)build;
 
 @end
