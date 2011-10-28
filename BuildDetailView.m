@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "BuildDetailView.h"
+#import "BuildDetail.h"
 
 #pragma mark - BuildDetailLabel
 
@@ -33,20 +34,26 @@
 
 @implementation BuildDetailView
 
-- (id)initWithFrame:(CGRect)frame build:(Build *)build;
+@synthesize buildDetail = _buildDetail;
+
+- (id)initWithFrame:(CGRect)frame;
 {
   if ((self = [super initWithFrame:frame]))
   {
-    UILabel *build_name = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX(frame), 40.) text:[build name]];
-    [build_name setFont:[UIFont boldSystemFontOfSize:22.]];
-    [self addSubview:build_name];
-
-    UILabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX(frame), 40.) text:[NSString stringWithFormat:@"Status: %@", [build status]]];
-    [self addSubview:build_status];
-    
-    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
   return self;
+}
+
+- (void)layoutSubviews;
+{
+  [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
+
+  UILabel *build_name = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] name]];
+  [build_name setFont:[UIFont boldSystemFontOfSize:22.]];
+  [self addSubview:build_name];
+
+  UILabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] description]];
+  [self addSubview:build_status];
 }
 
 @end

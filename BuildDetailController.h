@@ -6,11 +6,12 @@
 
 
 #import <Foundation/Foundation.h>
+#import "ASIHTTPRequestDelegate.h"
 
 @class BuildDetailView;
 @class Build;
 
-@interface BuildDetailController : UIViewController
+@interface BuildDetailController : UIViewController <ASIHTTPRequestDelegate>
 
 @property (nonatomic, retain) BuildDetailView *buildView;
 

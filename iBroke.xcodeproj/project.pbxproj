@@ -63,6 +63,7 @@
 		21F76C34144E839C00F0BB5F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C33144E839C00F0BB5F /* Reachability.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc"; }; };
 		21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB60 /* BuildDetailView.m */; };
 		21F76C34144E839C00F0BB64 /* BuildDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB63 /* BuildDetailController.m */; };
+		21F76C34144E839C00F0BB67 /* BuildDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB66 /* BuildDetail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -165,6 +166,8 @@
 		21F76C34144E839C00F0BB62 /* BuildDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailView.h; sourceTree = "<group>"; };
 		21F76C34144E839C00F0BB63 /* BuildDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailController.m; sourceTree = "<group>"; };
 		21F76C34144E839C00F0BB65 /* BuildDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailController.h; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB66 /* BuildDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetail.m; sourceTree = "<group>"; };
+		21F76C34144E839C00F0BB68 /* BuildDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetail.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +304,8 @@
 		218A0418144F8B770015AD0D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				21F76C34144E839C00F0BB68 /* BuildDetail.h */,
+				21F76C34144E839C00F0BB66 /* BuildDetail.m */,
 				218A0419144F8B8C0015AD0D /* Build.h */,
 				218A041A144F8B8C0015AD0D /* Build.m */,
 			);
@@ -504,6 +509,7 @@
 				21F76C34144E839C00F0BB61 /* BuildDetailView.m in Sources */,
 				21F76C34144E839C00F0BB64 /* BuildDetailController.m in Sources */,
 				212FCF11145A51C1005B7615 /* EGORefreshTableHeaderView.m in Sources */,
+				21F76C34144E839C00F0BB67 /* BuildDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

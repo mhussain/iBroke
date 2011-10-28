@@ -117,7 +117,7 @@
 
 - (void)requestStarted:(ASIHTTPRequest *)request;
 {
-  NSLog(@"Connecting to the server");
+  NSLog([NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
