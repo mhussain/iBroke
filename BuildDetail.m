@@ -16,7 +16,7 @@
 +(id)instanceWithData:(NSDictionary *)data;
 {
   return [[BuildDetail alloc] initWithName:[data objectForKey:@"name"]
-                                 description:[data objectForKey:@"description"]];
+                               description:[data objectForKey:@"description"]];
 }
 
 -(id)initWithName:(NSString *)name description:(NSString *)description;
