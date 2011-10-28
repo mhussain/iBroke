@@ -91,9 +91,35 @@
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-  [[self tableView] setEditing:editing animated:animated];
   [self setFilteredBuilds:nil];
-  [[self tableView] reloadData];
+  [[self tableView] setEditing:editing animated:animated];
+
+  double delayInSeconds = .4;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    
+  NSMutableArray *indexPaths = [NSMutableArray array];
+    if (editing)
+    {
+      [[self hiddenBuilds] each:^(id item) {
+        [indexPaths addObject:[NSIndexPath indexPathForRow:[[self builds] indexOfObject:item] inSection:0]];
+      }];
+      [[self tableView] insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+      double delayInSeconds = .4;
+      dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+      dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [[self tableView] reloadData];        
+      });
+    }
+    else
+    {
+      [[self hiddenBuilds] each:^(id item) {
+        [indexPaths addObject:[NSIndexPath indexPathForRow:[[self buildData] indexOfObject:item] inSection:0]];
+      }];
+      [[self tableView] deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+    }
+  });
+
 }
 
 #pragma mark - REST
