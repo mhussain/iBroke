@@ -104,6 +104,7 @@
 {
   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[self address]]];
   [request setDelegate:self];
+  [request setCachePolicy:ASIDoNotWriteToCacheCachePolicy];
   [request startAsynchronous];
 }
 
