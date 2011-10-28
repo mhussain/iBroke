@@ -15,21 +15,14 @@
 
 - (id)initWithFrame:(CGRect)frame;
 {
-  self = [super initWithFrame:frame];
-
-  if (self) {
+  if ((self = [super initWithFrame:frame])) {
     [self setBackgroundColor:[UIColor whiteColor]];
   }
-
   return self;
 }
 
 
 #pragma mark - UIView Lifecycle
-
-- (void)layoutSubviews;
-{
-}
 
 - (void)drawRect:(CGRect)rect;
 {
