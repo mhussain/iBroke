@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "Build.h"
 
 @implementation Build
@@ -34,7 +35,7 @@
 
 -(BOOL)isBuilding;
 {
-  return [[self status] isEqualToString:@"blue_anime"];
+  return [[self status] hasSuffix:@"_anime"];
 }
 
 -(BOOL)isDisabled;
