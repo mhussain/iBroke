@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DisplayBuildsView : UIView <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, retain) NSMutableArray *buildData;
-@property (nonatomic, retain) UIImageView *imageView;
-
-- (void)refresh;
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated;
+@interface DisplayBuildsView : UITableView
 
 @end

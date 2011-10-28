@@ -10,11 +10,12 @@
 
 #import "ASIHTTPRequestDelegate.h"
 
-@interface DisplayBuildsController : UIViewController <ASIHTTPRequestDelegate>
+@interface DisplayBuildsController : UIViewController <UITableViewDelegate, UITableViewDataSource, ASIHTTPRequestDelegate>
 
 - (id)initWithAddress:(NSString *)address;
 - (void)connectToAddress;
 
 @property (nonatomic, retain) NSString *address;
+@property(nonatomic, retain) NSArray *buildData;
 
 @end
