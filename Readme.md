@@ -11,24 +11,24 @@ to be on the same network as the server.
 You start the app and you go to the setting page. Enter the complete host for the Jenkins Server. 
 It will keep track of the last three servers you visited. 
 
-<img src="Images/settings.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/settings.png" width=477 height=54 />
 
 It should show you the builds page once you have entered the correct host.
 
-<img src="Images/builds.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/builds.png" width=477 height=54 />
 
 Shake to refresh the list. 
 
-<img src="Images/shake.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/shake.png" width=477 height=54 />
 
 You can remove individual builds you do not care about. 
 
-<img src="Images/edit1.png" width=477 height=54 />
-<img src="Images/edit2.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/edit1.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/edit2.png" width=477 height=54 />
 
 You can also see a few extra details about a broken build
 
-<img src="Images/build.png" width=477 height=54 />
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/build.png" width=477 height=54 />
 
 ## Collaborators
 People who worked on this with me:
