@@ -47,8 +47,8 @@
     [activityIndicatorView startAnimating];
     
     CGFloat totalHeight = [loadingLabel frame].size.height + [activityIndicatorView frame].size.height;
-    labelFrame.origin.x = floor(0.5 * (self.frame.size.width - DEFAULT_LABEL_WIDTH));
-    labelFrame.origin.y = floor(0.5 * (self.frame.size.height - totalHeight));
+    labelFrame.origin.x = floor(0.5 * ([self frame].size.width - DEFAULT_LABEL_WIDTH));
+    labelFrame.origin.y = floor(0.5 * ([self frame].size.height - totalHeight));
     [loadingLabel setFrame:labelFrame];
     
     CGRect activityIndicatorRect = [activityIndicatorView frame];
