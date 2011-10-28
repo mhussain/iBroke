@@ -13,6 +13,8 @@
 #import "SBJsonParser.h"
 #import "BuildDetail.h"
 
+#import "LoadingView.h"
+
 @interface BuildDetailController()
 
 - (void)connectToAddress:(Build *)build;
@@ -60,11 +62,17 @@
 
 - (void)requestStarted:(ASIHTTPRequest *)request;
 {
-  NSLog([NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
+  NSLog(@"%@",[NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
+  
+  LoadingView *loadingView = [[LoadingView alloc] initWithFrame:[_buildView bounds] andMessage:@"Loading build info..."];
+  [_buildView addSubview:loadingView];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
 {
+  UIView *loadingView = [_buildView viewWithTag:3.];
+  [loadingView removeFromSuperview];
+  
   SBJsonParser *parser = [[SBJsonParser alloc] init];
   NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
 

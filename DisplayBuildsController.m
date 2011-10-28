@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 #import "DisplayBuildsController.h"
 
 #import "ASIHTTPRequest.h"
@@ -22,6 +24,7 @@
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
 
+#import "LoadingView.h"
 
 #define kHiddenBuildsKey @"kHiddenBuildsKey"
 
@@ -117,11 +120,25 @@
 
 - (void)requestStarted:(ASIHTTPRequest *)request;
 {
-  NSLog([NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
+  NSLog(@"%@",[NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
+
+	LoadingView *loadingView = [[LoadingView alloc] initWithFrame:[[self buildsView] bounds] andMessage:@"Loading build dashboard..."];
+
+  [[self buildsView] addSubview:loadingView];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
 {
+
+  UIView *loadingView = [[self buildsView] viewWithTag:3];
+  [loadingView removeFromSuperview];
+  
+	// Set up the animation
+	CATransition *animation = [CATransition animation];
+	[animation setType:kCATransitionFade];
+	
+	[[loadingView layer] addAnimation:animation forKey:@"layerAnimation"];
+  
   SBJsonParser *parser = [[SBJsonParser alloc] init];
   NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];

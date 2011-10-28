@@ -20,12 +20,17 @@
 
 - (id)initWithFrame:(CGRect)frame text:(NSString *)text;
 {
-  UILabel *label = [[UILabel alloc] initWithFrame:frame];
-  [label setTextAlignment:UITextAlignmentCenter];
-  [label setTextColor:[UIColor whiteColor]];
-  [label setBackgroundColor:[UIColor clearColor]];
-  [label setText:text];
-  return label;
+  self = [super initWithFrame:frame];
+  
+  if (self) 
+  {
+    [self setFrame:frame];
+    [self setTextAlignment:UITextAlignmentCenter];
+    [self setTextColor:[UIColor whiteColor]];
+    [self setBackgroundColor:[UIColor clearColor]];
+    [self setText:text];
+  }
+  return self;
 }
 
 @end
@@ -48,11 +53,11 @@
 {
   [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
 
-  UILabel *build_name = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] name]];
+  BuildDetailLabel *build_name = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 10., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] name]];
   [build_name setFont:[UIFont boldSystemFontOfSize:22.]];
   [self addSubview:build_name];
 
-  UILabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] description]];
+  BuildDetailLabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] description]];
   [self addSubview:build_status];
 }
 
