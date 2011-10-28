@@ -194,8 +194,13 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:[[self builds] objectAtIndex:[indexPath row]]];
-  [[self navigationController] pushViewController:detailViewController animated:YES];
+  Build *build = [[self buildData] objectAtIndex:[indexPath row]];
+  if ([build isFailed])
+  {
+    BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
+    [[self navigationController] pushViewController:detailViewController animated:YES];
+  }
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -252,24 +257,25 @@ return @"Hide";
   Build *build = [[self builds] objectAtIndex:[indexPath row]];
   [[cell textLabel] setText:[build name]];
 
-  if ([[build status] isEqualToString:@"red"])
+  if ([build isFailed])
   {
     [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"CC0033"]];
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
 
   }
-  else if ([[build status] isEqualToString:@"blue"])
-  {
-    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
-    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-  }
-  else
+  else if ([build isBuilding])
   {
     [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"0066CC"]];
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [spinner startAnimating];
     [spinner setHidden:NO];
     [cell setAccessoryView:spinner];
+  }
+  else
+  {
+    // passing
+    [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"458B00"]];
+    [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
   }
 
   return cell;

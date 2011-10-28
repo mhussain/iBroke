@@ -27,4 +27,14 @@
   return self;
 }
 
+-(BOOL)isFailed;
+{
+  return [[self status] isEqualToString:@"red"];
+}
+
+-(BOOL)isBuilding;
+{
+ return !([[self status] isEqualToString:@"red"] || [[self status] isEqualToString:@"blue"]);
+}
+
 @end
