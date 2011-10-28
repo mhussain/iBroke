@@ -6,6 +6,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "BuildDetailController.h"
 #import "Build.h"
 #import "BuildDetailView.h"
@@ -17,13 +18,20 @@
 
 @interface BuildDetailController()
 
-- (void)connectToAddress:(Build *)build;
+- (void)connectToAddress:(NSString *)url;
+
+@end
+
+@interface BuildDetailController()
+
+@property (nonatomic, retain) NSMutableDictionary *allBuildData;
 
 @end
 
 @implementation BuildDetailController
 
 @synthesize buildView = _buildView;
+@synthesize allBuildData = _allBuildData;
 
 - (id)initWithBuild:(Build *)build;
 {
@@ -34,7 +42,7 @@
     [[self navigationItem] setHidesBackButton:NO animated:YES];
     [self setTitle:[build name]];
 
-    [self connectToAddress:build];
+    [self connectToAddress:[build url]];
   }
   return self;
 }
@@ -50,9 +58,9 @@
 
 #pragma mark - ASIHTTPRequestDelegate
 
-- (void)connectToAddress:(Build *)build;
+- (void)connectToAddress:(NSString *)url;
 {
-  NSString *address = [NSString stringWithFormat:@"%@api/json/", [build url]];
+  NSString *address = [NSString stringWithFormat:@"%@api/json/", url];
 
   ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:address]];
   [request setDelegate:self];
@@ -76,7 +84,18 @@
   SBJsonParser *parser = [[SBJsonParser alloc] init];
   NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
 
-  BuildDetail *detail = [BuildDetail instanceWithData:buildData];
+  NSDictionary *last_completed_build = [buildData objectForKey:@"lastCompletedBuild"];
+  if (last_completed_build)
+  {
+      [self setAllBuildData:buildData];
+      [self connectToAddress:[last_completed_build objectForKey:@"url"]];
+  }
+  else
+  {
+      [[self allBuildData] setObject:buildData forKey:@"lastBuild"];
+  }
+    
+  BuildDetail *detail = [BuildDetail instanceWithData:[self allBuildData]];
   [[self buildView] setBuildDetail:detail];
   [[self buildView] setNeedsLayout];
 }

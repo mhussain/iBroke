@@ -59,6 +59,10 @@
 
   BuildDetailLabel *build_status = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 50., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] description]];
   [self addSubview:build_status];
+
+  BuildDetailLabel *committers = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(0., 90., CGRectGetMaxX([self frame]), 40.) text:[[self buildDetail] committers]];
+  [self addSubview:committers];
+
 }
 
 @end
