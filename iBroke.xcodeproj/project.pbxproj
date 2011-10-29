@@ -33,6 +33,8 @@
 		216ABDA0145C13F80019400E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABD9D145C13F80019400E /* Icon.png */; };
 		216ABDA1145C13F80019400E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABD9E145C13F80019400E /* Icon@2x.png */; };
 		216ABDA2145C13F80019400E /* Icon@2x-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABD9F145C13F80019400E /* Icon@2x-texture.png */; };
+		216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */; };
+		216ABE43145C38EB0019400E /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABE42145C38EB0019400E /* navbar.png */; };
 		2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172413C1459152200DE5E82 /* UIColor+Hex.m */; };
 		217241521459289400DE5E82 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217241511459289300DE5E82 /* UserData.m */; };
 		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
@@ -108,6 +110,9 @@
 		216ABD9D145C13F80019400E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		216ABD9E145C13F80019400E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		216ABD9F145C13F80019400E /* Icon@2x-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x-texture.png"; sourceTree = "<group>"; };
+		216ABDA5145C31360019400E /* UINavigationBar+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Utilities.h"; sourceTree = "<group>"; };
+		216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Utilities.m"; sourceTree = "<group>"; };
+		216ABE42145C38EB0019400E /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
 		2172413B1459152100DE5E82 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		2172413C1459152200DE5E82 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		217241501459289300DE5E82 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
@@ -215,6 +220,7 @@
 				216ABD9E145C13F80019400E /* Icon@2x.png */,
 				216ABD9F145C13F80019400E /* Icon@2x-texture.png */,
 				21A6BA031459F77C002BA20C /* Background.png */,
+				216ABE42145C38EB0019400E /* navbar.png */,
 				21A6BA041459F77C002BA20C /* Background@2x.png */,
 				212FCEA2145A424B005B7615 /* Default.png */,
 				212FCEA4145A424B005B7615 /* Default@2x.png */,
@@ -348,6 +354,8 @@
 				21A5AEC9145B7C2800FCE78D /* UILabel+Heading.m */,
 				216ABD99145BEF240019400E /* NSString+Empty.h */,
 				216ABD9A145BEF240019400E /* NSString+Empty.m */,
+				216ABDA5145C31360019400E /* UINavigationBar+Utilities.h */,
+				216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -487,6 +495,7 @@
 				216ABDA0145C13F80019400E /* Icon.png in Resources */,
 				216ABDA1145C13F80019400E /* Icon@2x.png in Resources */,
 				216ABDA2145C13F80019400E /* Icon@2x-texture.png in Resources */,
+				216ABE43145C38EB0019400E /* navbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +547,7 @@
 				212FCF4F145AC968005B7615 /* AboutView.m in Sources */,
 				21A5AECA145B7C2800FCE78D /* UILabel+Heading.m in Sources */,
 				216ABD9B145BEF240019400E /* NSString+Empty.m in Sources */,
+				216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

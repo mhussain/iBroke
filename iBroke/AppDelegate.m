@@ -29,6 +29,7 @@
 
 #import "AppDelegate.h"
 #import "SettingsController.h"
+#import "UINavigationBar+Utilities.h"
 
 #import "UserData.h"
 #import "DisplayBuildsController.h"
@@ -52,7 +53,13 @@
   [application setApplicationSupportsShakeToEdit:YES];
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
+
   _navigationController = [[[UINavigationController alloc] initWithNibName:nil bundle:nil] autorelease];
+  
+  if ([[UINavigationBar class]respondsToSelector:@selector(appearance)]) {
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
+  }
+  
   [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
   
   NSString *host = [UserData get:@"hostname"];
