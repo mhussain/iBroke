@@ -27,7 +27,7 @@
 
 @class BuildDetail;
 
-@interface BuildDetailView : UIView
+@interface BuildDetailView : UIScrollView
 
 @property (nonatomic, retain, setter = setBuildData:) BuildDetail *buildDetail;
 

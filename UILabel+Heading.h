@@ -12,4 +12,7 @@
 
 - (void)defineStyleWithTitle:(NSString *)title;
 
+- (CGFloat)width;
+- (CGFloat)height;
+
 @end

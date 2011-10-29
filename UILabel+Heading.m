@@ -19,4 +19,13 @@
   [self setText:title];
 }
 
+- (CGFloat)height;
+{
+  return [self bounds].size.height;
+}
+
+- (CGFloat)width;
+{
+  return [self bounds].size.width;
+}
 @end

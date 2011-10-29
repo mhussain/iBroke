@@ -28,12 +28,44 @@
 #import "BuildDetail.h"
 
 #import "NSArray+Blocks.h"
+#import "SBJson.h"
+#import "ASIHTTPRequest.h"
+
+@implementation IndividualBuildData
+
+@synthesize data = _data;
+
+- (id)initWithUrl:(NSString *)url;
+{
+  self = [super init];
+  
+  if (self)
+  {
+    NSString *address = [NSString stringWithFormat:@"%@api/json/", url];
+    
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:address]];
+
+    [request setCachePolicy:ASIDoNotWriteToCacheCachePolicy];
+    [request startSynchronous];
+    
+    if (![request error])
+    {
+      SBJsonParser *parser = [[SBJsonParser alloc] init];
+      [self setData:[parser objectWithString:[request responseString] error:nil]];
+    }
+  }
+  
+  return self;
+}
+
+@end
 
 @implementation BuildDetail
 
 @synthesize name = _name;
 @synthesize description = _description;
 @synthesize health = _health;
+@synthesize culprits = _culprits;
 @synthesize lastBuildUrl = _lastBuildUrl;
 
 + (id)instanceWithData:(NSDictionary *)data;
@@ -45,7 +77,6 @@
 {
   if ((self = [super init]))
   {
-    [self setDescription:[data objectForKey:@"description"]];
     [self setName:[data objectForKey:@"name"]];
     [self setHealth:@""];
 
@@ -54,8 +85,23 @@
       [self setHealth:[[self health] stringByAppendingFormat:@"%@ ", [item objectForKey:@"description"]]];
     }];
    
-    [self setLastBuildUrl:[[data objectForKey:@"lastBuild"] objectForKey:@"url"]];
+    NSString *url = [[data objectForKey:@"lastBuild"] objectForKey:@"url"];
+//  	NSString *url = @"http://ci.jenkins-ci.org/job/jenkins_lts_branch/15/";
+    IndividualBuildData *buildData = [[IndividualBuildData alloc ] initWithUrl:url];
     
+		__block NSString *changeSet = @"";
+    NSArray *changeSetItems = [[[buildData data] objectForKey:@"changeSet"] objectForKey:@"items"];
+    [changeSetItems each:^(id item) {
+      changeSet = [changeSet stringByAppendingFormat:@"%@. ", [item objectForKey:@"msg"]];
+    }];
+    [self setDescription:changeSet];
+    
+    __block NSString *people = @"";
+    NSArray *culpritNames = [[buildData data] objectForKey:@"culprits"];
+    [culpritNames each:^(id item) {
+      people = [people stringByAppendingFormat:@"%@\n", [item objectForKey:@"fullName"]];
+    }];
+    [self setCulprits:people];
   }
   
   return self;

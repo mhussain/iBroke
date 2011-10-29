@@ -1,6 +1,8 @@
 //
-//  Created by mike_rowe on 28/10/11.
+//  NSString+Empty.h
+//  iBroke
 //
+//  Created by Mujtaba Hussain on 29/10/11.
 // This code is distributed under the terms and conditions of the MIT license. 
 //
 // Copyright (c) 2011 Mujtaba Hussain
@@ -24,28 +26,11 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
 // IN THE SOFTWARE.
 
-
 #import <Foundation/Foundation.h>
-#import "ASIHTTPRequestDelegate.h"
 
-@interface IndividualBuildData :NSObject <ASIHTTPRequestDelegate>
+@interface NSString (Empty)
 
-- (id)initWithUrl:(NSString *)url;
-
-@property (nonatomic, retain) NSDictionary *data;
-
-@end
-
-
-@interface BuildDetail : NSObject
-
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSString *description;
-@property (nonatomic, retain) NSString *health;
-@property (nonatomic, retain) NSString *culprits;
-@property (nonatomic, retain) NSString *lastBuildUrl;
-
-+ (id)instanceWithData:(NSDictionary *)data;
-- (id)initWithData:(NSDictionary *)data;
+- (BOOL)isEmpty;
+- (BOOL)isNotEmpty;
 
 @end
