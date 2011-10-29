@@ -34,6 +34,7 @@
 @synthesize name = _name;
 @synthesize description = _description;
 @synthesize health = _health;
+@synthesize lastBuildUrl = _lastBuildUrl;
 
 + (id)instanceWithData:(NSDictionary *)data;
 {
@@ -52,6 +53,9 @@
     [health each:^(id item) {
       [self setHealth:[[self health] stringByAppendingFormat:@"%@ ", [item objectForKey:@"description"]]];
     }];
+   
+    [self setLastBuildUrl:[[data objectForKey:@"lastBuild"] objectForKey:@"url"]];
+    
   }
   
   return self;

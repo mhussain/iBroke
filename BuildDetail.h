@@ -33,6 +33,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *health;
+@property (nonatomic, retain) NSString *lastBuildUrl;
 
 + (id)instanceWithData:(NSDictionary *)data;
 - (id)initWithData:(NSDictionary *)data;
