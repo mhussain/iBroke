@@ -35,7 +35,7 @@
     
     UILabel *loadingLabel = [[UILabel alloc] initWithFrame:labelFrame];
     [loadingLabel setText:NSLocalizedString(message, nil)];
-    [loadingLabel setTextColor:[UIColor colorWithHexString:@"539DC2"]];
+    [loadingLabel setTextColor:[UIColor colorWithHexString:@"76EE00"]];
     [loadingLabel setBackgroundColor:[UIColor clearColor]];
     [loadingLabel setTextAlignment:UITextAlignmentCenter];
     [loadingLabel setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];

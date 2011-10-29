@@ -76,6 +76,8 @@
 @property (nonatomic, retain) UILabel *changeSetLabel;
 @property (nonatomic, retain) UILabel *culpritLabel;
 
+- (NSString *)placeholder;
+
 @end
 
 @implementation BuildDetailView
@@ -126,19 +128,28 @@
   return self;
 }
 
+- (NSString *)placeholder;
+{
+  return @"No information available";
+}
+
 - (void)setBuildData:(BuildDetail *)buildDetail;
 {
-  [[self healthReport] setText:[buildDetail health]];
+  [[self healthReport] setText: [[buildDetail health] isEmpty] ? [self placeholder] : [buildDetail health]];
   [[self healthReport] sizeToFit];
-  [[self changeset] setText:[buildDetail description]];
+  [[self changeset] setText: [[buildDetail description] isEmpty] ? [self placeholder] : [buildDetail description]];
   [[self changeset] sizeToFit];
-  [[self culprit] setText:[buildDetail culprits]];
+  [[self culprit] setText: [[buildDetail culprits] isEmpty] ? [self placeholder] : [buildDetail culprits]];
   [[self culprit] sizeToFit];
 	
-  CGFloat height = [_healthReport height] + [_changeset height] + [_culprit height] + 100.;
+  CGFloat height = [_healthReport height] + [_changeset height] + [_culprit height] + 200.;
   [self setContentSize:CGSizeMake([self bounds].size.width, height)];
-  
 	[self setNeedsDisplay];  
+}
+
+- (void)layoutSubviews;
+{
+  
 }
 
 #pragma mark - UIView Lifecycle
