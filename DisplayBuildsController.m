@@ -44,7 +44,7 @@
 #import "Build.h"
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
-
+#import "UINavigationBar+Utilities.h"
 #import "LoadingView.h"
 
 #define kHiddenBuildsKey @"kHiddenBuildsKey"
@@ -168,7 +168,7 @@
   [self setFilteredBuilds:nil];
   
   [[self editButtonItem] setEnabled:YES];
-  [[self buildsView] reloadData];     
+  [[self buildsView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
