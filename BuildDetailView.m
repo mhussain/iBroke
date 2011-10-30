@@ -38,10 +38,13 @@
 @interface BuildDetailLabel : UILabel
 
 - (id)initWithFrame:(CGRect)frame andText:(NSString *)text;
+- (CGSize)actualSize;
 
 @end
 
 @implementation BuildDetailLabel
+
+const CGFloat kPaddingBetweenLabels = 50.;
 
 - (id)initWithFrame:(CGRect)frame andText:(NSString *)text;
 {
@@ -60,6 +63,13 @@
     [self setText:text];
   }
   return self;
+}
+
+- (CGSize)actualSize;
+{
+  return [[self text] sizeWithFont:[UIFont fontWithName:@"Verdana" size:15.] 
+                          constrainedToSize:CGSizeMake(280., 1000.)	
+                     lineBreakMode:UILineBreakModeWordWrap];
 }
 
 @end
@@ -96,32 +106,31 @@
 {
   if ((self = [super initWithFrame:frame]))
   {
-    [self setFrame:CGRectMake(0., 0., 320., 480.)];
+    [self setFrame:frame];
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
     
-    _healthLabel = [[UILabel alloc] initWithFrame:CGRectMake(30., 10., 60., 30.)];
+    _healthLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_healthLabel defineStyleWithTitle:@"Health"];
     [_healthLabel setHidden:YES];
     [self addSubview:_healthLabel];
     
-    _changeSetLabel = [[UILabel alloc] initWithFrame:CGRectMake(30., 140., 150., 30.)];
+    _healthReport = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];
+    [self addSubview:_healthReport];
+    
+    _changeSetLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_changeSetLabel defineStyleWithTitle:@"Comment"];
 		[_changeSetLabel setHidden:YES];
     [self addSubview:_changeSetLabel];
+    
+    _changeset = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];
+    [self addSubview:_changeset];
 
-    _culpritLabel = [[UILabel alloc] initWithFrame:CGRectMake(30., 230., 150., 30.)];
+    _culpritLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_culpritLabel defineStyleWithTitle:@"Culprits"];
 		[_culpritLabel setHidden:YES];
     [self addSubview:_culpritLabel];
 
-    _healthReport = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(25., 40., 280., 60.) andText:@""];
-    [self addSubview:_healthReport];
-    
-    _changeset = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(20., 165., 280., 40.) andText:@""];
-    [_changeset setFont:[UIFont fontWithName:@"Verdana" size:12.]];
-    [self addSubview:_changeset];
-    
-    _culprit = [[BuildDetailLabel alloc] initWithFrame:CGRectMake(20., 257., 280., 40.) andText:@""];
+    _culprit = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];    
     [self addSubview:_culprit];
   }
 
@@ -136,20 +145,29 @@
 - (void)setBuildData:(BuildDetail *)buildDetail;
 {
   [[self healthReport] setText: [[buildDetail health] isEmpty] ? [self placeholder] : [buildDetail health]];
-  [[self healthReport] sizeToFit];
   [[self changeset] setText: [[buildDetail description] isEmpty] ? [self placeholder] : [buildDetail description]];
-  [[self changeset] sizeToFit];
   [[self culprit] setText: [[buildDetail culprits] isEmpty] ? [self placeholder] : [buildDetail culprits]];
-  [[self culprit] sizeToFit];
-	
-  CGFloat height = [_healthReport height] + [_changeset height] + [_culprit height] + 200.;
-  [self setContentSize:CGSizeMake([self bounds].size.width, height)];
+  
+  [self setNeedsLayout];
 	[self setNeedsDisplay];  
 }
 
 - (void)layoutSubviews;
 {
+  [_healthLabel setFrame:CGRectMake(30., 10., 60., 30.)];
+  CGSize healthReportSize = [_healthReport actualSize];
+  [_healthReport setFrame:CGRectMake(20., [_healthLabel y_coord] + 30., healthReportSize.width, healthReportSize.height)];
   
+  [_changeSetLabel setFrame:CGRectMake(30., [_healthLabel y_coord] + [[self healthReport] height] + kPaddingBetweenLabels, 150., 30.)];
+  CGSize changesetSize = [_changeset actualSize];
+  [_changeset setFrame:CGRectMake(20., [_changeSetLabel y_coord] + 30., changesetSize.width, changesetSize.height)];
+
+  [_culpritLabel setFrame:CGRectMake(30., [_changeSetLabel y_coord] + [[self changeset] height] + kPaddingBetweenLabels, 150., 30.)];
+  CGSize culpritSize = [_culprit actualSize];
+  [_culprit setFrame:CGRectMake(20., [_culpritLabel y_coord] + 30., culpritSize.width, culpritSize.height)];
+  
+  CGFloat height = [_healthReport height] + [_changeset height] + [_culprit height] + 200.;
+  [self setContentSize:CGSizeMake([self bounds].size.width, height)];
 }
 
 #pragma mark - UIView Lifecycle
@@ -161,63 +179,65 @@
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetLineWidth(context, 1.);
   
+  CGFloat vertical_padding = 20.;
+  
   NSString *healthReportText = [[self healthReport] text];
   if ([healthReportText isNotEmpty])
   {
     [[self healthLabel] setHidden:NO];
 
-    CGFloat vertical_padding = 20.;
-    CGFloat text_height = [[self healthReport] bounds].size.height + vertical_padding;
+    CGFloat text_height = [[self healthReport] height] + vertical_padding;
+    CGFloat y_start = [[self healthLabel] y_coord]  + [[self healthLabel] height] - 15.;
 
     // Draw box around health report.
-    CGContextMoveToPoint(context, 100., 25.);
+    CGContextMoveToPoint(context, 100., y_start);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    CGContextAddLineToPoint(context, 100., 25.);
-    CGContextAddLineToPoint(context, 300., 25.);
-    CGContextAddLineToPoint(context, 300., 25. + text_height);
-    CGContextAddLineToPoint(context, 10., 25. + text_height);
-    CGContextAddLineToPoint(context, 10., 25.);
-    CGContextAddLineToPoint(context, 25., 25.);
+    CGContextAddLineToPoint(context, 100., y_start);
+    CGContextAddLineToPoint(context, 300., y_start);
+    CGContextAddLineToPoint(context, 300., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start);
+    CGContextAddLineToPoint(context, 25., y_start);
     CGContextStrokePath(context);
   }
 
   NSString *changeSetText = [[self changeset] text];
 	if ([changeSetText isNotEmpty])
   {
-    CGFloat vertical_padding = 15.;
-    CGFloat text_height = [[self changeset] bounds].size.height + vertical_padding;
-
+    CGFloat text_height = [[self changeset] height] + vertical_padding;
+    CGFloat y_start = [[self changeSetLabel] y_coord]  + [[self changeSetLabel] height] - 15.;
+    
     [[self changeSetLabel] setHidden:NO];
 
     // Draw box around Change set.
-    CGContextMoveToPoint(context, 130., 155.);
+    CGContextMoveToPoint(context, 130., y_start);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    CGContextAddLineToPoint(context, 130.	, 155.);
-    CGContextAddLineToPoint(context, 300., 155.);
-    CGContextAddLineToPoint(context, 300., 155. + text_height);
-    CGContextAddLineToPoint(context, 10., 155. + text_height);
-    CGContextAddLineToPoint(context, 10., 155.);
-    CGContextAddLineToPoint(context, 25., 155.);
+    CGContextAddLineToPoint(context, 130.	, y_start);
+    CGContextAddLineToPoint(context, 300., y_start);
+    CGContextAddLineToPoint(context, 300., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start);
+    CGContextAddLineToPoint(context, 25., y_start);
     CGContextStrokePath(context);
   }
 
   NSString *culpritText = [[self culprit] text];
 	if ([culpritText isNotEmpty])
   {
-    CGFloat vertical_padding = 15.;
-    CGFloat text_height = [[self culprit] bounds].size.height + vertical_padding;
+    CGFloat text_height = [[self culprit] height] + vertical_padding;
+    CGFloat y_start = [[self culpritLabel] y_coord]  + [[self culpritLabel] height] - 15.;
     
     [[self culpritLabel] setHidden:NO];
     
     // Draw box around Culprits.
-    CGContextMoveToPoint(context, 120., 245.);
+    CGContextMoveToPoint(context, 120., y_start);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-    CGContextAddLineToPoint(context, 120., 245.);
-    CGContextAddLineToPoint(context, 300., 245.);
-    CGContextAddLineToPoint(context, 300., 245. + text_height);
-    CGContextAddLineToPoint(context, 10., 245. + text_height);
-    CGContextAddLineToPoint(context, 10., 245.);
-    CGContextAddLineToPoint(context, 25., 245.);
+    CGContextAddLineToPoint(context, 120., y_start);
+    CGContextAddLineToPoint(context, 300., y_start);
+    CGContextAddLineToPoint(context, 300., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start + text_height);
+    CGContextAddLineToPoint(context, 10., y_start);
+    CGContextAddLineToPoint(context, 25., y_start);
     CGContextStrokePath(context);
   }
 

@@ -15,4 +15,7 @@
 - (CGFloat)width;
 - (CGFloat)height;
 
+-(CGFloat)x_coord;
+-(CGFloat)y_coord;
+
 @end
