@@ -8,13 +8,7 @@
 
 #import "UINavigationBar+Utilities.h"
 
-//@implementation UINavigationBar (Utilities)
-//
-//- (void)drawRect:(CGRect)rect;
-//{
-//  UIImage *image = [UIImage imageNamed: @"navbar.png"];
-//  [image drawInRect:rect];
-//}
+#import "UIView+Size.h"
 
 @implementation UINavigationBar (Utilities)
 
@@ -23,16 +17,19 @@
   
   if([self isMemberOfClass: [UINavigationBar class]])
   {
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
     UIImage *image = [UIImage imageNamed:@"navbar.png"];
-    CGContextClip(ctx);
-    CGContextTranslateCTM(ctx, 0, image.size.height);
-    CGContextScaleCTM(ctx, 1.0, -1.0);
-    CGContextDrawImage(ctx, CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), image.CGImage);
+    
+    CGContextClip(context);
+    CGContextTranslateCTM(context, 0, [image size].height);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextDrawImage(context, CGRectMake(0, 0, [self width], [self height]), [image CGImage]);
   }
-else{
+  else
+  {
     [super drawRect:rect];
-}
+  }
   
 }
 

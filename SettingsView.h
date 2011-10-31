@@ -29,8 +29,6 @@
 
 @interface SettingsView : UIView
 
-@property (nonatomic, retain) UITextField *url_text_1;
-@property (nonatomic, retain) UITextField *url_text_2;
-@property (nonatomic, retain) UITextField *url_text_3;
+@property (nonatomic, retain) UITextField *server;
 
 @end

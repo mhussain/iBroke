@@ -40,6 +40,7 @@
 		217BFB65145E611400C4A456 /* Connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 217BFB64145E611400C4A456 /* Connect.png */; };
 		217BFBB4145E688100C4A456 /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 217BFBB3145E688100C4A456 /* disclosure.png */; };
 		217BFBB8145E701E00C4A456 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 217BFBB7145E701E00C4A456 /* list.png */; };
+		217BFBBB145E779600C4A456 /* UIView+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 217BFBBA145E779500C4A456 /* UIView+Size.m */; };
 		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
 		218A041B144F8B8C0015AD0D /* Build.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A041A144F8B8C0015AD0D /* Build.m */; };
 		218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0428144F956F0015AD0D /* NSArray+Blocks.m */; };
@@ -127,6 +128,8 @@
 		217BFB64145E611400C4A456 /* Connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect.png; sourceTree = "<group>"; };
 		217BFBB3145E688100C4A456 /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
 		217BFBB7145E701E00C4A456 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		217BFBB9145E779500C4A456 /* UIView+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Size.h"; sourceTree = "<group>"; };
+		217BFBBA145E779500C4A456 /* UIView+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Size.m"; sourceTree = "<group>"; };
 		218A0415144F8B1D0015AD0D /* BuildDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDashboard.h; sourceTree = "<group>"; };
 		218A0416144F8B1D0015AD0D /* BuildDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDashboard.m; sourceTree = "<group>"; };
 		218A0419144F8B8C0015AD0D /* Build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Build.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */,
 				21FA9328145E288E00166EB8 /* UINavigationController+Shadow.h */,
 				21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */,
+				217BFBB9145E779500C4A456 /* UIView+Size.h */,
+				217BFBBA145E779500C4A456 /* UIView+Size.m */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -578,6 +583,7 @@
 				216ABD9B145BEF240019400E /* NSString+Empty.m in Sources */,
 				216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */,
 				21FA932A145E288E00166EB8 /* UINavigationController+Shadow.m in Sources */,
+				217BFBBB145E779600C4A456 /* UIView+Size.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

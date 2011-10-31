@@ -31,6 +31,7 @@
 #import "NSArray+Blocks.h"
 #import "UIColor+Hex.h"
 #import "UILabel+Heading.h"
+#import "UIView+Size.h"
 #import "NSString+Empty.h"
 
 #pragma mark - BuildDetailLabel

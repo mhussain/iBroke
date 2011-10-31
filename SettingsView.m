@@ -45,9 +45,7 @@
 @synthesize previous_hosts = _previous_hosts;
 @synthesize about = _about;
 
-@synthesize url_text_1 = _url_text_1;
-@synthesize url_text_2 = _url_text_2;
-@synthesize url_text_3 = _url_text_3;
+@synthesize server = _server;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -62,29 +60,29 @@
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
-    _url_text_1 = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 35.)];
-    [_url_text_1 setKeyboardType:UIKeyboardTypeURL];
-    [_url_text_1 setTextAlignment:UITextAlignmentCenter];
-    [_url_text_1 setAutocorrectionType:UITextAutocorrectionTypeNo];
-    [_url_text_1 setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-    [_url_text_1 setTag:1];
-    [_url_text_1 setClearButtonMode:UITextFieldViewModeWhileEditing];
-    [_url_text_1 setBorderStyle:UITextBorderStyleLine];
-    [_url_text_1 setBackgroundColor:[UIColor whiteColor]];
-    [_url_text_1 setFont:[UIFont fontWithName:@"Verdana" size:15.]];
-    [_url_text_1 setTextColor:[UIColor blackColor]];
+    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 35.)];
+    [_server setKeyboardType:UIKeyboardTypeURL];
+    [_server setTextAlignment:UITextAlignmentCenter];
+    [_server setAutocorrectionType:UITextAutocorrectionTypeNo];
+    [_server setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [_server setTag:1];
+    [_server setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [_server setBorderStyle:UITextBorderStyleLine];
+    [_server setBackgroundColor:[UIColor whiteColor]];
+    [_server setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+    [_server setTextColor:[UIColor blackColor]];
     
     NSString *hostnameText = [UserData get:@"hostname"];
     if (nil != hostnameText)
     {
-      [_url_text_1 setText:hostnameText];
+      [_server setText:hostnameText];
     }
     else
     {
-      [_url_text_1 setPlaceholder:@"http://server:port/suffix"];
+      [_server setPlaceholder:@"http://server:port/suffix"];
     }
     
-    [self addSubview:_url_text_1];
+    [self addSubview:_server];
    
     UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(27., 163., 230., 30.)];
     [previous_hosts_label setText:@"Previous hosts"];
@@ -137,7 +135,7 @@
 - (void)previousHostTapped:(UIGestureRecognizer *)gestureRecogniser;
 {
   UILabel *label = (UILabel *)[gestureRecogniser view];
-	[_url_text_1 setText:[label text]];
+	[_server setText:[label text]];
 }
 
 - (void)showAboutMe:(UIGestureRecognizer *)gestureRecogniser;
@@ -154,7 +152,7 @@
 
 - (void)hideKeyboard;
 {
-  [[self url_text_1] resignFirstResponder];
+  [[self server] resignFirstResponder];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;

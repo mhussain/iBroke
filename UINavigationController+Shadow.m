@@ -10,17 +10,19 @@
 
 #import "UINavigationController+Shadow.h"
 
+#import "UIView+Size.h"
+
 @implementation UINavigationController (Shadow)
 
 - (void)viewWillAppear:(BOOL)animated
 {
   CGColorRef *darkColor = [[[UIColor blackColor] colorWithAlphaComponent:.6f] CGColor];
   CGColorRef *lightColor = [[UIColor clearColor] CGColor];
-  CGFloat navigationBarBottom = [[self navigationBar] frame].origin.y + [[self navigationBar] frame ].size.height;
+  CGFloat navigationBarBottom = [[self navigationBar] y_coord] + [[self navigationBar] height];
   
   CAGradientLayer *newShadow = [[[CAGradientLayer alloc] init] autorelease];
   
-  newShadow.frame = CGRectMake(0. ,navigationBarBottom, [[self view] frame].size.width, 10.);
+  newShadow.frame = CGRectMake(0. ,navigationBarBottom, [[self view] width], 10.);
   newShadow.colors = [NSArray arrayWithObjects:(id)darkColor, (id)lightColor, nil];
   
   [[[self view] layer] addSublayer:newShadow];

@@ -74,7 +74,7 @@
 
 -(void)connect;
 {
-  NSString *hostname = [[[self settingsView] url_text_1] text];
+  NSString *hostname = [[[self settingsView] server] text];
 
   if (![hostname isEqualToString:@""])
   {
