@@ -88,6 +88,7 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)loadView;
 {
   [self setSettingsView:[[SettingsView alloc] initWithFrame:CGRectZero]];

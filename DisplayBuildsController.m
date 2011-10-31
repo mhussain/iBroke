@@ -188,6 +188,7 @@
 
   [[self buildsView] addSubview:loadingView];
   [[self editButtonItem] setEnabled:NO];
+  [[self buildsView] setNeedsDisplay];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
@@ -319,6 +320,15 @@
   if ([build isFailed])
   {
     BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
+    
+//    UIButton *list = [[UIButton alloc] initWithFrame:CGRectMake(10., 0., 25., 25.)];
+//    [list setImage:[UIImage imageNamed:@"list"] forState:UIControlStateNormal];
+////	    [list addTarget:self action:@selector(buildsDisplay) forControlEvents:UIControlEventTouchUpInside];
+//    [list setShowsTouchWhenHighlighted:YES];
+//    
+//    UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithCustomView:list];
+//    
+//    self.navigationItem.backBarButtonItem = listButton;
     [[self navigationController] pushViewController:detailViewController animated:YES];
   }
 
@@ -395,6 +405,9 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   if ([build isFailed])
   {
     [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    UIImageView *disclosure = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disclosure"]];
+    [disclosure setFrame:CGRectMake(0., 0., 15., 15.)];
+    [cell setAccessoryView:disclosure];
   }
   else if ([build isDisabled])
   {

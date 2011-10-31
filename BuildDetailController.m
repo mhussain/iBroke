@@ -34,6 +34,7 @@
 #import "BuildDetail.h"
 
 #import "LoadingView.h"
+#import "DisplayBuildsController.h"
 
 @interface BuildDetailController()
 
@@ -51,7 +52,16 @@
 
   if (self)
   {
-    [[self navigationItem] setHidesBackButton:NO animated:YES];
+    [[[self navigationItem] backBarButtonItem] setImage:[UIImage imageNamed:@"list"]];
+    UIButton *list = [[UIButton alloc] initWithFrame:CGRectMake(10., 0., 25., 25.)];
+    [list setImage:[UIImage imageNamed:@"list"] forState:UIControlStateNormal];
+    [list addTarget:self action:@selector(buildsDisplay) forControlEvents:UIControlEventTouchUpInside];
+    [list setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithCustomView:list];
+    [[self navigationItem] setLeftBarButtonItem:listButton animated:YES];
+    [[self navigationItem] setHidesBackButton:NO animated:NO];
+
     [self setTitle:[build name]];
     _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
     [self setView:_buildView];
@@ -61,11 +71,10 @@
   return self;
 }
 
-//-(void)loadView;
-//{
-//  _buildView = [[BuildDetailView alloc] initWithFrame:CGRectZero];
-//  [self setView:_buildView];
-//}
+- (void)buildsDisplay;
+{
+  [[self navigationController] popViewControllerAnimated:YES];
+}
 
 
 #pragma mark - ASIHTTPRequestDelegate

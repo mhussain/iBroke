@@ -37,8 +37,7 @@
   {
     [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self setRowHeight:50.];
-    [self setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]]];
-    [self layoutIfNeeded];	
+    [self setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]]];	
   }
   return self;
 }
@@ -49,12 +48,10 @@
   CGContextSaveGState(context);
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetLineWidth(context, 4.);
-
   
-  CGContextMoveToPoint(context, 300., 2.);
-  CGContextMoveToPoint(context, 300., 2.);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-  CGContextAddLineToPoint(context, 300., 40.);
+  CGContextMoveToPoint(context, 10., 100.);
+  CGContextAddLineToPoint(context, 10., 200.);
   CGContextStrokePath(context);
   
   CGContextRestoreGState(context);
