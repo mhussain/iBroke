@@ -51,8 +51,16 @@
   if (self)
   {
     [self setTitle:@"Settings"];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Connect" style:UIBarButtonItemStyleBordered target:self action:@selector(connect)];
-    [[self navigationItem] setRightBarButtonItem:done];
+    
+    UIButton *connect = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 34., 21.)];
+    [connect setImage:[UIImage imageNamed:@"Connect"] forState:UIControlStateNormal];
+    [connect addTarget:self action:@selector(connect) forControlEvents:UIControlEventTouchUpInside];
+    [connect setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *connectButton = [[UIBarButtonItem alloc] initWithCustomView:connect];
+    [[self navigationItem] setRightBarButtonItem:connectButton animated:YES];
+    
+    [[self navigationItem] setRightBarButtonItem:connectButton animated:YES];
     [[self navigationItem] setHidesBackButton:YES];
   }
   return self;

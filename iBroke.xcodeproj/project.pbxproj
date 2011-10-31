@@ -37,6 +37,7 @@
 		2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172413C1459152200DE5E82 /* UIColor+Hex.m */; };
 		217241521459289400DE5E82 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217241511459289300DE5E82 /* UserData.m */; };
 		217BFB63145E5F5C00C4A456 /* Done.png in Resources */ = {isa = PBXBuildFile; fileRef = 217BFB62145E5F5C00C4A456 /* Done.png */; };
+		217BFB65145E611400C4A456 /* Connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 217BFB64145E611400C4A456 /* Connect.png */; };
 		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
 		218A041B144F8B8C0015AD0D /* Build.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A041A144F8B8C0015AD0D /* Build.m */; };
 		218A0429144F956F0015AD0D /* NSArray+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0428144F956F0015AD0D /* NSArray+Blocks.m */; };
@@ -121,6 +122,7 @@
 		217241501459289300DE5E82 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		217241511459289300DE5E82 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		217BFB62145E5F5C00C4A456 /* Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done.png; sourceTree = "<group>"; };
+		217BFB64145E611400C4A456 /* Connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect.png; sourceTree = "<group>"; };
 		218A0415144F8B1D0015AD0D /* BuildDashboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDashboard.h; sourceTree = "<group>"; };
 		218A0416144F8B1D0015AD0D /* BuildDashboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDashboard.m; sourceTree = "<group>"; };
 		218A0419144F8B8C0015AD0D /* Build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Build.h; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 				216ABD9D145C13F80019400E /* Icon.png */,
 				216ABD9E145C13F80019400E /* Icon@2x.png */,
 				21FA9337145E4B7D00166EB8 /* Edit.png */,
+				217BFB64145E611400C4A456 /* Connect.png */,
 				216ABD9F145C13F80019400E /* Icon@2x-texture.png */,
 				21FA9322145E263600166EB8 /* Background.png */,
 				21FA9323145E263600166EB8 /* Background@2x.png */,
@@ -513,6 +516,7 @@
 				21FA9336145E47D100166EB8 /* Settings.png in Resources */,
 				21FA9338145E4B7D00166EB8 /* Edit.png in Resources */,
 				217BFB63145E5F5C00C4A456 /* Done.png in Resources */,
+				217BFB65145E611400C4A456 /* Connect.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
