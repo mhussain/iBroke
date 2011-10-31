@@ -277,6 +277,7 @@
     BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
     [[self navigationController] pushViewController:detailViewController animated:YES];
   }
+
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -336,7 +337,7 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
 
   if (nil == cell)
   {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:18.]];
 		[cell setBackgroundView :[[UIImageView alloc] init]];
 		[cell setSelectedBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"row-middle.png"]]];
@@ -354,6 +355,9 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   else if ([build isDisabled])
   {
     [cell setAccessoryType:UITableViewCellAccessoryNone];
+    [[cell detailTextLabel] setText:@"Disabled"];
+    [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
+    [[cell detailTextLabel] setTextColor:[self colorForStatus:build]];
   }
   else if ([build isBuilding])
   {
@@ -361,6 +365,14 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
     [spinner startAnimating];
     [spinner setHidden:NO];
     [cell setAccessoryView:spinner];
+  }
+  else if([build isAborted])
+  {
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+    [[cell detailTextLabel] setText:@"Aborted"];
+    [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
+    [[cell detailTextLabel] setTextColor:[self colorForStatus:build]];
+
   }
   else // passing
   {
@@ -404,8 +416,8 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
 {
   if ([build isFailed]) return [UIColor colorWithHexString:@"CC0033"];
   if ([build isBuilding]) return [UIColor colorWithHexString:@"0066CC"];
-  if ([build isDisabled]) return [UIColor colorWithHexString:@"4A4A4A"];
-  if ([build isAborted]) return [UIColor purpleColor];
+  if ([build isDisabled]) return [UIColor colorWithHexString:@"3D3D3D"];
+  if ([build isAborted]) return [UIColor colorWithHexString:@"42526C"];
   return [UIColor colorWithHexString:@"458B00"]; // green
 }
 
