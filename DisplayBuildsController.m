@@ -39,13 +39,17 @@
 
 #import "AddressFormatter.h"
 #import "BuildDashboard.h"
+#import "MeaningfulErrors.h"
+
 #import "DisplayBuildsView.h"
 #import "BuildDetailController.h"
 #import "Build.h"
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
 #import "UINavigationBar+Utilities.h"
+
 #import "LoadingView.h"
+#import "ConnectionFailedView.h"
 
 #define kHiddenBuildsKey @"kHiddenBuildsKey"
 
@@ -115,6 +119,7 @@
     
     [[self navigationItem] setLeftBarButtonItem:_edit animated:YES];
     [[[self navigationItem] leftBarButtonItem] setStyle:UIBarButtonItemStyleBordered];
+    [[[self navigationItem] leftBarButtonItem] setEnabled:NO];
 
     [self setTitle:@"Builds"];
     [self setAddress:address];
@@ -212,13 +217,15 @@
   
   [self setFilteredBuilds:nil];
   
-  [[self editButtonItem] setEnabled:YES];
+  [[[self navigationItem] leftBarButtonItem] setEnabled:YES];
   [[self buildsView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
   NSError *error = [request error];
+	NSString *message = [MeaningfulErrors messageForErrorCode:[[request error] code]];
+  
   NSLog(@"Error Fetching Data %@",[error description]);
 
   UIView *loadingView = [[self buildsView] viewWithTag:3];
@@ -229,7 +236,12 @@
 	[animation setType:kCATransitionFade];
 	
 	[[loadingView layer] addAnimation:animation forKey:@"layerAnimation"];
-  [[self editButtonItem] setEnabled:NO];
+  [[[self navigationItem] leftBarButtonItem] setEnabled:NO];
+  
+	ConnectionFailedView *errorView = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:message];
+  
+  [[self buildsView] addSubview:errorView];
+  [[self buildsView] reloadData];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated;
