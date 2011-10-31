@@ -321,14 +321,6 @@
   {
     BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
     
-//    UIButton *list = [[UIButton alloc] initWithFrame:CGRectMake(10., 0., 25., 25.)];
-//    [list setImage:[UIImage imageNamed:@"list"] forState:UIControlStateNormal];
-////	    [list addTarget:self action:@selector(buildsDisplay) forControlEvents:UIControlEventTouchUpInside];
-//    [list setShowsTouchWhenHighlighted:YES];
-//    
-//    UIBarButtonItem *listButton = [[UIBarButtonItem alloc] initWithCustomView:list];
-//    
-//    self.navigationItem.backBarButtonItem = listButton;
     [[self navigationController] pushViewController:detailViewController animated:YES];
   }
 
