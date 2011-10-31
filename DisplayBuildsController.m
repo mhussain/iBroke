@@ -106,7 +106,7 @@
     [editButton setShowsTouchWhenHighlighted:YES];
     _edit = [[UIBarButtonItem alloc] initWithCustomView:editButton];
 
-    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
+    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 30., 30.)];
     [doneButton setImage:[UIImage imageNamed:@"Done"] forState:UIControlStateNormal];
     [doneButton addTarget:self action:@selector(editTableView) forControlEvents:UIControlEventTouchUpInside];
     [doneButton setShowsTouchWhenHighlighted:YES];
