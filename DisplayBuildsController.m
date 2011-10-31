@@ -55,13 +55,18 @@
 
 @property (nonatomic, retain) NSMutableArray *hiddenBuilds;
 @property (nonatomic, retain) NSArray *filteredBuilds;
+@property (nonatomic, retain) UIBarButtonItem *edit;
+@property (nonatomic, retain) UIBarButtonItem *done;
 
 @property (nonatomic) BOOL inFullTableEditMode;
+
 
 -(NSArray*)builds;
 - (UIColor *)colorForStatus:(Build *)build;
 -(void)saveHiddenBuilds;
 -(void)restoreHiddenBuilds;
+
+-(void)editTableView;
 
 @end
 
@@ -75,6 +80,9 @@
 @synthesize hiddenBuilds = _hiddenBuilds;
 @synthesize filteredBuilds = _filteredBuilds;
 
+@synthesize edit =_edit;
+@synthesize done = _done;
+
 - (id)initWithAddress:(NSString *)address;
 {
   self = [super initWithNibName:nil bundle:nil];
@@ -82,9 +90,30 @@
   if (self)
   {
     [[self navigationItem] setHidesBackButton:YES animated:NO];
-    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStyleBordered target:self action:@selector(settings)];
-    [[self navigationItem] setRightBarButtonItem:settings animated:YES];
-    [[self navigationItem] setLeftBarButtonItem:[self editButtonItem] animated:YES];
+    
+    UIImage *image = [UIImage imageNamed:@"Settings"];
+    UIButton *settings = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
+    [settings setImage:image forState:UIControlStateNormal];
+    [settings addTarget:self action:@selector(settings) forControlEvents:UIControlEventTouchUpInside];
+    [settings setShowsTouchWhenHighlighted:YES];
+
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:settings];
+    [[self navigationItem] setRightBarButtonItem:settingsButton animated:YES];
+        
+    UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
+    [editButton setImage:[UIImage imageNamed:@"Edit"] forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(editTableView) forControlEvents:UIControlEventTouchUpInside];
+    [editButton setShowsTouchWhenHighlighted:YES];
+    _edit = [[UIBarButtonItem alloc] initWithCustomView:editButton];
+
+    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
+    [doneButton setImage:[UIImage imageNamed:@"Done"] forState:UIControlStateNormal];
+    [doneButton addTarget:self action:@selector(editTableView) forControlEvents:UIControlEventTouchUpInside];
+    [doneButton setShowsTouchWhenHighlighted:YES];
+    
+		_done = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+    
+    [[self navigationItem] setLeftBarButtonItem:_edit animated:YES];
     [[[self navigationItem] leftBarButtonItem] setStyle:UIBarButtonItemStyleBordered];
 
     [self setTitle:@"Builds"];
@@ -105,6 +134,21 @@
 - (void)settings;
 {
   [[self navigationController] pushViewController:[[SettingsController alloc] initWithNibName:nil bundle:nil] animated:YES];
+}
+
+- (void)editTableView;
+{
+  BOOL edit = ![self inFullTableEditMode];
+  
+  if (edit)
+  {
+    [[self navigationItem] setLeftBarButtonItem:_done animated:YES];
+  }
+  else
+  {
+    [[self navigationItem] setLeftBarButtonItem:_edit animated:YES];
+  }
+  [self setEditing:edit animated:YES];
 }
 
 #pragma mark - ShakeToReload
@@ -187,7 +231,7 @@
   [[self editButtonItem] setEnabled:NO];
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated;
 {
   [super setEditing:editing animated:animated];
   [self setFilteredBuilds:nil];

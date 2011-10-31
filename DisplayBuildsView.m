@@ -38,8 +38,27 @@
     [self setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self setRowHeight:50.];
     [self setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]]];
+    [self layoutIfNeeded];	
   }
   return self;
+}
+
+- (void)drawRect:(CGRect)rect;
+{
+  CGContextRef context = UIGraphicsGetCurrentContext();
+  CGContextSaveGState(context);
+  CGContextSetAllowsAntialiasing(context, YES);
+  CGContextSetLineWidth(context, 4.);
+
+  
+  CGContextMoveToPoint(context, 300., 2.);
+  CGContextMoveToPoint(context, 300., 2.);
+  CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
+  CGContextAddLineToPoint(context, 300., 40.);
+  CGContextStrokePath(context);
+  
+  CGContextRestoreGState(context);
+
 }
 
 @end

@@ -72,6 +72,9 @@
 		21FA9325145E263600166EB8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9323145E263600166EB8 /* Background@2x.png */; };
 		21FA9327145E27A900166EB8 /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9326145E27A900166EB8 /* navbar.png */; };
 		21FA932A145E288E00166EB8 /* UINavigationController+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		21FA9336145E47D100166EB8 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9335145E47D100166EB8 /* Settings.png */; };
+		21FA9338145E4B7D00166EB8 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9337145E4B7D00166EB8 /* Edit.png */; };
+		21FA933A145E597A00166EB8 /* Done.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9339145E597A00166EB8 /* Done.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +193,9 @@
 		21FA9326145E27A900166EB8 /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
 		21FA9328145E288E00166EB8 /* UINavigationController+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Shadow.h"; sourceTree = "<group>"; };
 		21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Shadow.m"; sourceTree = "<group>"; };
+		21FA9335145E47D100166EB8 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
+		21FA9337145E4B7D00166EB8 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
+		21FA9339145E597A00166EB8 /* Done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Done.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,10 +227,13 @@
 				212FCF15145A5208005B7615 /* arrow@2x.png */,
 				216ABD9D145C13F80019400E /* Icon.png */,
 				216ABD9E145C13F80019400E /* Icon@2x.png */,
+				21FA9337145E4B7D00166EB8 /* Edit.png */,
+				21FA9339145E597A00166EB8 /* Done.png */,
 				216ABD9F145C13F80019400E /* Icon@2x-texture.png */,
 				21FA9322145E263600166EB8 /* Background.png */,
 				21FA9323145E263600166EB8 /* Background@2x.png */,
 				212FCEA2145A424B005B7615 /* Default.png */,
+				21FA9335145E47D100166EB8 /* Settings.png */,
 				21FA9326145E27A900166EB8 /* navbar.png */,
 				212FCEA4145A424B005B7615 /* Default@2x.png */,
 			);
@@ -501,6 +510,9 @@
 				21FA9324145E263600166EB8 /* Background.png in Resources */,
 				21FA9325145E263600166EB8 /* Background@2x.png in Resources */,
 				21FA9327145E27A900166EB8 /* navbar.png in Resources */,
+				21FA9336145E47D100166EB8 /* Settings.png in Resources */,
+				21FA9338145E4B7D00166EB8 /* Edit.png in Resources */,
+				21FA933A145E597A00166EB8 /* Done.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
