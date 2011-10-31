@@ -372,11 +372,11 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
     [[cell detailTextLabel] setText:@"Aborted"];
     [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
     [[cell detailTextLabel] setTextColor:[self colorForStatus:build]];
-
   }
   else // passing
   {
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    [[cell detailTextLabel] setText:@""];
   }
   
   return cell;
@@ -416,7 +416,7 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
 {
   if ([build isFailed]) return [UIColor colorWithHexString:@"CC0033"];
   if ([build isBuilding]) return [UIColor colorWithHexString:@"0066CC"];
-  if ([build isDisabled]) return [UIColor colorWithHexString:@"3D3D3D"];
+  if ([build isDisabled]) return [UIColor colorWithHexString:@"B5B5B5"];
   if ([build isAborted]) return [UIColor colorWithHexString:@"42526C"];
   return [UIColor colorWithHexString:@"458B00"]; // green
 }
