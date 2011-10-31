@@ -34,7 +34,6 @@
 		216ABDA1145C13F80019400E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABD9E145C13F80019400E /* Icon@2x.png */; };
 		216ABDA2145C13F80019400E /* Icon@2x-texture.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABD9F145C13F80019400E /* Icon@2x-texture.png */; };
 		216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */; };
-		216ABE45145C3A3D0019400E /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 216ABE44145C3A3D0019400E /* navbar.png */; };
 		2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172413C1459152200DE5E82 /* UIColor+Hex.m */; };
 		217241521459289400DE5E82 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217241511459289300DE5E82 /* UserData.m */; };
 		218A0417144F8B1D0015AD0D /* BuildDashboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 218A0416144F8B1D0015AD0D /* BuildDashboard.m */; };
@@ -71,6 +70,8 @@
 		21F76C34144E839C00F0BB67 /* BuildDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F76C34144E839C00F0BB66 /* BuildDetail.m */; };
 		21FA9324145E263600166EB8 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9322145E263600166EB8 /* Background.png */; };
 		21FA9325145E263600166EB8 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9323145E263600166EB8 /* Background@2x.png */; };
+		21FA9327145E27A900166EB8 /* navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA9326145E27A900166EB8 /* navbar.png */; };
+		21FA932A145E288E00166EB8 /* UINavigationController+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,7 +113,6 @@
 		216ABD9F145C13F80019400E /* Icon@2x-texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x-texture.png"; sourceTree = "<group>"; };
 		216ABDA5145C31360019400E /* UINavigationBar+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Utilities.h"; sourceTree = "<group>"; };
 		216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Utilities.m"; sourceTree = "<group>"; };
-		216ABE44145C3A3D0019400E /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
 		2172413B1459152100DE5E82 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		2172413C1459152200DE5E82 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		217241501459289300DE5E82 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
@@ -187,6 +187,9 @@
 		21F76C34144E839C00F0BB68 /* BuildDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetail.h; sourceTree = "<group>"; };
 		21FA9322145E263600166EB8 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		21FA9323145E263600166EB8 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
+		21FA9326145E27A900166EB8 /* navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbar.png; sourceTree = "<group>"; };
+		21FA9328145E288E00166EB8 /* UINavigationController+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+Shadow.h"; sourceTree = "<group>"; };
+		21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+Shadow.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,11 +221,11 @@
 				212FCF15145A5208005B7615 /* arrow@2x.png */,
 				216ABD9D145C13F80019400E /* Icon.png */,
 				216ABD9E145C13F80019400E /* Icon@2x.png */,
-				216ABE44145C3A3D0019400E /* navbar.png */,
 				216ABD9F145C13F80019400E /* Icon@2x-texture.png */,
 				21FA9322145E263600166EB8 /* Background.png */,
 				21FA9323145E263600166EB8 /* Background@2x.png */,
 				212FCEA2145A424B005B7615 /* Default.png */,
+				21FA9326145E27A900166EB8 /* navbar.png */,
 				212FCEA4145A424B005B7615 /* Default@2x.png */,
 			);
 			name = Resources;
@@ -356,6 +359,8 @@
 				216ABD9A145BEF240019400E /* NSString+Empty.m */,
 				216ABDA5145C31360019400E /* UINavigationBar+Utilities.h */,
 				216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */,
+				21FA9328145E288E00166EB8 /* UINavigationController+Shadow.h */,
+				21FA9329145E288E00166EB8 /* UINavigationController+Shadow.m */,
 			);
 			name = Processing;
 			sourceTree = "<group>";
@@ -493,9 +498,9 @@
 				216ABDA0145C13F80019400E /* Icon.png in Resources */,
 				216ABDA1145C13F80019400E /* Icon@2x.png in Resources */,
 				216ABDA2145C13F80019400E /* Icon@2x-texture.png in Resources */,
-				216ABE45145C3A3D0019400E /* navbar.png in Resources */,
 				21FA9324145E263600166EB8 /* Background.png in Resources */,
 				21FA9325145E263600166EB8 /* Background@2x.png in Resources */,
+				21FA9327145E27A900166EB8 /* navbar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +553,7 @@
 				21A5AECA145B7C2800FCE78D /* UILabel+Heading.m in Sources */,
 				216ABD9B145BEF240019400E /* NSString+Empty.m in Sources */,
 				216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */,
+				21FA932A145E288E00166EB8 /* UINavigationController+Shadow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

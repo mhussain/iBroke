@@ -27,7 +27,7 @@
   {
     [self setTag:3];
     [self setBackgroundColor:[UIColor blackColor]];
-    [self setAlpha:0.6];
+    [self setAlpha:0.4];
     
     const CGFloat DEFAULT_LABEL_WIDTH = 280.0;
     const CGFloat DEFAULT_LABEL_HEIGHT = 50.0;

@@ -29,6 +29,8 @@
 
 #import "AppDelegate.h"
 #import "SettingsController.h"
+
+#import "UINavigationController+Shadow.h"
 #import "UINavigationBar+Utilities.h"
 
 #import "UserData.h"
