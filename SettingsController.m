@@ -35,6 +35,8 @@
 #import "AddressFormatter.h"
 #import "UserData.h"
 
+#import "AboutController.h"
+
 @interface SettingsController ()
 
 @property (nonatomic, retain) SettingsView *settingsView;
@@ -51,6 +53,15 @@
   if (self)
   {
     [self setTitle:@"Settings"];
+    
+    UIButton *infoButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 42., 42.)];
+    [infoButton setImage:[UIImage imageNamed:@"about"] forState:UIControlStateNormal];
+    [infoButton setUserInteractionEnabled:YES];
+		[infoButton addTarget:self action:@selector(about) forControlEvents:UIControlEventTouchUpInside];
+    [infoButton setShowsTouchWhenHighlighted:YES];
+    
+    UIBarButtonItem *about = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    [[self navigationItem] setLeftBarButtonItem:about];
     
     UIButton *connect = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 34., 21.)];
     [connect setImage:[UIImage imageNamed:@"Connect"] forState:UIControlStateNormal];
@@ -84,6 +95,21 @@
   [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
                                   					initWithAddress:[NSString stringWithFormat:@"%@/api/json/", hostname]]
                                                    animated:YES];
+}
+
+- (void)about;
+{
+  AboutController *about = [[AboutController alloc] initWithNibName:nil bundle:nil];
+  
+  [UIView  beginAnimations:nil context:NULL];
+  [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+  [UIView setAnimationDuration:0.75];
+  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+  [UIView commitAnimations];
+  
+  [UIView beginAnimations:nil context:NULL];
+  [[self navigationController] pushViewController:about animated:NO];
+  [UIView commitAnimations];
 }
 
 #pragma mark - View lifecycle

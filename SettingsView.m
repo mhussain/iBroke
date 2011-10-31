@@ -52,7 +52,7 @@
   self = [super initWithFrame:frame];
 
   if (self)
-  {
+  {    
     UILabel *url_label = [[UILabel alloc] initWithFrame:CGRectMake(32., 10., 230., 30.)];
     [url_label setText:@"Connect to"];
     [url_label setTextColor:[UIColor colorWithHexString:@"539DC2"]];
@@ -121,11 +121,7 @@
 
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
     [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
-    
-    _about = [[AboutView alloc] initWithFrame:CGRectZero];
-    [_about addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(showAboutMe:)]];
-    [self addSubview:_about];
-    
+        
     [self layoutIfNeeded];
   }
   return self;
@@ -136,18 +132,6 @@
 {
   UILabel *label = (UILabel *)[gestureRecogniser view];
 	[_server setText:[label text]];
-}
-
-- (void)showAboutMe:(UIGestureRecognizer *)gestureRecogniser;
-{
-  __block AboutView *about = (AboutView *)[gestureRecogniser view];
-  [UIView animateWithDuration:2.0 delay:0
-											options:UIViewAnimationOptionCurveEaseOut
-                   animations:^ {
-                     [about setFrame:[self frame]];
-                   }
-                   completion:NULL
-   ];
 }
 
 - (void)hideKeyboard;

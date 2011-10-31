@@ -31,13 +31,14 @@
 
 @implementation AboutView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame;
 {
   self = [super initWithFrame:frame];
   if (self)
   {
-		[self setBackgroundColor:[UIColor clearColor]];
-    [self layoutIfNeeded];
+    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
+//    [self setBackgroundColor:[UIColor purpleColor]];
+    [self setFrame:CGRectMake(0. , 0. , 320., 480.)];
   }
   return self;
 }

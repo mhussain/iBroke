@@ -34,5 +34,6 @@
 @interface SettingsController : UIViewController
 
 - (void)connect;
+- (void)about;
 
 @end
