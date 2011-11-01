@@ -10,4 +10,20 @@
 
 @implementation NetworkCheck
 
++ (BOOL)isNetworkAvailable;
+{
+  Reachability *r = [Reachability reachabilityWithHostName:@"http://www.apple.com"];
+  NetworkStatus internetStatus = [r currentReachabilityStatus];
+  
+  if(internetStatus == NotReachable)
+    return NO;
+  
+  return YES;
+}
+
++ (NSString *)error;
+{
+  return @"Please check your network connection";
+}
+
 @end

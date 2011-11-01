@@ -92,7 +92,7 @@
 {
   UIImageView *splash = [[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   [splash setTag:909];
-  [splash setImage:[UIImage imageNamed:@"Default.png"]];
+  [splash setImage:[UIImage imageNamed:@"Default"]];
   
   [_window addSubview:splash];
   [_window bringSubviewToFront:splash];
@@ -102,14 +102,14 @@
 
 - (void)delayedHideSplash:(UIView *)splash;
 {
-  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:2.];
+  [self performSelector:@selector(hideSplash:) withObject:splash afterDelay:.5];
 }
 
 - (void)hideSplash:(UIView *)splash;
 {
   [UIView beginAnimations:@"hide splash" context:splash];
   
-  [UIView setAnimationDuration:2.];
+  [UIView setAnimationDuration:.5];
   [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(finishFading:)];

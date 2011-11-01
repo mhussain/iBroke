@@ -32,7 +32,7 @@
 
 - (BOOL)isEmpty;
 {
-  return [self isEqualToString:@""];
+  return ([self isEqualToString:@""] || nil == self);
 }
 
 - (BOOL)isNotEmpty;

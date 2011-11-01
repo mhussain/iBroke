@@ -36,8 +36,10 @@
 #import "UserData.h"
 
 #import "AboutController.h"
-
+#import "NetworkCheck.h"
 #import "NotificationView.h"
+
+#import "NSString+Empty.h"
 
 @interface SettingsController ()
 
@@ -96,7 +98,26 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
 {
   NSString *hostname = [[[self settingsView] server] text];
 
-  if (nil == hostname || [hostname isEqualToString:@""])
+  if (![NetworkCheck isNetworkAvailable])
+  {
+    NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
+                                                               andMessage:[NetworkCheck error]
+                                                                  andType:kErrorNotification];
+    [noNetwork setNeedsLayout];
+    [[self view] addSubview:noNetwork];
+    
+    [UIView animateWithDuration:3.0
+       animations:^{
+         [noNetwork setAlpha:0.0];
+       }
+       completion:^(BOOL finished) {
+         [noNetwork removeFromSuperview];
+       }
+     ];
+    return;
+  }
+
+  if ([hostname isEmpty])
   {
     NotificationView *empty = [[NotificationView alloc] initWithFrame:CGRectZero andMessage:kEmptyHostname andType:kErrorNotification];
     [empty setNeedsLayout];

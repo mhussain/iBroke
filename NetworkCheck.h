@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "Reachability.h"
+
 @interface NetworkCheck : NSObject
+
++ (BOOL)isNetworkAvailable;
++ (NSString *)error;
 
 @end
