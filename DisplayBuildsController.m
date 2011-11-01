@@ -50,6 +50,7 @@
 
 #import "LoadingView.h"
 #import "ConnectionFailedView.h"
+#import "NotificationView.h"
 
 #define kHiddenBuildsKey @"kHiddenBuildsKey"
 
@@ -181,9 +182,20 @@
   
   if (remoteHostStatus == NotReachable)
   {
-    ConnectionFailedView *noNetwork = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:@"Network not reachable"];
-    [[self buildsView] addSubview:noNetwork];
-    [[self buildsView] reloadData];
+    NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
+                                                               andMessage:@"Network not reachable"
+                                                                  andType:kErrorNotification];
+    [noNetwork setNeedsLayout];
+    [[self view] addSubview:noNetwork];
+    
+    [UIView animateWithDuration:3.0
+      animations:^{
+        [noNetwork setAlpha:0.0];
+      }
+      completion:^(BOOL finished) {
+        [noNetwork removeFromSuperview];
+      }
+     ];
   }
   else
   {
