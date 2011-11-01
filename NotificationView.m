@@ -45,13 +45,9 @@
   if (self)
   {
     if (type == kErrorNotification)
-    {
 	    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Error"]]];
-    }
     else if (type == kSuccessNotification)
-    {
       [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Success"]]];
-    }
     
     _messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_messageLabel setBackgroundColor:[UIColor clearColor]];
@@ -75,14 +71,5 @@
   
   [[self messageLabel] setFrame:CGRectMake(([self width] - expectedSize.width)/2, ([self height] - expectedSize.height)/2, expectedSize.width, expectedSize.height)];
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

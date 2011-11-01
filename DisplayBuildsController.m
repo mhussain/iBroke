@@ -175,15 +175,19 @@
 
 - (void)connectToAddress;
 { 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkEvent:) name:kReachabilityChangedNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(handleNetworkEvent:)
+                                               name:kReachabilityChangedNotification
+                                             object:nil];
+  
   _reachability = [Reachability reachabilityForInternetConnection];
   [_reachability startNotifier];
-	NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];
   
+	NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];
   if (remoteHostStatus == NotReachable)
   {
     NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
-                                                               andMessage:@"Network not reachable"
+                                                               andMessage:@"Please check your network connection"
                                                                   andType:kErrorNotification];
     [noNetwork setNeedsLayout];
     [[self view] addSubview:noNetwork];
