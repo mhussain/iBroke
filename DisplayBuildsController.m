@@ -69,12 +69,14 @@
 - (UIColor *)colorForStatus:(Build *)build;
 -(void)saveHiddenBuilds;
 -(void)restoreHiddenBuilds;
-
+- (void)handleNetworkEvent:(NSNotification *)notice;
 -(void)editTableView;
 
 @end
 
 @implementation DisplayBuildsController
+
+@synthesize reachability = _reachability;
 
 @synthesize buildsView = _buildsView;
 @synthesize address = _address;
@@ -171,12 +173,45 @@
 #pragma mark - ASyncRequest
 
 - (void)connectToAddress;
-{
-  ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[self address]]];
-  [request setDelegate:self];
-  [request setCachePolicy:ASIDoNotWriteToCacheCachePolicy];
-  [request startAsynchronous];
+{ 
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkEvent:) name:kReachabilityChangedNotification object:nil];
+  _reachability = [Reachability reachabilityForInternetConnection];
+  [_reachability startNotifier];
+	NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];
+  
+  if (remoteHostStatus == NotReachable)
+  {
+    ConnectionFailedView *noNetwork = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:@"Network not reachable"];
+    [[self buildsView] addSubview:noNetwork];
+    [[self buildsView] reloadData];
+  }
+  else
+  {
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[self address]]];
+    [request setDelegate:self];
+    [request setCachePolicy:ASIDoNotWriteToCacheCachePolicy];
+    [request startAsynchronous];
+  }
 }
+
+- (void)handleNetworkEvent:(NSNotification *)notice;
+{  
+  NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];  
+  if(remoteHostStatus == NotReachable)
+  {
+    ConnectionFailedView *noNetwork = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:@"Network not reachable"];
+    [[self buildsView] addSubview:noNetwork];
+    [[self buildsView] reloadData];
+  }  
+  else if (remoteHostStatus == kReachableViaWiFi)
+  {
+    NSLog(@"wifi");
+  }  
+  else if (remoteHostStatus == kReachableViaWWAN	)
+  {
+    NSLog(@"cell");
+  }
+} 
 
 - (void)didReceiveMemoryWarning
 {
@@ -239,7 +274,6 @@
   [[[self navigationItem] leftBarButtonItem] setEnabled:NO];
   
 	ConnectionFailedView *errorView = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:message];
-  
   [[self buildsView] addSubview:errorView];
   [[self buildsView] reloadData];
 }

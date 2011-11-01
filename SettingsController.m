@@ -40,6 +40,7 @@
 @interface SettingsController ()
 
 @property (nonatomic, retain) SettingsView *settingsView;
+@property (nonatomic, retain) AboutController *aboutController;
 
 @end
 
@@ -47,7 +48,9 @@
 
 @synthesize settingsView = _settingsView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+@synthesize aboutController = _aboutController;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self)
@@ -73,6 +76,9 @@
     
     [[self navigationItem] setRightBarButtonItem:connectButton animated:YES];
     [[self navigationItem] setHidesBackButton:YES];
+    
+    [self setAboutController:[[AboutController alloc] initWithNibName:nil bundle:nil]];
+    
   }
   return self;
 }
@@ -99,16 +105,15 @@
 
 - (void)about;
 {
-  AboutController *about = [[AboutController alloc] initWithNibName:nil bundle:nil];
   
   [UIView  beginAnimations:nil context:NULL];
   [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
   [UIView setAnimationDuration:0.75];
-  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:self.navigationController.view cache:NO];
+  [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromRight forView:[[self navigationController] view] cache:NO];
   [UIView commitAnimations];
   
   [UIView beginAnimations:nil context:NULL];
-  [[self navigationController] pushViewController:about animated:NO];
+  [[self navigationController] pushViewController:[self aboutController] animated:NO];
   [UIView commitAnimations];
 }
 

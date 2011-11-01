@@ -29,12 +29,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "Reachability.h"
+
 #import "ASIHTTPRequestDelegate.h"
 
 @interface DisplayBuildsController : UIViewController <UITableViewDelegate, UITableViewDataSource, ASIHTTPRequestDelegate>
 
 - (id)initWithAddress:(NSString *)address;
 - (void)connectToAddress;
+
+@property (nonatomic, retain) Reachability *reachability;
 
 @property (nonatomic, retain) NSString *address;
 @property(nonatomic, retain) NSArray *buildData;
