@@ -48,7 +48,7 @@
 
 static NSString *text = @"'iBroke' was developed out of the need to always know when code I wrote broke a build, even if i was not near the build server. Who knows, this may help you too.";
 
-static NSString *acknowledgements = @"I deeply appreciate the help Mike Rowe (@mrowe) and Yori gave me.";
+static NSString *acknowledgements = @"I deeply appreciate the help Mike Rowe (@mrowe) and Yori Mihalakopoulos (@yori) gave me.";
 
 static NSString *developer = @"Mujtaba Hussain";
 
