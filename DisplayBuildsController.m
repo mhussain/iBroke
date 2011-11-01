@@ -369,7 +369,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-  Build *build = [[self buildData] objectAtIndex:[indexPath row]];
+  Build *build = [[self builds] objectAtIndex:[indexPath row]];
   if ([build isFailed])
   {
     BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
@@ -446,6 +446,10 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   [[cell textLabel] setText:[build name]];
 
   [[cell textLabel] setTextColor:[self colorForStatus:build]];
+
+  [cell setAccessoryView:nil];
+  [cell setAccessoryType:UITableViewCellAccessoryNone];
+  [[cell detailTextLabel] setText:@""];
 
   if ([build isFailed])
   {

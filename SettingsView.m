@@ -60,7 +60,7 @@
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
-    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 35.)];
+    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
     [_server setKeyboardType:UIKeyboardTypeURL];
     [_server setTextAlignment:UITextAlignmentCenter];
     [_server setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -84,7 +84,7 @@
     
     [self addSubview:_server];
    
-    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(27., 163., 230., 30.)];
+    UILabel *previous_hosts_label = [[UILabel alloc] initWithFrame:CGRectMake(27., 163., 230., 35.)];
     [previous_hosts_label setText:@"Previous hosts"];
     [previous_hosts_label setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [previous_hosts_label setBackgroundColor:[UIColor clearColor]];

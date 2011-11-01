@@ -38,7 +38,7 @@
 		216ABDA7145C31370019400E /* UINavigationBar+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 216ABDA6145C31360019400E /* UINavigationBar+Utilities.m */; };
 		2172413D1459152200DE5E82 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 2172413C1459152200DE5E82 /* UIColor+Hex.m */; };
 		217241521459289400DE5E82 /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217241511459289300DE5E82 /* UserData.m */; };
-		2179BFA114609BFF005D3C65 /* diclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 2179BFA014609BFF005D3C65 /* diclosure.png */; };
+		2179BFA114609BFF005D3C65 /* disclosure.png in Resources */ = {isa = PBXBuildFile; fileRef = 2179BFA014609BFF005D3C65 /* disclosure.png */; };
 		2179BFA314609C47005D3C65 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 2179BFA214609C47005D3C65 /* Edit.png */; };
 		2179BFA514609C69005D3C65 /* Connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 2179BFA414609C69005D3C65 /* Connect.png */; };
 		2179BFA714609C8A005D3C65 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 2179BFA614609C8A005D3C65 /* list.png */; };
@@ -134,7 +134,7 @@
 		2172413C1459152200DE5E82 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		217241501459289300DE5E82 /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
 		217241511459289300DE5E82 /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
-		2179BFA014609BFF005D3C65 /* diclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diclosure.png; sourceTree = "<group>"; };
+		2179BFA014609BFF005D3C65 /* disclosure.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure.png; sourceTree = "<group>"; };
 		2179BFA214609C47005D3C65 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
 		2179BFA414609C69005D3C65 /* Connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Connect.png; sourceTree = "<group>"; };
 		2179BFA614609C8A005D3C65 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 				2179BFA414609C69005D3C65 /* Connect.png */,
 				212FCEA2145A424B005B7615 /* Default.png */,
 				212FCEA4145A424B005B7615 /* Default@2x.png */,
-				2179BFA014609BFF005D3C65 /* diclosure.png */,
+				2179BFA014609BFF005D3C65 /* disclosure.png */,
 				2179BFAC14609CF3005D3C65 /* Done.png */,
 				2179BFA214609C47005D3C65 /* Edit.png */,
 				2179BFA814609CB4005D3C65 /* Email.png */,
@@ -560,7 +560,7 @@
 				21491673145EB70700BE9DC6 /* about.png in Resources */,
 				214904F2145FB4CA00CFD1F3 /* Error.png in Resources */,
 				214904F6145FBC1800CFD1F3 /* Success.png in Resources */,
-				2179BFA114609BFF005D3C65 /* diclosure.png in Resources */,
+				2179BFA114609BFF005D3C65 /* disclosure.png in Resources */,
 				2179BFA314609C47005D3C65 /* Edit.png in Resources */,
 				2179BFA514609C69005D3C65 /* Connect.png in Resources */,
 				2179BFA714609C8A005D3C65 /* list.png in Resources */,
@@ -694,9 +694,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBroke/iBroke-Prefix.pch";
 				INFOPLIST_FILE = "iBroke/iBroke-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = /Users/mujtaba/code/iBroke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -707,9 +708,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iBroke/iBroke-Prefix.pch";
 				INFOPLIST_FILE = "iBroke/iBroke-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = /Users/mujtaba/code/iBroke;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
