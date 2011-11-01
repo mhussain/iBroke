@@ -119,7 +119,6 @@ static NSString *kEmailSent = @"Your email has been sent";
                                                                     andMessage:kCantSendEmail
                                                                        andType:kErrorNotification];
      [cantSendEmail setNeedsLayout];
-    
      [[self view] addSubview:cantSendEmail];
     
      [UIView animateWithDuration:2.0

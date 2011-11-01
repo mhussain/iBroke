@@ -37,6 +37,8 @@
 
 #import "AboutController.h"
 
+#import "NotificationView.h"
+
 @interface SettingsController ()
 
 @property (nonatomic, retain) SettingsView *settingsView;
@@ -47,8 +49,9 @@
 @implementation SettingsController
 
 @synthesize settingsView = _settingsView;
-
 @synthesize aboutController = _aboutController;
+
+static NSString *kEmptyHostname = @"Please enter a hostname";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -93,14 +96,28 @@
 {
   NSString *hostname = [[[self settingsView] server] text];
 
-  if (![hostname isEqualToString:@""])
+  if (nil == hostname || [hostname isEqualToString:@""])
   {
-  	[UserData save:hostname forKey:@"hostname"];
+    NotificationView *empty = [[NotificationView alloc] initWithFrame:CGRectZero andMessage:kEmptyHostname andType:kErrorNotification];
+    [empty setNeedsLayout];
+    [[self view] addSubview:empty];
+    
+    [UIView animateWithDuration:3.0
+       animations: ^ {
+         [empty setAlpha:0.0];
+       }
+       completion: ^ (BOOL completed) {
+         [empty removeFromSuperview];
+       }
+     ];
   }
-  
-  [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
-                                  					initWithAddress:[NSString stringWithFormat:@"%@/api/json/", hostname]]
-                                                   animated:YES];
+  else
+  {
+    [UserData save:hostname forKey:@"hostname"];
+    [[self navigationController] pushViewController:[[DisplayBuildsController alloc] 
+                                              initWithAddress:[NSString stringWithFormat:@"%@/api/json/", hostname]]
+                                                     animated:YES];
+  }
 }
 
 - (void)about;
