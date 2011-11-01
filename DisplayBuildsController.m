@@ -44,6 +44,9 @@
 #import "DisplayBuildsView.h"
 #import "BuildDetailController.h"
 #import "Build.h"
+
+#import "NetworkCheck.h"
+
 #import "UIColor+Hex.h"
 #import "NSArray+Blocks.h"
 #import "UINavigationBar+Utilities.h"
@@ -66,12 +69,13 @@
 @property (nonatomic) BOOL inFullTableEditMode;
 
 
--(NSArray*)builds;
+- (NSArray*)builds;
 - (UIColor *)colorForStatus:(Build *)build;
--(void)saveHiddenBuilds;
--(void)restoreHiddenBuilds;
-- (void)handleNetworkEvent:(NSNotification *)notice;
--(void)editTableView;
+
+- (void)saveHiddenBuilds;
+- (void)restoreHiddenBuilds;
+- (void)editTableView;
+
 
 @end
 
@@ -175,19 +179,10 @@
 
 - (void)connectToAddress;
 { 
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleNetworkEvent:)
-                                               name:kReachabilityChangedNotification
-                                             object:nil];
-  
-  _reachability = [Reachability reachabilityForInternetConnection];
-  [_reachability startNotifier];
-  
-	NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];
-  if (remoteHostStatus == NotReachable)
+  if (![NetworkCheck isNetworkAvailable])
   {
     NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
-                                                               andMessage:@"Please check your network connection"
+                                                               andMessage:[NetworkCheck error]
                                                                   andType:kErrorNotification];
     [noNetwork setNeedsLayout];
     [[self view] addSubview:noNetwork];
@@ -210,25 +205,6 @@
   }
 }
 
-- (void)handleNetworkEvent:(NSNotification *)notice;
-{  
-  NetworkStatus remoteHostStatus = [_reachability currentReachabilityStatus];  
-  if(remoteHostStatus == NotReachable)
-  {
-    ConnectionFailedView *noNetwork = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:@"Network not reachable"];
-    [[self buildsView] addSubview:noNetwork];
-    [[self buildsView] reloadData];
-  }  
-  else if (remoteHostStatus == kReachableViaWiFi)
-  {
-    NSLog(@"wifi");
-  }  
-  else if (remoteHostStatus == kReachableViaWWAN	)
-  {
-    NSLog(@"cell");
-  }
-} 
-
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
@@ -238,8 +214,6 @@
 
 - (void)requestStarted:(ASIHTTPRequest *)request;
 {
-  NSLog(@"%@",[NSString stringWithFormat:@"Connecting to the server: %@", [request url]]);
-
 	LoadingView *loadingView = [[LoadingView alloc] initWithFrame:[[self buildsView] bounds] andMessage:@"Loading build dashboard..."];
 
   [[self buildsView] addSubview:loadingView];
@@ -349,11 +323,31 @@
 
 #pragma mark - View lifecycle
 
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
+- (void)viewWillAppear:(BOOL)animated;
 {
+  if (![NetworkCheck isNetworkAvailable])
+  {
+    NotificationView *empty = [[NotificationView alloc] initWithFrame:CGRectZero andMessage:[NetworkCheck error] andType:kErrorNotification];
+    [empty setNeedsLayout];
+    [[self view] addSubview:empty];
+    
+    [UIView animateWithDuration:3.0
+       animations: ^ {
+         [empty setAlpha:0.0];
+       }
+       completion: ^ (BOOL completed) {
+         [empty removeFromSuperview];
+       }
+     ];
+  }
+  
+  [super viewWillAppear:animated];
 }
 
+// Implement loadView to create a view hierarchy programmatically, without using a nib.
+- (void)loadView;
+{
+}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -365,14 +359,11 @@
 - (void)viewDidUnload
 {
   [super viewDidUnload];
-  // Release any retained subviews of the main view.
-  // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - UITableViewDelegate
