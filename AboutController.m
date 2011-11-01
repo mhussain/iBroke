@@ -46,7 +46,11 @@
 @synthesize aboutView = _aboutView;
 
 static NSString *kCantSendEmail = @"Please configure email via settings.";
+
 static NSString *kEmailSent = @"Your email has been sent";
+static NSString *kEmailSaved = @"Your email has been saved";
+static NSString *kEmailCancelled = @"Your email has been cancelled";
+static NSString *kEmailFailed = @"Your email could not be sent";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -121,7 +125,7 @@ static NSString *kEmailSent = @"Your email has been sent";
      [cantSendEmail setNeedsLayout];
      [[self view] addSubview:cantSendEmail];
     
-     [UIView animateWithDuration:2.0
+     [UIView animateWithDuration:3.0
         animations: ^ {
           [cantSendEmail setAlpha:0.0];
         }
@@ -136,15 +140,34 @@ static NSString *kEmailSent = @"Your email has been sent";
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error;
 {
   [controller dismissModalViewControllerAnimated:YES];
+  
+  NSString *message = @"";
+  NotificationType type = kSuccessNotification;
+  if (result == MFMailComposeResultCancelled)
+  {
+    message = [message stringByAppendingFormat:@"%@", kEmailCancelled];
+  }
+  else if (result == MFMailComposeResultSaved)
+  {
+    message = [message stringByAppendingFormat:@"%@", kEmailSaved];
+  }
+  else if (result == MFMailComposeResultSent)
+  {
+    message = [message stringByAppendingFormat:@"%@", kEmailSent];
+  }
+  else
+  {
+    message = [message stringByAppendingFormat:@"%@", kEmailFailed];
+    type = kErrorNotification;
+  }
 
   NotificationView *sentEmail = [[NotificationView alloc] initWithFrame:CGRectZero
-                                                             andMessage:kEmailSent
-                                                                andType:kSuccessNotification];
+                                                             andMessage:message
+                                                                andType:type];
   [sentEmail setNeedsLayout];
-  
   [[self view] addSubview:sentEmail];
 
-  [UIView animateWithDuration:2.0
+  [UIView animateWithDuration:3.0
      animations: ^ {
        [sentEmail setAlpha:0.0];
      }
