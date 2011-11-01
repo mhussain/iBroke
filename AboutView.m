@@ -50,7 +50,7 @@ static NSString *text = @"'iBroke' was developed out of the need to always know 
 
 static NSString *acknowledgements = @"I deeply appreciate the help Mike Rowe (@mrowe) and Yori gave me.";
 
-static NSString *developer = @"Mujtaba Hussain\nhttp://ibroke.mujtabahussain.net";
+static NSString *developer = @"Mujtaba Hussain";
 
 - (id)initWithFrame:(CGRect)frame;
 {
@@ -81,10 +81,10 @@ static NSString *developer = @"Mujtaba Hussain\nhttp://ibroke.mujtabahussain.net
     _dev = [[UILabel alloc] initWithFrame:CGRectZero];
     [_dev setNumberOfLines:0.];
     [_dev setLineBreakMode:UILineBreakModeWordWrap];
-    [_dev setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+    [_dev setFont:[UIFont fontWithName:@"Futura-Medium" size:18.]];
     [_dev setTextAlignment:UITextAlignmentCenter];
     [_dev setText:developer];
-    [_dev setTextColor:[UIColor colorWithHexString:@"539DC2"]];
+    [_dev setTextColor:[UIColor colorWithHexString:@"76EE00"]];
     [_dev setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_dev];
     
@@ -96,14 +96,9 @@ static NSString *developer = @"Mujtaba Hussain\nhttp://ibroke.mujtabahussain.net
 
 - (void)layoutSubviews;
 {
-//  CGSize expectedSize =  [[[self about] text] sizeWithFont:[UIFont fontWithName:@"Futura Medium" size:40.] 
-//                                         constrainedToSize:CGSizeMake(280., 1000.)
-//                          								lineBreakMode:UILineBreakModeWordWrap];
-
+  [[self dev] setFrame:CGRectMake(25., 10., 150., 20.)];
   [[self about] setFrame:CGRectMake(20., 50., 280., 100.)];
   [[self ack] setFrame:CGRectMake(20., 180., 280., 100.)];
-  [[self dev] setFrame:CGRectMake(20., 300., 280., 100.)];
-  
 }
 
 - (void)drawRect:(CGRect)rect;
@@ -111,13 +106,14 @@ static NSString *developer = @"Mujtaba Hussain\nhttp://ibroke.mujtabahussain.net
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
   
-  CGContextMoveToPoint(context, [self x_coord] + 10., [self y_coord] + 10.);
+  CGContextMoveToPoint(context, [self x_coord] + 175., [self y_coord] + 20.);
   
-  CGContextAddLineToPoint(context, [self width] - 10., [self y_coord] + 10.);
-  CGContextAddLineToPoint(context, [self width] - 10., [self height] - 10.);
+  CGContextAddLineToPoint(context, [self width] - 10., [self y_coord] + 20.);
+  CGContextAddLineToPoint(context, [self width] - 10., [self height] - 20.);
 
-  CGContextAddLineToPoint(context, [self x_coord] + 10., [self height] - 10.);
-  CGContextAddLineToPoint(context, [self x_coord] + 10., [self y_coord] + 10.);
+  CGContextAddLineToPoint(context, [self x_coord] + 10., [self height] - 20.);
+  CGContextAddLineToPoint(context, [self x_coord] + 10., [self y_coord] + 20.);
+  CGContextAddLineToPoint(context, [self x_coord] + 25., [self y_coord] + 20.);
   
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHexString:@"539DC2"] CGColor]);

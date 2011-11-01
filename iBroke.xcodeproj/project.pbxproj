@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21281088145FA08F004FF62A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21281087145FA08F004FF62A /* MessageUI.framework */; };
+		2128108C145FA85F004FF62A /* NotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2128108B145FA85F004FF62A /* NotificationView.m */; };
 		212FCEA5145A424B005B7615 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 212FCEA2145A424B005B7615 /* Default.png */; };
 		212FCEA7145A424B005B7615 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 212FCEA4145A424B005B7615 /* Default@2x.png */; };
 		212FCF11145A51C1005B7615 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FCF10145A51C1005B7615 /* EGORefreshTableHeaderView.m */; };
@@ -96,6 +97,8 @@
 
 /* Begin PBXFileReference section */
 		21281087145FA08F004FF62A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		2128108A145FA85F004FF62A /* NotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationView.h; sourceTree = "<group>"; };
+		2128108B145FA85F004FF62A /* NotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationView.m; sourceTree = "<group>"; };
 		212FCEA2145A424B005B7615 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		212FCEA4145A424B005B7615 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		212FCF0F145A51C1005B7615 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 				212FCF4E145AC967005B7615 /* AboutView.m */,
 				217BFBBC145E7B0400C4A456 /* ConnectionFailedView.h */,
 				217BFBBD145E7B0400C4A456 /* ConnectionFailedView.m */,
+				2128108A145FA85F004FF62A /* NotificationView.h */,
+				2128108B145FA85F004FF62A /* NotificationView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				217BFBC1145E7E1700C4A456 /* MeaningfulErrors.m in Sources */,
 				21491677145EB8E400BE9DC6 /* AboutController.m in Sources */,
 				218ABD63145EDE24004713E6 /* NetworkCheck.m in Sources */,
+				2128108C145FA85F004FF62A /* NotificationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

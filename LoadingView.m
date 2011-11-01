@@ -15,6 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "LoadingView.h"
+#import "UIView+Size.h"
 #import "UIColor+Hex.h"
 
 @implementation LoadingView
@@ -46,14 +47,14 @@
     [self addSubview:activityIndicatorView];
     [activityIndicatorView startAnimating];
     
-    CGFloat totalHeight = [loadingLabel frame].size.height + [activityIndicatorView frame].size.height;
-    labelFrame.origin.x = floor(0.5 * ([self frame].size.width - DEFAULT_LABEL_WIDTH));
-    labelFrame.origin.y = floor(0.5 * ([self frame].size.height - totalHeight));
+    CGFloat totalHeight = [loadingLabel height] + [activityIndicatorView height];
+    labelFrame.origin.x = floor(0.5 * ([self width] - DEFAULT_LABEL_WIDTH));
+    labelFrame.origin.y = floor(0.5 * ([self height] - totalHeight));
     [loadingLabel setFrame:labelFrame];
     
     CGRect activityIndicatorRect = [activityIndicatorView frame];
-    activityIndicatorRect.origin.x = 0.5 * ([self frame].size.width - activityIndicatorRect.size.width);
-    activityIndicatorRect.origin.y = [loadingLabel frame].origin.y + [loadingLabel frame].size.height;
+    activityIndicatorRect.origin.x = 0.5 * ([self width] - activityIndicatorRect.size.width);
+    activityIndicatorRect.origin.y = [loadingLabel y_coord] + [loadingLabel height];
     [activityIndicatorView setFrame:activityIndicatorRect];
     
     // Set up the fade-in animation
