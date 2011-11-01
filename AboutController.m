@@ -58,8 +58,10 @@ static NSString *kEmailFailed = @"Your email could not be sent";
   
   if (self)
   {
-    [[self navigationItem] setHidesBackButton:YES animated:NO];
-    [[self navigationItem] setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"about_title"]]];
+//    [[self navigationItem] setHidesBackButton:YES animated:NO];
+//    [[self navigationItem] setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"about_title"]]];
+
+    [self setTitle:@"About"];
     
     UIButton *settings = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
     [settings setImage:[UIImage imageNamed:@"Settings"] forState:UIControlStateNormal];
