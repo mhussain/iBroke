@@ -18,6 +18,9 @@
 		212FCF19145A5208005B7615 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 212FCF15145A5208005B7615 /* arrow@2x.png */; };
 		212FCF43145A9619005B7615 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FCF42145A9618005B7615 /* LoadingView.m */; };
 		212FCF4F145AC968005B7615 /* AboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 212FCF4E145AC967005B7615 /* AboutView.m */; };
+		214904F2145FB4CA00CFD1F3 /* Error.png in Resources */ = {isa = PBXBuildFile; fileRef = 214904F1145FB4CA00CFD1F3 /* Error.png */; };
+		214904F4145FBADE00CFD1F3 /* ErrorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 214904F3145FBADE00CFD1F3 /* ErrorIcon.png */; };
+		214904F6145FBC1800CFD1F3 /* Success.png in Resources */ = {isa = PBXBuildFile; fileRef = 214904F5145FBC1800CFD1F3 /* Success.png */; };
 		21491673145EB70700BE9DC6 /* about.png in Resources */ = {isa = PBXBuildFile; fileRef = 21491672145EB70700BE9DC6 /* about.png */; };
 		21491677145EB8E400BE9DC6 /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21491676145EB8E400BE9DC6 /* AboutController.m */; };
 		2152CC0E144E65CA00F22682 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2152CC0D144E65CA00F22682 /* UIKit.framework */; };
@@ -111,6 +114,9 @@
 		212FCF42145A9618005B7615 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		212FCF4D145AC967005B7615 /* AboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutView.h; sourceTree = "<group>"; };
 		212FCF4E145AC967005B7615 /* AboutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutView.m; sourceTree = "<group>"; };
+		214904F1145FB4CA00CFD1F3 /* Error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Error.png; path = "../../Desktop/iBroke Artwork/Error.png"; sourceTree = "<group>"; };
+		214904F3145FBADE00CFD1F3 /* ErrorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ErrorIcon.png; path = "../../Desktop/iBroke Artwork/ErrorIcon.png"; sourceTree = "<group>"; };
+		214904F5145FBC1800CFD1F3 /* Success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Success.png; path = "../../Desktop/iBroke Artwork/Success.png"; sourceTree = "<group>"; };
 		21491672145EB70700BE9DC6 /* about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about.png; sourceTree = "<group>"; };
 		21491675145EB8E400BE9DC6 /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
 		21491676145EB8E400BE9DC6 /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
@@ -270,10 +276,13 @@
 				212FCF13145A5208005B7615 /* arrow-horizontal@2x.png */,
 				212FCF14145A5208005B7615 /* arrow.png */,
 				21491672145EB70700BE9DC6 /* about.png */,
+				214904F3145FBADE00CFD1F3 /* ErrorIcon.png */,
+				214904F1145FB4CA00CFD1F3 /* Error.png */,
 				212FCF15145A5208005B7615 /* arrow@2x.png */,
 				216ABD9D145C13F80019400E /* Icon.png */,
 				21E6192B145F9170000DEE5C /* x.png */,
 				21E6192C145F9170000DEE5C /* y.png */,
+				214904F5145FBC1800CFD1F3 /* Success.png */,
 				216ABD9E145C13F80019400E /* Icon@2x.png */,
 				21FA9337145E4B7D00166EB8 /* Edit.png */,
 				217BFB64145E611400C4A456 /* Connect.png */,
@@ -599,6 +608,9 @@
 				21E61930145F918B000DEE5C /* z.png in Resources */,
 				21E61934145F9A29000DEE5C /* Email.png in Resources */,
 				21E61936145F9D7B000DEE5C /* about_title.png in Resources */,
+				214904F2145FB4CA00CFD1F3 /* Error.png in Resources */,
+				214904F4145FBADE00CFD1F3 /* ErrorIcon.png in Resources */,
+				214904F6145FBC1800CFD1F3 /* Success.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,4 +10,13 @@
 
 @interface NotificationView : UIView
 
+typedef enum
+{
+  kErrorNotification = 0,
+  kSuccessNotification,
+}
+NotificationType;
+
+- (id)initWithFrame:(CGRect)frame andMessage:(NSString *)message andType:(NotificationType)type;
+
 @end

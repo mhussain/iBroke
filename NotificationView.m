@@ -27,14 +27,39 @@
 
 #import "NotificationView.h"
 
+#import "UIView+Size.h"
+
+@interface NotificationView ()
+
+@property (nonatomic, retain) UILabel *messageLabel;
+
+@end
+
 @implementation NotificationView
 
-- (id)initWithFrame:(CGRect)frame
+@synthesize messageLabel = _messageLabel;
+
+- (id)initWithFrame:(CGRect)frame andMessage:(NSString *)message andType:(NotificationType)type;
 {
   self = [super initWithFrame:frame];
   if (self)
   {
-    [self setBackgroundColor:[UIColor yellowColor]];
+    if (type == kErrorNotification)
+    {
+	    [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Error"]]];
+    }
+    else if (type == kSuccessNotification)
+    {
+      [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Success"]]];
+    }
+    
+    _messageLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    [_messageLabel setBackgroundColor:[UIColor clearColor]];
+    [_messageLabel setTextColor:[UIColor whiteColor]];
+    [_messageLabel setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+    [_messageLabel setText:message];
+    
+    [self addSubview:_messageLabel];
   }
   return self;
 }
@@ -43,7 +68,12 @@
 
 - (void)layoutSubviews;
 {
+  [self setFrame:CGRectMake(0., 0., 320., 50.)];
   
+  CGSize expectedSize = [[[self messageLabel] text] sizeWithFont:[UIFont fontWithName:@"Verdana" size:15.]
+                                               constrainedToSize:[self bounds].size];
+  
+  [[self messageLabel] setFrame:CGRectMake(([self width] - expectedSize.width)/2, ([self height] - expectedSize.height)/2, expectedSize.width, expectedSize.height)];
 }
 
 /*

@@ -31,6 +31,8 @@
 
 #import "AboutView.h"
 
+#import "NotificationView.h"
+
 @interface AboutController ()
 
 @property (nonatomic, retain) UIView *aboutView;
@@ -42,6 +44,9 @@
 @implementation AboutController
 
 @synthesize aboutView = _aboutView;
+
+static NSString *kCantSendEmail = @"Please configure email via settings.";
+static NSString *kEmailSent = @"Your email has been sent";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 {
@@ -92,9 +97,9 @@
 
 - (void)emailDeveloper;
 {
-  NSLog(@"Email Developer");
-    if ([MFMailComposeViewController canSendMail])
-    {
+
+  if ([MFMailComposeViewController canSendMail])
+  {
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     [controller setMailComposeDelegate:self];
     [controller setSubject:@"iBroke"];
@@ -110,6 +115,21 @@
   }
   else
   {
+     NotificationView *cantSendEmail = [[NotificationView alloc] initWithFrame:CGRectZero
+                                                                    andMessage:kCantSendEmail
+                                                                       andType:kErrorNotification];
+     [cantSendEmail setNeedsLayout];
+    
+     [[self view] addSubview:cantSendEmail];
+    
+     [UIView animateWithDuration:2.0
+        animations: ^ {
+          [cantSendEmail setAlpha:0.0];
+        }
+        completion: ^ (BOOL completed) {
+          [cantSendEmail removeFromSuperview];
+        }
+     ];
   }
 }
 
@@ -118,23 +138,34 @@
 {
   [controller dismissModalViewControllerAnimated:YES];
 
+  NotificationView *sentEmail = [[NotificationView alloc] initWithFrame:CGRectZero
+                                                             andMessage:kEmailSent
+                                                                andType:kSuccessNotification];
+  [sentEmail setNeedsLayout];
+  
+  [[self view] addSubview:sentEmail];
+
+  [UIView animateWithDuration:2.0
+     animations: ^ {
+       [sentEmail setAlpha:0.0];
+     }
+     completion: ^ (BOOL completed) {
+       [sentEmail removeFromSuperview];
+     }
+   ];
 }
 
 - (void)didReceiveMemoryWarning
 {
-  // Releases the view if it doesn't have a superview.
   [super didReceiveMemoryWarning];
 }
 
-#pragma mark - View lifecycle
-
+#pragma mark - ViewLifecycle
 
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 //- (void)loadView;
 //{
 //}
-
-
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
@@ -148,13 +179,12 @@
 
 - (void)viewDidUnload;
 {
-    [super viewDidUnload];
+  [super viewDidUnload];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+  return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end
