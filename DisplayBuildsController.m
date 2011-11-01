@@ -415,6 +415,7 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   {
     [[self hiddenBuilds] addObject:build];
   }
+
   [self saveHiddenBuilds];
   [self setFilteredBuilds:nil];
   [[self buildsView] reloadData];
@@ -430,13 +431,11 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
 
-  static NSString *CellIdentifier = @"Cell";
-
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
   if (nil == cell)
   {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:18.]];
 		[cell setBackgroundView :[[UIImageView alloc] init]];
 		[cell setSelectedBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"row-middle.png"]]];
