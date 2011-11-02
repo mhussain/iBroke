@@ -32,6 +32,7 @@
 #import "NSArray+Blocks.h"
 #import "UIColor+Hex.h"
 #import "NSString+Empty.h"
+#import "UIView+Size.h"
 
 #import "AboutView.h"
 
@@ -61,7 +62,7 @@
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
-    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
+    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 35., 270., 40.)];
     [_server setKeyboardType:UIKeyboardTypeURL];
     [_server setTextAlignment:UITextAlignmentCenter];
     [_server setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
@@ -172,15 +173,17 @@
   CGContextSaveGState(context);
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetLineWidth(context, 1.);
+
+  CGFloat startingYOffset = [[self server] y_coord] - 10.;
   
-  CGContextMoveToPoint(context, 140., 25.);
+  CGContextMoveToPoint(context, 140., startingYOffset);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-  CGContextAddLineToPoint(context, 140., 25.);
-  CGContextAddLineToPoint(context, 300., 25.);
-  CGContextAddLineToPoint(context, 300., 110.);
-  CGContextAddLineToPoint(context, 10., 110.);
-  CGContextAddLineToPoint(context, 10., 25.);
-  CGContextAddLineToPoint(context, 25., 25.);
+  CGContextAddLineToPoint(context, 140., startingYOffset);
+  CGContextAddLineToPoint(context, 300., startingYOffset);
+  CGContextAddLineToPoint(context, 300., startingYOffset + [[self server] height] + 20.);
+  CGContextAddLineToPoint(context, 10., startingYOffset + [[self server] height] + 20.);
+  CGContextAddLineToPoint(context, 10., startingYOffset);
+  CGContextAddLineToPoint(context, 25., startingYOffset);
   CGContextStrokePath(context);
     
   CGFloat previous_hosts_x =  155.;
