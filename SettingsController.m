@@ -155,8 +155,21 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
   [UIView commitAnimations];
 }
 
+#pragma mark - UIGesture
+
+- (void)dismissKeyboard;
+{
+  [[[self settingsView] server] resignFirstResponder];
+}
+
 #pragma mark - View lifecycle
 
+- (void)viewDidLoad;
+{
+  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                        action:@selector(dismissKeyboard)];
+  [[self view] addGestureRecognizer:tap];
+}
 
 - (void)loadView;
 {

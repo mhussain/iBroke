@@ -31,6 +31,7 @@
 
 #import "NSArray+Blocks.h"
 #import "UIColor+Hex.h"
+#import "NSString+Empty.h"
 
 #import "AboutView.h"
 
@@ -63,6 +64,7 @@
     _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 50., 270., 40.)];
     [_server setKeyboardType:UIKeyboardTypeURL];
     [_server setTextAlignment:UITextAlignmentCenter];
+    [_server setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_server setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_server setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     [_server setTag:1];
@@ -73,14 +75,11 @@
     [_server setTextColor:[UIColor blackColor]];
     
     NSString *hostnameText = [UserData get:@"hostname"];
-    if (nil != hostnameText)
-    {
+
+    if ([hostnameText isNotEmpty])
       [_server setText:hostnameText];
-    }
     else
-    {
       [_server setPlaceholder:@"http://server:port/suffix"];
-    }
     
     [self addSubview:_server];
    
@@ -120,7 +119,6 @@
     }
 
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
-    [self addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)]];
         
     [self layoutIfNeeded];
   }
@@ -134,14 +132,10 @@
 	[_server setText:[label text]];
 }
 
-- (void)hideKeyboard;
-{
-  [[self server] resignFirstResponder];
-}
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
 {
   UITouch *touch = [touches anyObject];
+
   if ([[touch view] tag] == 2)
 	  [[touch view] setBackgroundColor:[UIColor colorWithHexString:@"008080"]];
 }
@@ -149,6 +143,7 @@
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
 {
   UITouch *touch = [touches anyObject];
+
   if ([[touch view] tag] == 2)
 	  [[touch view] setBackgroundColor:[UIColor clearColor]];
 }
