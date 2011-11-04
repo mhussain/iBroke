@@ -84,8 +84,10 @@
   if (nil == cell)
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
   
-  [[cell textLabel] setFont:[UIFont fontWithName:@"Verdana" size:15.]];
-  [[cell textLabel] setTextColor:[UIColor whiteColor]];
+  [[cell imageView] setImage:[UIImage imageNamed:@"action"]];
+  
+  [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:16.]];
+  [[cell textLabel] setTextColor:[UIColor colorWithHexString:@"00FF7F"]];
 	[cell setBackgroundColor:[UIColor clearColor]]; 
 	
   NSArray *previous_hostnames = [UserData previousHosts];
