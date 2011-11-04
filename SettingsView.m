@@ -38,13 +38,13 @@
 
 @interface SettingsView ()
 
-@property (nonatomic, retain) UIView *previous_hosts;
+@property (nonatomic, retain) UITableView *previousHosts;
 @property (nonatomic, retain) AboutView *about;
 @end
 
 @implementation SettingsView
 
-@synthesize previous_hosts = _previous_hosts;
+@synthesize previousHosts = _previousHosts;
 @synthesize about = _about;
 
 @synthesize server = _server;
@@ -55,14 +55,14 @@
 
   if (self)
   {    
-    UILabel *url_label = [[UILabel alloc] initWithFrame:CGRectMake(32., 10., 230., 30.)];
+    UILabel *url_label = [[UILabel alloc] initWithFrame:CGRectMake(32., 7., 230., 30.)];
     [url_label setText:@"Connect to"];
     [url_label setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [url_label setBackgroundColor:[UIColor clearColor]];
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
-    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 35., 270., 40.)];
+    _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 34., 270., 40.)];
     [_server setKeyboardType:UIKeyboardTypeURL];
     [_server setTextAlignment:UITextAlignmentCenter];
     [_server setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
@@ -91,33 +91,15 @@
     [previous_hosts_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:previous_hosts_label];
 
-    _previous_hosts = [[UIView alloc] initWithFrame:CGRectZero];
-    [_previous_hosts setBackgroundColor:[UIColor clearColor]];
-    [self addSubview:_previous_hosts];
+    _previousHosts = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+		[_previousHosts setDelegate:self];
+    [_previousHosts setDataSource:self];
+    [_previousHosts setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_previousHosts setBackgroundColor:[UIColor blackColor]];
+    [_previousHosts setAlpha:0.4];
+
+    [self addSubview:_previousHosts];
     
-    NSArray *previous_hostnames = [UserData previousHosts];
-    if (nil != previous_hostnames)
-    {
-      [previous_hostnames each:^ (id hostname) {
-      	UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-        [label setText:hostname];
-        [label setTextAlignment:UITextAlignmentCenter];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setUserInteractionEnabled:YES];
-        [label setTag:2];
-
-        [label setFont:[UIFont fontWithName:@"Verdana" size:15.]];
-        [label setBackgroundColor:[UIColor clearColor]];
-
-        [[label layer] setBorderColor:[[UIColor whiteColor] CGColor]];
-        [[label layer] setBorderWidth:1.0];
-
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previousHostTapped:)];
-        [label addGestureRecognizer:tap];
-        
-        [_previous_hosts addSubview:label];
-      }];
-    }
 
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
         
@@ -154,17 +136,8 @@
 - (void)layoutSubviews;
 {
   [[self about] setFrame:CGRectMake(10., [self bounds].size.height - 20., [self bounds].size.width - 20., 20.)];
-  
-  [[self previous_hosts] setFrame:CGRectMake([self bounds].origin.x + 20., [self bounds].origin.y + 200., [self bounds].size.width - 60., 105.)];
-  
-  CGRect previous_hosts_rect = [[self previous_hosts] bounds];
-  
-  __block CGFloat padding = 0.;
-  
-  [[[self previous_hosts] subviews] each:^(id label) {    
-    [label setFrame:CGRectMake(previous_hosts_rect.origin.x + 10., previous_hosts_rect.origin.y + padding, 250., 40.)];
-    padding += 45.;
-  }];
+ 
+  [[self previousHosts] setFrame:CGRectMake(25., 195., 270., 190.)];
 }
 
 - (void)drawRect:(CGRect)rect;
@@ -193,13 +166,43 @@
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
   CGContextAddLineToPoint(context, previous_hosts_x, previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y);
-  CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y + 160.);
-  CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 160.);
+  CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y + 220.);
+  CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 220.);
   CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x - 130, previous_hosts_y);
   CGContextStrokePath(context);
   
   CGContextRestoreGState(context);
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+  return [[UserData previousHosts] count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+  
+  if (nil == cell)
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+  
+  [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
+  [[cell textLabel] setTextColor:[UIColor whiteColor]];
+  [cell setBackgroundColor:[UIColor clearColor]]; 
+	
+  NSArray *previous_hostnames = [UserData previousHosts];
+
+  [[cell textLabel] setText:[previous_hostnames objectAtIndex:[indexPath row]]];
+
+  return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+  return 1;
 }
 
 @end

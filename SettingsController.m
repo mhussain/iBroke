@@ -185,4 +185,21 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  NSString *hostName = [[UserData previousHosts] objectAtIndex:[indexPath row]];
+  [[[self settingsView] server] setText:hostName];
+  
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  
+}
+
+
+
 @end

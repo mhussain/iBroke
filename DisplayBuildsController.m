@@ -459,9 +459,13 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   }
   else if ([build isDisabled])
   {
-    [cell setAccessoryType:UITableViewCellAccessoryNone];
     [[cell detailTextLabel] setText:@"Disabled"];
     [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
+    
+    UIImageView *disabled = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disabled"]];
+    [disabled setFrame:CGRectMake(0., 0., 15., 15.)];
+    [cell setAccessoryView:disabled];
+
     [[cell detailTextLabel] setTextColor:[self colorForStatus:build]];
   }
   else if ([build isBuilding])
@@ -473,7 +477,10 @@ return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPa
   }
   else if([build isAborted])
   {
-    [cell setAccessoryType:UITableViewCellAccessoryNone];
+    UIImageView *aborted = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"aborted"]];
+    [aborted setFrame:CGRectMake(0., 0., 15., 15.)];
+    [cell setAccessoryView:aborted];
+
     [[cell detailTextLabel] setText:@"Aborted"];
     [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
     [[cell detailTextLabel] setTextColor:[self colorForStatus:build]];
