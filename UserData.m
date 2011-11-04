@@ -31,8 +31,8 @@
 
 @implementation UserData
 
-static NSMutableArray *servers;
-
+//static NSMutableArray *servers;
+static NSMutableSet *servers;
 + (void)save:(NSString *)data forKey:(NSString *)key;
 {
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -40,21 +40,17 @@ static NSMutableArray *servers;
   static dispatch_once_t onceToken;
 
   dispatch_once(&onceToken, ^{
-    servers = [[NSMutableArray alloc] initWithCapacity:3.];
+//    servers = [[NSMutableArray alloc] init];
+    servers = [[NSMutableSet alloc] init];
   });
   
-	if (standardUserDefaults) {
+	if (standardUserDefaults)
+  {
 		[standardUserDefaults setObject:data forKey:key];
-    
-    if (![servers containsObject:data])
-    {
-      if ([servers count] > 2)
-        [servers removeLastObject];
 
-      [servers insertObject:data atIndex:0];
-    }
-  
-    [standardUserDefaults setObject:servers forKey:@"previous_hosts"];
+    [servers addObject:data];
+
+    [standardUserDefaults setObject:[servers allObjects] forKey:@"previous_hosts"];
 
 		[standardUserDefaults synchronize];
 	}
@@ -74,12 +70,12 @@ static NSMutableArray *servers;
 + (NSArray *)previousHosts;
 {
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-	NSMutableArray *hosts = nil;
+	NSArray *hosts = nil;
 
 	if (standardUserDefaults)
 		hosts = [standardUserDefaults objectForKey:@"previous_hosts"];
   
-  return (NSArray *)hosts;
+  return hosts;
 }
 
 @end

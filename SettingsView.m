@@ -86,7 +86,7 @@
   
   [[cell textLabel] setFont:[UIFont fontWithName:@"Verdana" size:15.]];
   [[cell textLabel] setTextColor:[UIColor whiteColor]];
-  //  [cell setBackgroundColor:[UIColor clearColor]]; 
+	[cell setBackgroundColor:[UIColor clearColor]]; 
 	
   NSArray *previous_hostnames = [UserData previousHosts];
   
@@ -207,12 +207,12 @@
   CGContextAddLineToPoint(context, 25., startingYOffset);
   CGContextStrokePath(context);
     
-  CGFloat previous_hosts_x =  155.;
+  CGFloat previous_hosts_x =  150.;
   CGFloat previous_hosts_y =  180.;
   
-  CGContextMoveToPoint(context, previous_hosts_x, previous_hosts_y);
+  CGContextMoveToPoint(context, previous_hosts_x + 10. , previous_hosts_y);
   CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
-  CGContextAddLineToPoint(context, previous_hosts_x, previous_hosts_y);
+  CGContextAddLineToPoint(context, previous_hosts_x + 10., previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y);
   CGContextAddLineToPoint(context, previous_hosts_x + 150., previous_hosts_y + 220.);
   CGContextAddLineToPoint(context, previous_hosts_x - 140., previous_hosts_y + 220.);
