@@ -251,20 +251,23 @@
   NSError *error = [request error];
 	NSString *message = [MeaningfulErrors messageForErrorCode:[[request error] code]];
   
-  NSLog(@"Error Fetching Data %@",[error description]);
+  NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
+                                                             andMessage:message
+                                                                andType:kErrorNotification];
+  [noNetwork setNeedsLayout];
+  [[self view] addSubview:noNetwork];
+  
+  [UIView animateWithDuration:3.0
+       animations:^{
+         [noNetwork setAlpha:0.0];
+       }
+       completion:^(BOOL finished) {
+         [noNetwork removeFromSuperview];
+       }
+   ];
 
-  UIView *loadingView = [[self buildsView] viewWithTag:3];
-  [loadingView removeFromSuperview];
   
-	// Set up the animation
-	CATransition *animation = [CATransition animation];
-	[animation setType:kCATransitionFade];
-	
-	[[loadingView layer] addAnimation:animation forKey:@"layerAnimation"];
-  [[[self navigationItem] leftBarButtonItem] setEnabled:NO];
-  
-	ConnectionFailedView *errorView = [[ConnectionFailedView alloc] initWithFrame:[[self buildsView] bounds] withMessage:message];
-  [[self buildsView] addSubview:errorView];
+  NSLog(@"Error Fetching Data %@",[error description]);
   [[self buildsView] reloadData];
 }
 
@@ -386,7 +389,22 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-return [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPath row]]] ? UITableViewCellEditingStyleInsert : UITableViewCellEditingStyleDelete;
+  
+  BOOL editingMode = [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPath row]]];
+  
+  if (editingMode == YES)
+  {
+//    UIImageView *show = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"show"]];
+//    [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:show];
+    return UITableViewCellEditingStyleInsert;
+  }
+  else
+  {
+//    UIImageView *show = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hide"]];
+//    [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:show];    
+    return UITableViewCellEditingStyleDelete;
+  }
+  
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
