@@ -36,16 +36,83 @@
 
 #import "AboutView.h"
 
+@interface CustomerController : UITableViewController
+
+@property (nonatomic, retain) SettingsView *v;
+
+@end
+
+@implementation CustomerController
+
+@synthesize v = _v;
+
+- (id)initWithSettingsView:(SettingsView *)view;
+{
+  self = [super initWithNibName:nil bundle:nil];
+  
+  if (self)
+  {
+   	_v = view; 
+  }
+  
+  return self;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  NSArray *previous_hostnames = [UserData previousHosts];
+	[[[self v] server] setText:[previous_hostnames objectAtIndex:[indexPath row]]];
+  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+  return [[UserData previousHosts] count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+  
+  if (nil == cell)
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+  
+  [[cell textLabel] setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+  [[cell textLabel] setTextColor:[UIColor whiteColor]];
+  //  [cell setBackgroundColor:[UIColor clearColor]]; 
+	
+  NSArray *previous_hostnames = [UserData previousHosts];
+  
+  [[cell textLabel] setText:[previous_hostnames objectAtIndex:[indexPath row]]];
+  
+  return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+{
+  return 1;
+}
+
+@end
+
 @interface SettingsView ()
 
 @property (nonatomic, retain) UITableView *previousHosts;
-@property (nonatomic, retain) AboutView *about;
+@property (nonatomic, retain) CustomerController *c;
+
 @end
 
 @implementation SettingsView
 
 @synthesize previousHosts = _previousHosts;
-@synthesize about = _about;
+@synthesize c = _c;
 
 @synthesize server = _server;
 
@@ -62,9 +129,10 @@
     [url_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:url_label];
     
+    
     _server = [[UITextField alloc] initWithFrame:CGRectMake(20., 34., 270., 40.)];
     [_server setKeyboardType:UIKeyboardTypeURL];
-    [_server setTextAlignment:UITextAlignmentCenter];
+    [_server setTextAlignment:UITextAlignmentLeft];
     [_server setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_server setAutocorrectionType:UITextAutocorrectionTypeNo];
     [_server setAutocapitalizationType:UITextAutocapitalizationTypeNone];
@@ -74,6 +142,10 @@
     [_server setBackgroundColor:[UIColor whiteColor]];
     [_server setFont:[UIFont fontWithName:@"Verdana" size:15.]];
     [_server setTextColor:[UIColor blackColor]];
+    
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0., 0., 20., [[self server] height])];
+    [[self server] setLeftView:paddingView];
+    [[self server] setLeftViewMode:UITextFieldViewModeAlways];
     
     NSString *hostnameText = [UserData get:@"hostname"];
 
@@ -91,16 +163,16 @@
     [previous_hosts_label setFont:[UIFont fontWithName:@"Futura-Medium" size:20.]];
     [self addSubview:previous_hosts_label];
 
+    _c = [[CustomerController alloc] initWithSettingsView:self];
     _previousHosts = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-		[_previousHosts setDelegate:self];
-    [_previousHosts setDataSource:self];
+		[_previousHosts setDelegate:_c];
+    [_previousHosts setDataSource:_c];
     [_previousHosts setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_previousHosts setBackgroundColor:[UIColor blackColor]];
+    [_previousHosts setBackgroundColor:[UIColor clearColor]];
     [_previousHosts setAlpha:0.4];
 
     [self addSubview:_previousHosts];
     
-
   	[self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
         
     [self layoutIfNeeded];
@@ -108,35 +180,11 @@
   return self;
 }
 
-#pragma mark - GestureRecogniser
-- (void)previousHostTapped:(UIGestureRecognizer *)gestureRecogniser;
-{
-  UILabel *label = (UILabel *)[gestureRecogniser view];
-	[_server setText:[label text]];
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-  UITouch *touch = [touches anyObject];
-
-  if ([[touch view] tag] == 2)
-	  [[touch view] setBackgroundColor:[UIColor colorWithHexString:@"008080"]];
-}
-
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event;
-{
-  UITouch *touch = [touches anyObject];
-
-  if ([[touch view] tag] == 2)
-	  [[touch view] setBackgroundColor:[UIColor clearColor]];
-}
 
 #pragma mark - UIView Lifecycle
 
 - (void)layoutSubviews;
 {
-  [[self about] setFrame:CGRectMake(10., [self bounds].size.height - 20., [self bounds].size.width - 20., 20.)];
- 
   [[self previousHosts] setFrame:CGRectMake(25., 195., 270., 190.)];
 }
 
@@ -173,36 +221,6 @@
   CGContextStrokePath(context);
   
   CGContextRestoreGState(context);
-}
-
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-{
-  return [[UserData previousHosts] count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-  
-  if (nil == cell)
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-  
-  [[cell textLabel] setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
-  [[cell textLabel] setTextColor:[UIColor whiteColor]];
-  [cell setBackgroundColor:[UIColor clearColor]]; 
-	
-  NSArray *previous_hostnames = [UserData previousHosts];
-
-  [[cell textLabel] setText:[previous_hostnames objectAtIndex:[indexPath row]]];
-
-  return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
-{
-  return 1;
 }
 
 @end

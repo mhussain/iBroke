@@ -27,7 +27,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsView : UIView <UITableViewDelegate, UITableViewDataSource>
+@interface SettingsView : UIView
 
 @property (nonatomic, retain) UITextField *server;
 

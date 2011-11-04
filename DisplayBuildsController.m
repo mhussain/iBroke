@@ -327,23 +327,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated;
-{
-  if (![NetworkCheck isNetworkAvailable])
-  {
-    NotificationView *empty = [[NotificationView alloc] initWithFrame:CGRectZero andMessage:[NetworkCheck error] andType:kErrorNotification];
-    [empty setNeedsLayout];
-    [[self view] addSubview:empty];
-    
-    [UIView animateWithDuration:3.0
-       animations: ^ {
-         [empty setAlpha:0.0];
-       }
-       completion: ^ (BOOL completed) {
-         [empty removeFromSuperview];
-       }
-     ];
-  }
-  
+{  
   [super viewWillAppear:animated];
 }
 

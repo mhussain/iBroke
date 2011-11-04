@@ -157,18 +157,10 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
 
 #pragma mark - UIGesture
 
-- (void)dismissKeyboard;
-{
-  [[[self settingsView] server] resignFirstResponder];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad;
 {
-  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                        action:@selector(dismissKeyboard)];
-  [[self view] addGestureRecognizer:tap];
 }
 
 - (void)loadView;
@@ -185,21 +177,21 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)canBecomeFirstResponder
 {
-  NSString *hostName = [[UserData previousHosts] objectAtIndex:[indexPath row]];
-  [[[self settingsView] server] setText:hostName];
-  
-  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+  return YES;
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)viewDidAppear:(BOOL)animated
 {
-  
+  [super viewDidAppear:animated];
+  [self becomeFirstResponder];
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+  [self resignFirstResponder];
+  [super viewWillDisappear:animated];
+}
 
 @end
