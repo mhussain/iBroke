@@ -266,6 +266,8 @@
        }
    ];
 
+  UIView *loadingView = [[self buildsView] viewWithTag:3];
+  [loadingView removeFromSuperview];
   
   NSLog(@"Error Fetching Data %@",[error description]);
   [[self buildsView] reloadData];

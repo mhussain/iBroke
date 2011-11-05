@@ -31,8 +31,8 @@
 
 @implementation UserData
 
-//static NSMutableArray *servers;
-static NSMutableSet *servers;
+NSMutableSet *servers;
+
 + (void)save:(NSString *)data forKey:(NSString *)key;
 {
 	NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
@@ -40,7 +40,6 @@ static NSMutableSet *servers;
   static dispatch_once_t onceToken;
 
   dispatch_once(&onceToken, ^{
-//    servers = [[NSMutableArray alloc] init];
     servers = [[NSMutableSet alloc] init];
   });
   
