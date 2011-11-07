@@ -117,7 +117,7 @@ static NSString *kEmptyHostname = @"Please enter a hostname";
     return;
   }
 
-  if ([hostname isEmpty])
+  if (!hostname || [hostname isEmpty])
   {
     NotificationView *empty = [[NotificationView alloc] initWithFrame:CGRectZero andMessage:kEmptyHostname andType:kErrorNotification];
     [empty setNeedsLayout];
