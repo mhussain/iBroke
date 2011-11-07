@@ -58,9 +58,6 @@ static NSString *kEmailFailed = @"Your email could not be sent";
   
   if (self)
   {
-//    [[self navigationItem] setHidesBackButton:YES animated:NO];
-//    [[self navigationItem] setTitleView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"about_title"]]];
-
     [self setTitle:@"About"];
     
     UIButton *settings = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
@@ -111,7 +108,7 @@ static NSString *kEmailFailed = @"Your email could not be sent";
     [controller setSubject:@"iBroke"];
     [controller setModalPresentationStyle:UIModalPresentationFormSheet];
     [controller setMessageBody:@"" isHTML:NO]; 
-    [controller setToRecipients:[NSArray arrayWithObject:@"info@ibroke.mujtabahussain.net"]];
+    [controller setToRecipients:[NSArray arrayWithObject:@"ibroke@khalida-apps.com"]];
     [controller setWantsFullScreenLayout:NO];
     
     if (controller)
@@ -185,11 +182,6 @@ static NSString *kEmailFailed = @"Your email could not be sent";
 }
 
 #pragma mark - ViewLifecycle
-
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-//- (void)loadView;
-//{
-//}
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad

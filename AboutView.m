@@ -37,6 +37,7 @@
 @property (nonatomic, retain) UILabel *about;
 @property (nonatomic, retain) UILabel *ack;
 @property (nonatomic, retain) UILabel *dev;
+@property (nonatomic, retain) UILabel *resources;
 
 @end
 
@@ -45,12 +46,15 @@
 @synthesize about = _about;
 @synthesize ack = _ack;
 @synthesize dev = _dev;
+@synthesize resources = _resources;
 
-static NSString *text = @"'iBroke' was developed out of the need to always know when code I wrote broke a build, even if i was not near the build server.";
+static NSString *text = @"iBroke allows you to keep track of your builds wherever you are. You can find out the last commit, the culprit and the health of your builds.";
 
-static NSString *acknowledgements = @"I deeply appreciate the help Mike Rowe (@mrowe) and Yori Mihalakopoulos (@yori) gave me.";
+static NSString *acknowledgements = @"Mike Rowe (@mrowe)\nYori Mihalakopoulos (@yori)\nMatt Galaghar (cocoawithlove)\nKevin O'Neill (@kevinoneill)";
 
-static NSString *developer = @"Mujtaba Hussain";
+static NSString *developer = @"From: Khalida Apps";
+
+static NSString *res = @"json-framework (Stig Brautaset)\nASIHTTPRequest (Ben Copsey)";
 
 - (id)initWithFrame:(CGRect)frame;
 {
@@ -63,7 +67,7 @@ static NSString *developer = @"Mujtaba Hussain";
     _about = [[UILabel alloc] initWithFrame:CGRectZero];
     [_about setNumberOfLines:0.];
     [_about setLineBreakMode:UILineBreakModeWordWrap];
-    [_about setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+    [_about setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
     [_about setText:text];
     [_about setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [_about setBackgroundColor:[UIColor clearColor]];
@@ -72,7 +76,7 @@ static NSString *developer = @"Mujtaba Hussain";
     _ack = [[UILabel alloc] initWithFrame:CGRectZero];
     [_ack setNumberOfLines:0.];
     [_ack setLineBreakMode:UILineBreakModeWordWrap];
-    [_ack setFont:[UIFont fontWithName:@"Verdana" size:15.]];
+    [_ack setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
     [_ack setText:acknowledgements];
     [_ack setTextColor:[UIColor colorWithHexString:@"539DC2"]];
     [_ack setBackgroundColor:[UIColor clearColor]];
@@ -87,6 +91,34 @@ static NSString *developer = @"Mujtaba Hussain";
     [_dev setTextColor:[UIColor colorWithHexString:@"76EE00"]];
     [_dev setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_dev];
+
+    UILabel *people = [[UILabel alloc] initWithFrame:CGRectMake(20., 140., 150., 45.)];
+    [people setNumberOfLines:0.];
+    [people setLineBreakMode:UILineBreakModeWordWrap];
+    [people setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
+    [people setText:@"Acknowledgments"];
+    [people setTextColor:[UIColor colorWithHexString:@"76EE00"]];
+    [people setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:people];
+
+    UILabel *frameworks = [[UILabel alloc] initWithFrame:CGRectMake(20., 280., 150., 45.)];
+    [frameworks setNumberOfLines:0.];
+    [frameworks setLineBreakMode:UILineBreakModeWordWrap];
+    [frameworks setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
+    [frameworks setText:@"Resources"];
+    [frameworks setTextColor:[UIColor colorWithHexString:@"76EE00"]];
+    [frameworks setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:frameworks];
+    
+    _resources =  [[UILabel alloc] initWithFrame:CGRectZero];
+    [_resources setNumberOfLines:0.];
+    [_resources setLineBreakMode:UILineBreakModeWordWrap];
+    [_resources setFont:[UIFont fontWithName:@"Futura-Medium" size:15.]];
+    [_resources setText:res];
+    [_resources setTextColor:[UIColor colorWithHexString:@"539DC2"]];
+    [_resources setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:_resources];
+
     
     [self setNeedsLayout];
     [self setNeedsDisplay];
@@ -96,9 +128,12 @@ static NSString *developer = @"Mujtaba Hussain";
 
 - (void)layoutSubviews;
 {
-  [[self dev] setFrame:CGRectMake(25., 10., 150., 20.)];
-  [[self about] setFrame:CGRectMake(20., 50., 280., 100.)];
-  [[self ack] setFrame:CGRectMake(20., 180., 280., 100.)];
+  [[self dev] setFrame:CGRectMake(25., 10., 200., 20.)];
+  
+  [[self about] setFrame:CGRectMake(20., 40., 280., 100.)];
+  [[self ack] setFrame:CGRectMake(20., 170., 280., 100.)];
+  
+  [[self resources] setFrame:CGRectMake(20., 290., 280., 100.)];
 }
 
 - (void)drawRect:(CGRect)rect;
@@ -106,14 +141,14 @@ static NSString *developer = @"Mujtaba Hussain";
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
   
-  CGContextMoveToPoint(context, [self x_coord] + 175., [self y_coord] + 20.);
+  CGContextMoveToPoint(context, [self x_coord] + 210., [self y_coord] + 20.);
   
   CGContextAddLineToPoint(context, [self width] - 10., [self y_coord] + 20.);
   CGContextAddLineToPoint(context, [self width] - 10., [self height] - 20.);
 
   CGContextAddLineToPoint(context, [self x_coord] + 10., [self height] - 20.);
   CGContextAddLineToPoint(context, [self x_coord] + 10., [self y_coord] + 20.);
-  CGContextAddLineToPoint(context, [self x_coord] + 25., [self y_coord] + 20.);
+  CGContextAddLineToPoint(context, [self x_coord] + 35., [self y_coord] + 20.);
   
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHexString:@"539DC2"] CGColor]);
