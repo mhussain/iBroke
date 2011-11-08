@@ -7,16 +7,14 @@
 
 ## Screenshots
 
+<img src="https://github.com/mhussain/iBroke/raw/master/Images/6.png" width=350 height=525 />
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/1.png" width=350 height=525 />
 
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/2.png" width=350 height=525 />
-
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/3.png" width=350 height=525 />
 
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/4.png" width=350 height=525 />
 <img src="https://github.com/mhussain/iBroke/raw/master/Images/5.png" width=350 height=525 />
-
-<img src="https://github.com/mhussain/iBroke/raw/master/Images/6.png" width=350 height=525 />
 
 ## Collaborators
 
