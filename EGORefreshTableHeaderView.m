@@ -38,7 +38,7 @@
 //  [label setTextColor: [skin colorNamed:@"text"]];
 //  [label setShadowColor: [skin colorNamed:@"text-shadow"]];
 //  [label setBackgroundColor: [skin colorNamed:@"dark-grey-texture"]];
-//  
+//
 //  return [label autorelease];
 //}
 //@end
@@ -62,7 +62,7 @@
 //  RELEASE(statuslabel_);
 //  RELEASE(arrowImage_);
 //  RELEASE(activityView_);
-//  
+//
 //  [super dealloc];
 //}
 //
@@ -72,20 +72,20 @@
 //- (void)setDelegate:(id<EGORefreshTableHeaderDelegate>)delegate;
 //{
 //  delegate_ = delegate;
-//  
+//
 //  [self refreshLastUpdatedDate];
-//  
+//
 //  Assert([[self delegate] respondsToSelector:@selector(egoRefreshTableHeaderDataSourceIsLoading:)]);
 //
 //  [self setState:[[self delegate] egoRefreshTableHeaderDataSourceIsLoading:self] ? EGOOPullRefreshLoading : EGOOPullRefreshNormal];
 //}
 //
 //- (void)setState:(EGOPullRefreshState)state;
-//{	
+//{
 //	switch (state)
 //  {
 //		case EGOOPullRefreshPulling:
-//			
+//
 //			[[self statusLabel] setText: NSLocalizedString(@"Release to update", @"Release to update status")];
 //      [[self statusLabel] sizeToFit];
 //
@@ -93,10 +93,10 @@
 //			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
 //			[[self arrowImage] setTransform: CATransform3DMakeRotation(M_PI, 0., 0., 1.)];
 //			[CATransaction commit];
-//      
+//
 //			break;
 //		case EGOOPullRefreshNormal:
-//			
+//
 //			if ([self state] == EGOOPullRefreshPulling)
 //      {
 //				[CATransaction begin];
@@ -104,36 +104,36 @@
 //				[[self arrowImage] setTransform: CATransform3DIdentity];
 //				[CATransaction commit];
 //			}
-//			
+//
 //			[[self statusLabel] setText: NSLocalizedString(@"Pull to update", @"Pull to update status")];
 //      [[self statusLabel] sizeToFit];
-//      
+//
 //			[[self activityView] stopAnimating];
-//      
+//
 //			[CATransaction begin];
-//			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
+//			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 //			[[self arrowImage] setHidden: NO];
 //			[[self arrowImage] setTransform: CATransform3DIdentity];
 //			[CATransaction commit];
-//			
+//
 //			[self refreshLastUpdatedDate];
-//      
+//
 //			break;
 //		case EGOOPullRefreshLoading:
-//			
+//
 //			[[self statusLabel] setText: NSLocalizedString(@"Loading\u2026", @"Loading Status")];
 //      [[self statusLabel] sizeToFit];
-//      
+//
 //			[[self activityView] startAnimating];
-//      
+//
 //			[CATransaction begin];
-//			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
+//			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 //			[[self arrowImage] setHidden: YES];
 //			[CATransaction commit];
-//			
+//
 //			break;
 //	}
-//	
+//
 //	state_ = state;
 //}
 //
@@ -143,30 +143,30 @@
 //{
 //}
 //
-//#pragma mark - 
+//#pragma mark -
 //
 //- (void)refreshLastUpdatedDate;
 //{
 //  [[self lastUpdatedLabel] setText:nil];
-//  
+//
 //	if ([[self delegate] respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)])
 //  {
 //		NSDate *date = [delegate_ egoRefreshTableHeaderDataSourceLastUpdated:self];
-//    
+//
 //		if (![date isEqualToDate:[NSDate distantPast]])
 //    {
 //      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//      
+//
 //      [formatter setLocale:[NSLocale currentLocale]];
 //      [formatter setDateStyle:NSDateFormatterShortStyle];
 //      [formatter setTimeStyle:NSDateFormatterShortStyle];
-//      
+//
 //      [[self lastUpdatedLabel] setText: [NSString stringWithFormat:NSLocalizedString(@"Last updated %1$@",@"Last Updated string and format"), [formatter stringFromDate:date]]];
 //      [[self lastUpdatedLabel] sizeToFit];
-//      
+//
 //      [[NSUserDefaults standardUserDefaults] setObject:[[self lastUpdatedLabel] text] forKey:@"EGORefreshTableView_LastRefresh"];
 //      [[NSUserDefaults standardUserDefaults] synchronize];
-//      
+//
 //      [formatter release];
 //    }
 //	}
@@ -181,14 +181,14 @@
 //
 //- (BOOL)extentGreaterThanThreshold:(UIScrollView *)scrollView;
 //{
-//    
+//
 //  return (([scrollView contentOffset].y > -[self stateThreshold] && [scrollView contentOffset].y < 0.) || ([scrollView contentOffset].x > -[self stateThreshold] && [scrollView contentOffset].x < 0.));
 //}
 //
 //- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
-//{	
+//{
 //  if (![scrollView isDragging] || [[self delegate] performSelectorSafely:@selector(egoRefreshTableHeaderDataSourceIsLoading:) withObject:self]) return;
-//  
+//
 //  if (([self state] == EGOOPullRefreshPulling) && [self extentGreaterThanThreshold:scrollView])
 //  {
 //    [self setState:EGOOPullRefreshNormal];
@@ -196,13 +196,13 @@
 //  else if (([self state] == EGOOPullRefreshNormal) && [self extentLessThanThreshold:scrollView])
 //  {
 //    [self setState:EGOOPullRefreshPulling];
-//  }  
+//  }
 //}
 //
 //- (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
 //{
 //  if ([[self delegate] performSelectorSafely:@selector(egoRefreshTableHeaderDataSourceIsLoading:) withObject:self]) return;
-//  	
+//
 //	if ([self extentLessThanThreshold:scrollView])
 //  {
 //    [self setState:EGOOPullRefreshLoading];

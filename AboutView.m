@@ -4,27 +4,27 @@
 //
 //  Created by Mujtaba Hussain on 28/10/11.
 
-// This code is distributed under the terms and conditions of the MIT license. 
+// This code is distributed under the terms and conditions of the MIT license.
 //
 // Copyright (c) 2011 Mujtaba Hussain
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights 
+// in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is 
+// copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
 #import "AboutView.h"
@@ -109,7 +109,7 @@ static NSString *res = @"json-framework (Stig Brautaset)\nASIHTTPRequest (Ben Co
     [frameworks setTextColor:[UIColor colorWithHexString:@"76EE00"]];
     [frameworks setBackgroundColor:[UIColor clearColor]];
     [self addSubview:frameworks];
-    
+
     _resources =  [[UILabel alloc] initWithFrame:CGRectZero];
     [_resources setNumberOfLines:0.];
     [_resources setLineBreakMode:UILineBreakModeWordWrap];
@@ -119,7 +119,7 @@ static NSString *res = @"json-framework (Stig Brautaset)\nASIHTTPRequest (Ben Co
     [_resources setBackgroundColor:[UIColor clearColor]];
     [self addSubview:_resources];
 
-    
+
     [self setNeedsLayout];
     [self setNeedsDisplay];
   }
@@ -129,10 +129,10 @@ static NSString *res = @"json-framework (Stig Brautaset)\nASIHTTPRequest (Ben Co
 - (void)layoutSubviews;
 {
   [[self dev] setFrame:CGRectMake(25., 10., 200., 20.)];
-  
+
   [[self about] setFrame:CGRectMake(20., 40., 280., 100.)];
   [[self ack] setFrame:CGRectMake(20., 170., 280., 100.)];
-  
+
   [[self resources] setFrame:CGRectMake(20., 290., 280., 100.)];
 }
 
@@ -140,20 +140,20 @@ static NSString *res = @"json-framework (Stig Brautaset)\nASIHTTPRequest (Ben Co
 {
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
-  
+
   CGContextMoveToPoint(context, [self x_coord] + 210., [self y_coord] + 20.);
-  
+
   CGContextAddLineToPoint(context, [self width] - 10., [self y_coord] + 20.);
   CGContextAddLineToPoint(context, [self width] - 10., [self height] - 20.);
 
   CGContextAddLineToPoint(context, [self x_coord] + 10., [self height] - 20.);
   CGContextAddLineToPoint(context, [self x_coord] + 10., [self y_coord] + 20.);
   CGContextAddLineToPoint(context, [self x_coord] + 35., [self y_coord] + 20.);
-  
+
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetStrokeColorWithColor(context, [[UIColor colorWithHexString:@"539DC2"] CGColor]);
   CGContextStrokePath(context);
-  
+
   CGContextRestoreGState(context);
 }
 

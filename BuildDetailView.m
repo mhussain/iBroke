@@ -3,23 +3,23 @@
 //
 // Copyright (c) 2011 Mujtaba Hussain
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights 
+// in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is 
+// copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
@@ -50,8 +50,8 @@ const CGFloat kPaddingBetweenLabels = 50.;
 - (id)initWithFrame:(CGRect)frame andText:(NSString *)text;
 {
   self = [super initWithFrame:frame];
-  
-  if (self) 
+
+  if (self)
   {
     [self setFrame:frame];
     [self setTextAlignment:UITextAlignmentCenter];
@@ -68,8 +68,8 @@ const CGFloat kPaddingBetweenLabels = 50.;
 
 - (CGSize)actualSize;
 {
-  return [[self text] sizeWithFont:[UIFont fontWithName:@"Verdana" size:15.] 
-                          constrainedToSize:CGSizeMake(280., 1000.)	
+  return [[self text] sizeWithFont:[UIFont fontWithName:@"Verdana" size:15.]
+                          constrainedToSize:CGSizeMake(280., 1000.)
                      lineBreakMode:UILineBreakModeWordWrap];
 }
 
@@ -109,20 +109,20 @@ const CGFloat kPaddingBetweenLabels = 50.;
   {
     [self setFrame:frame];
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
-    
+
     _healthLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_healthLabel defineStyleWithTitle:@"Health"];
     [_healthLabel setHidden:YES];
     [self addSubview:_healthLabel];
-    
+
     _healthReport = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];
     [self addSubview:_healthReport];
-    
+
     _changeSetLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     [_changeSetLabel defineStyleWithTitle:@"Comment"];
 		[_changeSetLabel setHidden:YES];
     [self addSubview:_changeSetLabel];
-    
+
     _changeset = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];
     [self addSubview:_changeset];
 
@@ -131,7 +131,7 @@ const CGFloat kPaddingBetweenLabels = 50.;
 		[_culpritLabel setHidden:YES];
     [self addSubview:_culpritLabel];
 
-    _culprit = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];    
+    _culprit = [[BuildDetailLabel alloc] initWithFrame:CGRectZero andText:@""];
     [self addSubview:_culprit];
   }
 
@@ -148,9 +148,9 @@ const CGFloat kPaddingBetweenLabels = 50.;
   [[self healthReport] setText: [[buildDetail health] isEmpty] ? [self placeholder] : [buildDetail health]];
   [[self changeset] setText: [[buildDetail description] isEmpty] ? [self placeholder] : [buildDetail description]];
   [[self culprit] setText: [[buildDetail culprits] isEmpty] ? [self placeholder] : [buildDetail culprits]];
-  
+
   [self setNeedsLayout];
-	[self setNeedsDisplay];  
+	[self setNeedsDisplay];
 }
 
 - (void)layoutSubviews;
@@ -158,7 +158,7 @@ const CGFloat kPaddingBetweenLabels = 50.;
   [_healthLabel setFrame:CGRectMake(30., 10., 60., 30.)];
   CGSize healthReportSize = [_healthReport actualSize];
   [_healthReport setFrame:CGRectMake(20., [_healthLabel y_coord] + 30., healthReportSize.width, healthReportSize.height)];
-  
+
   [_changeSetLabel setFrame:CGRectMake(30., [_healthLabel y_coord] + [[self healthReport] height] + kPaddingBetweenLabels, 150., 30.)];
   CGSize changesetSize = [_changeset actualSize];
   [_changeset setFrame:CGRectMake(20., [_changeSetLabel y_coord] + 30., changesetSize.width, changesetSize.height)];
@@ -166,7 +166,7 @@ const CGFloat kPaddingBetweenLabels = 50.;
   [_culpritLabel setFrame:CGRectMake(30., [_changeSetLabel y_coord] + [[self changeset] height] + kPaddingBetweenLabels, 150., 30.)];
   CGSize culpritSize = [_culprit actualSize];
   [_culprit setFrame:CGRectMake(20., [_culpritLabel y_coord] + 30., culpritSize.width, culpritSize.height)];
-  
+
   CGFloat height = [_healthReport height] + [_changeset height] + [_culprit height] + 200.;
   [self setContentSize:CGSizeMake([self bounds].size.width, height)];
 }
@@ -174,14 +174,14 @@ const CGFloat kPaddingBetweenLabels = 50.;
 #pragma mark - UIView Lifecycle
 
 - (void)drawRect:(CGRect)rect;
-{  
+{
   CGContextRef context = UIGraphicsGetCurrentContext();
   CGContextSaveGState(context);
   CGContextSetAllowsAntialiasing(context, YES);
   CGContextSetLineWidth(context, 1.);
-  
+
   CGFloat vertical_padding = 20.;
-  
+
   NSString *healthReportText = [[self healthReport] text];
   if ([healthReportText isNotEmpty])
   {
@@ -207,7 +207,7 @@ const CGFloat kPaddingBetweenLabels = 50.;
   {
     CGFloat text_height = [[self changeset] height] + vertical_padding;
     CGFloat y_start = [[self changeSetLabel] y_coord]  + [[self changeSetLabel] height] - 15.;
-    
+
     [[self changeSetLabel] setHidden:NO];
 
     // Draw box around Change set.
@@ -227,9 +227,9 @@ const CGFloat kPaddingBetweenLabels = 50.;
   {
     CGFloat text_height = [[self culprit] height] + vertical_padding;
     CGFloat y_start = [[self culpritLabel] y_coord]  + [[self culpritLabel] height] - 15.;
-    
+
     [[self culpritLabel] setHidden:NO];
-    
+
     // Draw box around Culprits.
     CGContextMoveToPoint(context, 120., y_start);
     CGContextSetStrokeColorWithColor(context, [[UIColor whiteColor] CGColor]);
@@ -242,7 +242,7 @@ const CGFloat kPaddingBetweenLabels = 50.;
     CGContextStrokePath(context);
   }
 
-  
+
   CGContextRestoreGState(context);
 }
 

@@ -4,27 +4,27 @@
 //
 //  Created by Mujtaba Hussain on 19/10/11.
 
-// This code is distributed under the terms and conditions of the MIT license. 
+// This code is distributed under the terms and conditions of the MIT license.
 //
 // Copyright (c) 2011 Mujtaba Hussain
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights 
+// in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is 
+// copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
@@ -97,11 +97,11 @@
 - (id)initWithAddress:(NSString *)address;
 {
   self = [super initWithNibName:nil bundle:nil];
-  
+
   if (self)
   {
     [[self navigationItem] setHidesBackButton:YES animated:NO];
-    
+
     UIImage *image = [UIImage imageNamed:@"Settings"];
     UIButton *settings = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
     [settings setImage:image forState:UIControlStateNormal];
@@ -110,7 +110,7 @@
 
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithCustomView:settings];
     [[self navigationItem] setRightBarButtonItem:settingsButton animated:YES];
-        
+
     UIButton *editButton = [[UIButton alloc] initWithFrame:CGRectMake(0., 0., 35., 35.)];
     [editButton setImage:[UIImage imageNamed:@"Edit"] forState:UIControlStateNormal];
     [editButton addTarget:self action:@selector(editTableView) forControlEvents:UIControlEventTouchUpInside];
@@ -121,9 +121,9 @@
     [doneButton setImage:[UIImage imageNamed:@"Done"] forState:UIControlStateNormal];
     [doneButton addTarget:self action:@selector(editTableView) forControlEvents:UIControlEventTouchUpInside];
     [doneButton setShowsTouchWhenHighlighted:YES];
-    
+
 		_done = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
-    
+
     [[self navigationItem] setLeftBarButtonItem:_edit animated:YES];
     [[[self navigationItem] leftBarButtonItem] setStyle:UIBarButtonItemStyleBordered];
     [[[self navigationItem] leftBarButtonItem] setEnabled:NO];
@@ -151,7 +151,7 @@
 - (void)editTableView;
 {
   BOOL edit = ![self inFullTableEditMode];
-  
+
   if (edit)
   {
     [[self navigationItem] setLeftBarButtonItem:_done animated:YES];
@@ -165,7 +165,7 @@
 
 #pragma mark - ShakeToReload
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event;
-{  
+{
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event;
@@ -178,7 +178,7 @@
 #pragma mark - ASyncRequest
 
 - (void)connectToAddress;
-{ 
+{
   if (![NetworkCheck isNetworkAvailable])
   {
     NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
@@ -186,7 +186,7 @@
                                                                   andType:kErrorNotification];
     [noNetwork setNeedsLayout];
     [[self view] addSubview:noNetwork];
-    
+
     [UIView animateWithDuration:3.0
       animations:^{
         [noNetwork setAlpha:0.0];
@@ -226,22 +226,22 @@
 
   UIView *loadingView = [[self buildsView] viewWithTag:3];
   [loadingView removeFromSuperview];
-  
+
 	// Set up the animation
 	CATransition *animation = [CATransition animation];
 	[animation setType:kCATransitionFade];
-	
+
 	[[loadingView layer] addAnimation:animation forKey:@"layerAnimation"];
-  
+
   SBJsonParser *parser = [[SBJsonParser alloc] init];
   NSDictionary *buildData = [parser objectWithString:[request responseString] error:nil];
   BuildDashboard *dashboard = [[BuildDashboard alloc] initWithBuildData:buildData];
-  
+
   [self setBuildData:[dashboard builds]];
   [self restoreHiddenBuilds];
-  
+
   [self setFilteredBuilds:nil];
-  
+
   [[[self navigationItem] leftBarButtonItem] setEnabled:YES];
   [[self buildsView] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
@@ -250,13 +250,13 @@
 {
   NSError *error = [request error];
 	NSString *message = [MeaningfulErrors messageForErrorCode:[[request error] code]];
-  
+
   NotificationView *noNetwork = [[NotificationView alloc] initWithFrame:CGRectZero
                                                              andMessage:message
                                                                 andType:kErrorNotification];
   [noNetwork setNeedsLayout];
   [[self view] addSubview:noNetwork];
-  
+
   [UIView animateWithDuration:3.0
        animations:^{
          [noNetwork setAlpha:0.0];
@@ -268,7 +268,7 @@
 
   UIView *loadingView = [[self buildsView] viewWithTag:3];
   [loadingView removeFromSuperview];
-  
+
   NSLog(@"Error Fetching Data %@",[error description]);
   [[self buildsView] reloadData];
 }
@@ -278,11 +278,11 @@
   [super setEditing:editing animated:animated];
   [self setFilteredBuilds:nil];
   [[self buildsView] setEditing:editing animated:animated];
-  
+
   double delayInSeconds = .4;
   dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
   dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    
+
     NSMutableArray *indexPaths = [NSMutableArray array];
     if (editing)
     {
@@ -293,7 +293,7 @@
       double delayInSeconds = .4;
       dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
       dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [[self buildsView] reloadData];        
+        [[self buildsView] reloadData];
       });
     }
     else
@@ -304,7 +304,7 @@
       [[self buildsView] deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
     }
   });
-  
+
   [self setInFullTableEditMode:editing];
 }
 
@@ -329,7 +329,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated;
-{  
+{
   [super viewWillAppear:animated];
 }
 
@@ -362,7 +362,7 @@
   if ([build isFailed])
   {
     BuildDetailController *detailViewController = [[BuildDetailController alloc] initWithBuild:build];
-    
+
     [[self navigationController] pushViewController:detailViewController animated:YES];
   }
 
@@ -375,9 +375,9 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  
+
   BOOL editingMode = [[self hiddenBuilds] containsObject:[[self builds] objectAtIndex:[indexPath row]]];
-  
+
   if (editingMode == YES)
   {
 //    UIImageView *show = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"show"]];
@@ -387,10 +387,10 @@
   else
   {
 //    UIImageView *show = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"hide"]];
-//    [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:show];    
+//    [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:show];
     return UITableViewCellEditingStyleDelete;
   }
-  
+
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -401,7 +401,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
   Build *build = [[self builds] objectAtIndex:[indexPath row]];
-  
+
   if (![self inFullTableEditMode])
   {
     [[self hiddenBuilds] addObject:build];
@@ -410,7 +410,7 @@
     [[self buildsView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     return;
   }
-  
+
   if ([[self hiddenBuilds] containsObject:build])
   {
     [[self hiddenBuilds] removeObject:build];
@@ -465,7 +465,7 @@
   {
     [[cell detailTextLabel] setText:@"Disabled"];
     [[cell detailTextLabel] setFont:[UIFont fontWithName:@"Verdana" size:10.]];
-    
+
     UIImageView *disabled = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"disabled"]];
     [disabled setFrame:CGRectMake(0., 0., 15., 15.)];
     [cell setAccessoryView:disabled];
@@ -494,7 +494,7 @@
     [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     [[cell detailTextLabel] setText:@""];
   }
-  
+
   return cell;
 }
 
@@ -512,14 +512,14 @@
     Build *build = (Build*)item;
     return [NSString stringWithFormat:@"%@::%@", [build url], [build name]];
   }];
-                       
+
   [[NSUserDefaults standardUserDefaults] setObject:buildIds forKey:kHiddenBuildsKey];
 }
 
 -(void)restoreHiddenBuilds;
 {
   NSArray *buildIds = [[NSUserDefaults standardUserDefaults] objectForKey:kHiddenBuildsKey];
-  
+
   [self setHiddenBuilds:[NSMutableArray arrayWithArray:[[self buildData] pick:^BOOL(id item) {
     Build *build = (Build*)item;
     return [buildIds containsObject:[NSString stringWithFormat:@"%@::%@", [build url], [build name]]];

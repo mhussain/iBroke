@@ -4,27 +4,27 @@
 //
 //  Created by Mujtaba Hussain on 19/10/11.
 
-// This code is distributed under the terms and conditions of the MIT license. 
+// This code is distributed under the terms and conditions of the MIT license.
 //
 // Copyright (c) 2011 Mujtaba Hussain
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights 
+// in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is 
+// copies of the Software, and to permit persons to whom the Software is
 // furnished to do so, subject to the following conditions:
 //
 // The above copyright notice and this permission notice shall be included in
 // all copies or substantial portions of the Software.
 //
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 //
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING 
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
 #import "AppDelegate.h"
@@ -52,23 +52,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  
+
   [application setApplicationSupportsShakeToEdit:YES];
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
 
   _navigationController = [[[UINavigationController alloc] initWithNibName:nil bundle:nil] autorelease];
-  
+
   if ([[UINavigationBar class]respondsToSelector:@selector(appearance)]) {
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar.png"] forBarMetrics:UIBarMetricsDefault];
   }
-  
+
   [[[self navigationController] navigationBar] setBarStyle:UIBarStyleBlack];
-  
+
   NSString *host = [UserData get:@"hostname"];
   if (nil != host)
   {
-    [[self navigationController] pushViewController:[[[DisplayBuildsController alloc] 
+    [[self navigationController] pushViewController:[[[DisplayBuildsController alloc]
                                                      initWithAddress:[NSString stringWithFormat:@"%@/api/json/", host]] autorelease]
                                            animated:YES];
   }
@@ -77,10 +77,10 @@
    	_mainPageController = [[[SettingsController alloc] initWithNibName:nil bundle:nil] autorelease];
     [[self navigationController] pushViewController:_mainPageController animated:YES];
   }
-  
+
   [[self window] setRootViewController:[self navigationController]];
   [self displaySplash];
-  
+
   // Override point for customization after application launch.
   [[self window] setBackgroundColor:[UIColor clearColor]];
   [self.window makeKeyAndVisible];
@@ -93,10 +93,10 @@
   UIImageView *splash = [[[UIImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
   [splash setTag:909];
   [splash setImage:[UIImage imageNamed:@"Default"]];
-  
+
   [_window addSubview:splash];
   [_window bringSubviewToFront:splash];
-  
+
 	[self delayedHideSplash:splash];
 }
 
@@ -108,14 +108,14 @@
 - (void)hideSplash:(UIView *)splash;
 {
   [UIView beginAnimations:@"hide splash" context:splash];
-  
+
   [UIView setAnimationDuration:.5];
   [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:[splash window] cache:YES];
   [UIView setAnimationDelegate:self];
   [UIView setAnimationDidStopSelector:@selector(finishFading:)];
-  
+
   [splash setAlpha:0.];
-  
+
   [UIView commitAnimations];
 }
 
@@ -130,7 +130,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
   /*
-   Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+   Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
    If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    */
 }
