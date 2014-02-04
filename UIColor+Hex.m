@@ -50,32 +50,32 @@
 + (UIColor *)colorWithHexString:(NSString *)hexString;
 {
   if (nil == hexString) return nil;
-  
+
   NSString *alphaString = nil;
   NSUInteger aValue = 0;
-  
+
   if ([hexString length] == 10)
   {
     alphaString = [hexString substringWithRange:NSRangeFromString(@"2 2")];
     NSScanner *aScanner = [NSScanner scannerWithString:alphaString];
-    
+
     BOOL parseSuccessful = [aScanner scanHexInt: &aValue];
     NSAssert(parseSuccessful, @"Invalid extended hex color alpha %@", alphaString);
-    
+
     hexString = [NSString stringWithFormat:@"%@%@",[hexString substringWithRange:NSRangeFromString(@"0 2")],[hexString substringWithRange:NSRangeFromString(@"4 6")]];
   }
-  
+
   NSScanner *pScanner = [NSScanner scannerWithString:hexString];
-  
+
   NSUInteger iValue;
   BOOL parseSuccessful = [pScanner scanHexInt: &iValue];
   NSAssert(parseSuccessful, @"Invalid hex color %@", hexString);
-  
+
   if (aValue > 0)
   {
     return [UIColor colorWithHex:iValue alpha:((float)aValue/255.0)];
   }
-  
+
   return [UIColor colorWithHex:iValue];
 }
 

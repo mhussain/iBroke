@@ -30,7 +30,7 @@
 //typedef enum{
 //	EGOOPullRefreshPulling = 0,
 //	EGOOPullRefreshNormal,
-//	EGOOPullRefreshLoading,	
+//	EGOOPullRefreshLoading,
 //} EGOPullRefreshState;
 //
 //@class SkinManager;

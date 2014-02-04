@@ -48,7 +48,7 @@
 - (NSArray *)filter:(BOOL (^)(id))block;
 {
   NSMutableArray *result = [NSMutableArray array];
-  
+
   for (id obj in self)
   {
     if (!block(obj))
@@ -56,14 +56,14 @@
       [result addObject:obj];
     }
   }
-  
+
   return result;
 }
 
 - (NSArray *)pick:(BOOL (^)(id))block;
 {
   NSMutableArray *result = [NSMutableArray array];
-  
+
   for (id obj in self)
   {
     if (block(obj))
@@ -71,14 +71,14 @@
       [result addObject:obj];
     }
   }
-  
+
   return result;
 }
 
 - (id)first:(BOOL (^)(id))block;
 {
 	id result = nil;
-  
+
   for (id obj in self)
   {
     if (block(obj))
@@ -87,7 +87,7 @@
       break;
     }
   }
-  
+
   return result;
 }
 
@@ -99,7 +99,7 @@
       *stop = YES;
       return YES;
     }
-    
+
     return NO;
   }];
 }
@@ -107,7 +107,7 @@
 - (id)last:(BOOL (^)(id))block;
 {
 	id result = nil;
-  
+
   for (id obj in [self reverseObjectEnumerator])
   {
     if (block(obj))
@@ -116,7 +116,7 @@
       break;
     }
   }
-  
+
   return result;
 }
 
@@ -128,7 +128,7 @@
       *stop = YES;
       return YES;
     }
-    
+
     return NO;
   }];
 }
@@ -136,24 +136,24 @@
 - (NSArray *)map:(id<NSObject> (^)(id<NSObject> item))block;
 {
   NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self count]];
-  
+
   for (id obj in self)
   {
     [result addObject:block(obj)];
   }
-  
+
   return [NSArray arrayWithArray:result];
 }
 
 - (id)reduce:(id (^)(id current, id item))block initial:(id)initial;
 {
   id result = initial;
-  
+
   for (id obj in self)
   {
     result = block(result, obj);
   }
-  
+
   return result;
 }
 

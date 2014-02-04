@@ -28,7 +28,7 @@
     [build_status setText:[NSString stringWithFormat:@"Status: %@", [build status]]];
     [build_status setBackgroundColor:[UIColor clearColor]];
     [self addSubview:build_status];
-    
+
     [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Background.png"]]];
   }
   return self;
